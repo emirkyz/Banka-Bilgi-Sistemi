@@ -37,7 +37,7 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         sorgu = sorgulama(sorgu, veri_sinifi, sayfa_no, kayit_sayisi)
         veriler = db.session.scalars(sorgu).all()
         return [veri.to_dict() for veri in veriler]
-    ## test
+
     @bp.route('/<int:id>', methods=['GET'])
     def bul(id):
         """
