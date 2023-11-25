@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>veri.modeller package &mdash; Finans Uygulaması Backend Dökümantasyon 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="veri package" href="veri.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Finans Uygulaması Backend Dökümantasyon
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">finansBackend</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprintler.html">blueprintler package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="veri.html">veri package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="veri.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">veri.modeller package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="veri.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="veri.html#module-veri.veritabani">veri.veritabani module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="veri.html#module-veri">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Finans Uygulaması Backend Dökümantasyon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">finansBackend</a></li>
+          <li class="breadcrumb-item"><a href="veri.html">veri package</a></li>
+      <li class="breadcrumb-item active">veri.modeller package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/veri.modeller.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="veri-modeller-package">
+<h1>veri.modeller package<a class="headerlink" href="#veri-modeller-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-veri.modeller.FaturaModeli">
+<span id="veri-modeller-faturamodeli-module"></span><h2>veri.modeller.FaturaModeli module<a class="headerlink" href="#module-veri.modeller.FaturaModeli" title="Link to this heading"></a></h2>
+<p>FaturaModeli.py dosyası modeller klasörü altında yer alır.
+Bu dosyada FaturaModeli adında bir sınıf tanımlıyoruz.
+Bu sınıf, veritabanındaki “fatura” tablosunun kolonlarını temsil ediyor.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.FaturaModeli.</span></span><span class="sig-name descname"><span class="pre">FaturaModeli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/FaturaModeli.html#FaturaModeli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="veri.modeller.TemelVeriSinif.TemelVeriSinifi"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemelVeriSinifi</span></code></a></p>
+<p>Bu sınıf, veritabanındaki “fatura” tablosunun kolonlarını temsil ediyor.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>fatura_musteri_id: Faturanın ait olduğu müşteri id’si</p>
+<p>fatura_hesap_id: Faturanın ait olduğu hesap id’si</p>
+<p>fatura_miktar: Fatura miktarı</p>
+<p>fatura_tarih: Fatura tarihi</p>
+<p>fatura_son_tarih: Fatura son ödeme tarihi</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.fatura_hesap_id">
+<span class="sig-name descname"><span class="pre">fatura_hesap_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.fatura_hesap_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.fatura_miktar">
+<span class="sig-name descname"><span class="pre">fatura_miktar</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.fatura_miktar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.fatura_musteri_id">
+<span class="sig-name descname"><span class="pre">fatura_musteri_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.fatura_musteri_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.fatura_son_tarih">
+<span class="sig-name descname"><span class="pre">fatura_son_tarih</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.fatura_son_tarih" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.fatura_tarih">
+<span class="sig-name descname"><span class="pre">fatura_tarih</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.fatura_tarih" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.FaturaModeli.FaturaModeli.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.FaturaModeli.FaturaModeli.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-veri.modeller.HesapHaraketModeli">
+<span id="veri-modeller-hesapharaketmodeli-module"></span><h2>veri.modeller.HesapHaraketModeli module<a class="headerlink" href="#module-veri.modeller.HesapHaraketModeli" title="Link to this heading"></a></h2>
+<p>HesapHaraketModeli.py dosyası, hesap hareketleri tablosu için veri modelini içerir.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.HesapHaraketModeli.</span></span><span class="sig-name descname"><span class="pre">HesapHaraketModeli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/HesapHaraketModeli.html#HesapHaraketModeli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="veri.modeller.TemelVeriSinif.TemelVeriSinifi"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemelVeriSinifi</span></code></a></p>
+<p>Bu sınıf, veritabanındaki “hesapHaraket” tablosunun kolonlarını temsil ediyor.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>hareket_hesap_id: Hareketin ait olduğu hesap id’si</p>
+<p>hareketMiktar: Hareket miktarı</p>
+<p>haraketTarih: Hareket tarihi</p>
+<p>hareketAciklama: Hareket açıklaması</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.haraketTarih">
+<span class="sig-name descname"><span class="pre">haraketTarih</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.haraketTarih" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareketAciklama">
+<span class="sig-name descname"><span class="pre">hareketAciklama</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareketAciklama" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareketMiktar">
+<span class="sig-name descname"><span class="pre">hareketMiktar</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareketMiktar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareket_hesap_id">
+<span class="sig-name descname"><span class="pre">hareket_hesap_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareket_hesap_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareket_turu">
+<span class="sig-name descname"><span class="pre">hareket_turu</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.hareket_turu" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapHaraketModeli.HesapHaraketModeli.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-veri.modeller.HesapModel">
+<span id="veri-modeller-hesapmodel-module"></span><h2>veri.modeller.HesapModel module<a class="headerlink" href="#module-veri.modeller.HesapModel" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.HesapModel.</span></span><span class="sig-name descname"><span class="pre">HesapModeli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/HesapModel.html#HesapModeli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="veri.modeller.TemelVeriSinif.TemelVeriSinifi"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemelVeriSinifi</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_AcanSube">
+<span class="sig-name descname"><span class="pre">hesap_AcanSube</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_AcanSube" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_Aciklama">
+<span class="sig-name descname"><span class="pre">hesap_Aciklama</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_Aciklama" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_AcilisTarih">
+<span class="sig-name descname"><span class="pre">hesap_AcilisTarih</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_AcilisTarih" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_HesapNo">
+<span class="sig-name descname"><span class="pre">hesap_HesapNo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_HesapNo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_ParaBirim">
+<span class="sig-name descname"><span class="pre">hesap_ParaBirim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_ParaBirim" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_fatura_id">
+<span class="sig-name descname"><span class="pre">hesap_fatura_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#veri.modeller.FaturaModeli.FaturaModeli" title="veri.modeller.FaturaModeli.FaturaModeli"><span class="pre">FaturaModeli</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_fatura_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_hareket">
+<span class="sig-name descname"><span class="pre">hesap_hareket</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#veri.modeller.HesapHaraketModeli.HesapHaraketModeli" title="veri.modeller.HesapHaraketModeli.HesapHaraketModeli"><span class="pre">HesapHaraketModeli</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_hareket" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.hesap_musteri_id">
+<span class="sig-name descname"><span class="pre">hesap_musteri_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.hesap_musteri_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.HesapModel.HesapModeli.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.HesapModel.HesapModeli.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-veri.modeller.KrediModel">
+<span id="veri-modeller-kredimodel-module"></span><h2>veri.modeller.KrediModel module<a class="headerlink" href="#module-veri.modeller.KrediModel" title="Link to this heading"></a></h2>
+<p>KrediModel.py dosyası, kredi tablosunun modelini içerir.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.KrediModel.</span></span><span class="sig-name descname"><span class="pre">KrediModeli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/KrediModel.html#KrediModeli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="veri.modeller.TemelVeriSinif.TemelVeriSinifi"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemelVeriSinifi</span></code></a></p>
+<p>KrediModeli, kredi tablosunun modelini içerir.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>kredi_durum: KrediModeli nesnesinin durumunu belirtir.</p>
+<p>kredi_musteri_id: KrediModeli nesnesinin ilişkili olduğu müşteri tablosunun id’si.</p>
+<p>kredi_faiz_orani: Kredinin faiz oranını belirtir.</p>
+<p>kredi_son_tarih:  Kredinin son tarihini belirtir.</p>
+<p>kredi_tutar: KrediModeli nesnesinin tutarını belirtir.</p>
+<p>kredi_ay: Kredinin kaç ay süreceğini belirtir.</p>
+<p>kredi_geri_odeme: Kredinin geri ödeme miktarını belirtir.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.container">
+<span class="sig-name descname"><span class="pre">container</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/KrediModel.html#KrediModeli.container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.container" title="Link to this definition"></a></dt>
+<dd><p>durum_belirle fonkyionu için container fonksiyonudur.</p>
+<p>KrediModeli nesnesinin durumunu belirler.
+Eğer kredi_son_tarih, şu anki tarihten küçükse kredi durumu “Pasif” olur.
+Eğer kredi_son_tarih, şu anki tarihten büyükse kredi durumu “Aktif” olur.</p>
+<blockquote>
+<div><p>Context, SQLAlchemy tarafından sağlanan bir nesnedir ve Modelin özelliklerine erişim sağlar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param context<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SQLAlchemy context.</p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>KrediModeli nesnesinin durumunu döndürür.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.faiz_hesapla">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">faiz_hesapla</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.faiz_hesapla" title="Link to this definition"></a></dt>
+<dd><p>Kredinin faizini hesaplar.
+:return: Kredinin toplam geri ödenecek tutarını döndürür.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_ay">
+<span class="sig-name descname"><span class="pre">kredi_ay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_ay" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_durum">
+<span class="sig-name descname"><span class="pre">kredi_durum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_durum" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_faiz_orani">
+<span class="sig-name descname"><span class="pre">kredi_faiz_orani</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_faiz_orani" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_geri_odeme">
+<span class="sig-name descname"><span class="pre">kredi_geri_odeme</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_geri_odeme" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_musteri_id">
+<span class="sig-name descname"><span class="pre">kredi_musteri_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_musteri_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_son_tarih">
+<span class="sig-name descname"><span class="pre">kredi_son_tarih</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_son_tarih" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.kredi_tutar">
+<span class="sig-name descname"><span class="pre">kredi_tutar</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.kredi_tutar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.KrediModeli.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.KrediModel.KrediModeli.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="veri.modeller.KrediModel.set_credit_score">
+<span class="sig-prename descclassname"><span class="pre">veri.modeller.KrediModel.</span></span><span class="sig-name descname"><span class="pre">set_credit_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/KrediModel.html#set_credit_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.KrediModel.set_credit_score" title="Link to this definition"></a></dt>
+<dd><p>KrediModeli nesnesi eklendikten sonra çalışan fonksiyon.
+Bu fonksiyon, kredi tablosuna ekleme yapıldıktan sonra müşteri tablosundaki müşteri kredi skorunu günceller.
+Tablolarda güncelleme yapabilmek için yeni bir session oluşturulur.</p>
+<p>Açıklama:
+&#64;event.listeners_for() SQL Alchemy tarafından sağlanan bir dekoratördür,
+bu dekoratör sayesinde, belirtilen modelin belirtilen olayından sonra çalışan bir fonksiyon yazılabilir.</p>
+<p>Hesaplama formülü:</p>
+<pre>score = (1-(active / total)) + (total//100)
+active: Müşterinin aktif kredilerinin sayısı.
+total: Müşterinin toplam kredilerinin sayısı.
+score: Müşterinin kredi skoru.</pre>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mapper</strong> – SQLAlchemy mapper.</p></li>
+<li><p><strong>connection</strong> – SQLAlchemy connection.</p></li>
+<li><p><strong>target</strong> – KrediModeli nesnesi.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-veri.modeller.MusteriModel">
+<span id="veri-modeller-musterimodel-module"></span><h2>veri.modeller.MusteriModel module<a class="headerlink" href="#module-veri.modeller.MusteriModel" title="Link to this heading"></a></h2>
+<p>MusteriModel.py dosyası, müşteri tablosunun modelini içerir.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.MusteriModel.</span></span><span class="sig-name descname"><span class="pre">MusteriModeli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/MusteriModel.html#MusteriModeli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="veri.modeller.TemelVeriSinif.TemelVeriSinifi"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemelVeriSinifi</span></code></a></p>
+<p>Bu sınıf, veritabanındaki “musteri” tablosunun kolonlarını temsil ediyor.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>musteri_adi: MusteriModeli nesnesinin adını belirtir.</p>
+<p>musteri_soyad: MusteriModeli nesnesinin soyadını belirtir.</p>
+<p>musteri_tc: MusteriModeli nesnesinin tc’sini belirtir.</p>
+<p>musteri_imza: MusteriModeli nesnesinin imzasını belirtir.</p>
+<p>musteri_sube_id: MusteriModeli nesnesinin ilişkili olduğu şube tablosunun id’si.</p>
+<p>musteri_hesap_id: MusteriModeli nesnesinin ilişkili olduğu hesabun id’si.</p>
+<p>musteri_fatura_id: MusteriModeli nesnesinin ilişkili olduğu faturaların id’leri.</p>
+<p>musteri_kredileri: MusteriModeli nesnesinin ilişkili olduğu kredlerin id’leri.</p>
+<p>musteri_kredi_skor: MusteriModeli nesnesinin kredi skorunu belirtir.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_adi">
+<span class="sig-name descname"><span class="pre">musteri_adi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_adi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_fatura_id">
+<span class="sig-name descname"><span class="pre">musteri_fatura_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#veri.modeller.FaturaModeli.FaturaModeli" title="veri.modeller.FaturaModeli.FaturaModeli"><span class="pre">FaturaModeli</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_fatura_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_hesap_id">
+<span class="sig-name descname"><span class="pre">musteri_hesap_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#veri.modeller.HesapModel.HesapModeli" title="veri.modeller.HesapModel.HesapModeli"><span class="pre">HesapModeli</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_hesap_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_imza">
+<span class="sig-name descname"><span class="pre">musteri_imza</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_imza" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_kredi_skor">
+<span class="sig-name descname"><span class="pre">musteri_kredi_skor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_kredi_skor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_kredileri">
+<span class="sig-name descname"><span class="pre">musteri_kredileri</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#veri.modeller.KrediModel.KrediModeli" title="veri.modeller.KrediModel.KrediModeli"><span class="pre">KrediModeli</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_kredileri" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_soyad">
+<span class="sig-name descname"><span class="pre">musteri_soyad</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_soyad" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_sube_id">
+<span class="sig-name descname"><span class="pre">musteri_sube_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_sube_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.musteri_tc">
+<span class="sig-name descname"><span class="pre">musteri_tc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.musteri_tc" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.MusteriModel.MusteriModeli.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.MusteriModel.MusteriModeli.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-veri.modeller.SubeModel">
+<span id="veri-modeller-subemodel-module"></span><h2>veri.modeller.SubeModel module<a class="headerlink" href="#module-veri.modeller.SubeModel" title="Link to this heading"></a></h2>
+<p>Bu modülde SubeModeli adında bir sınıf tanımlıyoruz.
+Bu sınıf, veritabanındaki “sube” tablosunun kolonlarını temsil ediyor.
+Bu sınıfın örnekleri, veritabanındaki “sube” tablosundaki kayıtları temsil ediyor.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.SubeModel.</span></span><span class="sig-name descname"><span class="pre">SubeModeli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/SubeModel.html#SubeModeli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="veri.modeller.TemelVeriSinif.TemelVeriSinifi"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemelVeriSinifi</span></code></a></p>
+<p>Bu sınıf, veritabanındaki “sube” tablosunun kolonlarını temsil ediyor.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>sube_adi: Şube adı</p>
+<p>sube_adresi: Şube adresi</p>
+<p>sube_tel: Şube telefonu</p>
+<p>sube_musterileri: Şubeye kayıtlı müşteriler</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.sube_adi">
+<span class="sig-name descname"><span class="pre">sube_adi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.sube_adi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.sube_adresi">
+<span class="sig-name descname"><span class="pre">sube_adresi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.sube_adresi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.sube_musterileri">
+<span class="sig-name descname"><span class="pre">sube_musterileri</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#veri.modeller.MusteriModel.MusteriModeli" title="veri.modeller.MusteriModel.MusteriModeli"><span class="pre">MusteriModeli</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.sube_musterileri" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.SubeModel.SubeModeli.sube_tel">
+<span class="sig-name descname"><span class="pre">sube_tel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#veri.modeller.SubeModel.SubeModeli.sube_tel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-veri.modeller.TemelVeriSinif">
+<span id="veri-modeller-temelverisinif-module"></span><h2>veri.modeller.TemelVeriSinif module<a class="headerlink" href="#module-veri.modeller.TemelVeriSinif" title="Link to this heading"></a></h2>
+<p>Bu modülde veritabanı modellerinin ortak özelliklerini içeren TemelVeriSinifi sınıfı bulunmaktadır.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">veri.modeller.TemelVeriSinif.</span></span><span class="sig-name descname"><span class="pre">TemelVeriSinifi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/veri/modeller/TemelVeriSinif.html#TemelVeriSinifi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DeclarativeBase</span></code></p>
+<p>Bu sınıf, veritabanı modellerinin ortak özelliklerini içerir.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>id: Oluşturulan verinin id’si.</p>
+<p>olusturulma_tarihi: Oluşturulan verinin oluşturulma tarihi.</p>
+<p>guncellenme_tarihi: Oluşturulan verinin güncellenme tarihi.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi.guncellenme_tarihi">
+<span class="sig-name descname"><span class="pre">guncellenme_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;sqlalchemy.orm.properties.MappedColumn</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi.guncellenme_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;sqlalchemy.orm.properties.MappedColumn</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi.id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">MetaData</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">MetaData()</span></em><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi.metadata" title="Link to this definition"></a></dt>
+<dd><p>Refers to the <code class="xref py py-class docutils literal notranslate"><span class="pre">_schema.MetaData</span></code> collection that will be used
+for new <code class="xref py py-class docutils literal notranslate"><span class="pre">_schema.Table</span></code> objects.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><span class="xref std std-ref">orm_declarative_metadata</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi.olusturulma_tarihi">
+<span class="sig-name descname"><span class="pre">olusturulma_tarihi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapped</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;sqlalchemy.orm.properties.MappedColumn</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi.olusturulma_tarihi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi.registry">
+<span class="sig-name descname"><span class="pre">registry</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">_RegistryType</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;sqlalchemy.orm.decl_api.registry</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi.registry" title="Link to this definition"></a></dt>
+<dd><p>Refers to the <code class="xref py py-class docutils literal notranslate"><span class="pre">_orm.registry</span></code> in use where new
+<code class="xref py py-class docutils literal notranslate"><span class="pre">_orm.Mapper</span></code> objects will be associated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="veri.modeller.TemelVeriSinif.TemelVeriSinifi.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/veri/modeller/TemelVeriSinif.html#TemelVeriSinifi.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#veri.modeller.TemelVeriSinif.TemelVeriSinifi.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Tablo nesnesinin kolonlarını sözlük olarak döndürür.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="veri-modeller-manavmodeli-module">
+<h2>veri.modeller.manavModeli module<a class="headerlink" href="#veri-modeller-manavmodeli-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-veri.modeller">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-veri.modeller" title="Link to this heading"></a></h2>
+<p>Tüm veri modellerinin import edildiği yer</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="veri.html" class="btn btn-neutral float-left" title="veri package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Emir Kyz.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
