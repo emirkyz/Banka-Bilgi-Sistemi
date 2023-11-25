@@ -1,0 +1,227 @@
+@import "yazitipi.css";
+@import "temalar/light_mode_tema.css";
+@import "temalar/dark_mode_tema.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+Tüm nesnelerin konumlarını ayarlama sistemi
+ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100vh;
+}
+
+.kapsayici {
+    display: grid;
+    grid-template-columns: 2rem 1fr 1fr 1fr;
+    grid-template-rows: 0.05fr 1.5fr 1fr 1fr 4rem;
+    grid-template-areas:
+    "navbar navbar navbar navbar"
+    "middle middle middle middle"
+    "middle middle middle middle"
+    "middle middle middle middle"
+    "footer footer footer footer";
+    min-height: 100vh;
+    font-family: "Rubik", sans-serif;
+    background-color: var(--arkaplan);
+    color: var(--yazirengi);
+    transition: color 1s,
+    background-color 1s;
+    padding: 5px 5px 1px;
+    gap: 10px;
+    animation: fadein 1s ease-in-out;
+}
+
+/*#app div {*/
+/*    min-height: 100vh;*/
+/*    background-color: var(--arkaplan);*/
+/*    color: var(--yazirengi);*/
+/*}*/
+hr {
+    margin-top: 12px;
+    background-color: var(--yazirengi);
+}
+
+#kisi {
+    /*background: #bdbdbd;*/
+
+    color: var(--yazirengi);
+}
+
+.nav_comp {
+    z-index: 0;
+    background: var(--nav_arkaplan);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+    margin-top: 2px;
+    margin-bottom: 2px;
+    min-width: 100%;
+    grid-area: navbar;
+    padding: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.nav_comp,
+.main_comp,
+.sidebar_comp,
+.footer_comp {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.nav_comp:hover,
+.main_comp:hover,
+.sidebar_comp:hover,
+.footer_comp:hover {
+
+    transform: scale(1.005);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+tr {
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #cbcbcb;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.btn {
+    color: var(--yazirengi);
+    border: #161612 1px solid;
+    background-color: var(--menu_arkaplan);
+    padding: 7px 14px;
+    margin: 7px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: var(--btn_arkaplan);
+    color: var(--yazirengi);
+}
+
+.main_comp::-webkit-scrollbar {
+    display: none;
+}
+
+.main_comp {
+    /*min-height: 100vh; !*To make main_comp grow forever*!*/
+    min-height: 100vh;
+    /*max-height: 800px;*/
+    overflow: scroll;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    white-space: pre-line;
+    overflow-inline: auto;
+    flex-basis: 100vw;
+    font-size: 16px;
+    padding: 15px;
+    min-width: inherit;
+    font-weight: lighter;
+    color: var(--yazirengi);
+    background: var(--menu_arkaplan);
+}
+
+.fixedElement {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+#table-limiter {
+
+    margin-left: 20px;
+}
+
+table {
+    width: 100%;
+    /*min-height: 100vh;*/
+
+}
+
+main {
+    white-space: pre-line;
+    overflow-inline: auto;
+    grid-area: main;
+    font-size: 30px;
+    padding: 20px;
+    font-weight: bolder;
+    background: var(--arkaplan);
+}
+
+#inside_side {
+    display: none;
+    width: fit-content;
+    font-size: 14px;
+    text-align: left;
+    margin-left: 4px;
+}
+
+.sidebar_comp {
+    height: auto;
+    flex-basis: 20px;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bolder;
+    background: grey;
+}
+
+.footer_comp {
+    position: relative;
+    margin-bottom: 10px;
+    grid-area: footer;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    background: var(--menu_arkaplan);
+    color: var(--yazirengi);
+}
+
+@media (max-width: 768px) {
+    .kapsayici {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+      "navbar"
+      "middle"
+      "middle"
+      "footer";
+    }
+}
+.middle{
+    grid-area: middle;
+}
+.middle_comp {
+    min-width: inherit;
+    column-gap: 8px;
+    grid-area: middle;
+    display: grid;
+    grid-template-columns: 0.1fr 0.4fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
