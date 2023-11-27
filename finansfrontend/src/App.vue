@@ -18,7 +18,7 @@ console.log(secili_tema);
 <template>
   <div id="page" class="kapsayici" :class="secili_tema">
     <Nav_bar_component class="nav_comp"/>
-    <kredi_component class="middle"/>
+    <kredi_component/>
     <!--    <sidebar_component class="sidebar_comp"/>-->
 
     <footer_component class="footer_comp"/>

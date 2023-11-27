@@ -11,7 +11,7 @@ export const useKrediStore = defineStore('kredi',
             id_order: "?sırala=ar_id",
             total_credits: 0,
             sayfa: 0,
-            adet: 0,
+            adet: 10,
             at_end: false,
         }),
         actions: {
@@ -19,8 +19,9 @@ export const useKrediStore = defineStore('kredi',
                 const loading = useLoadingState();
                 loading.yuklemeyeBasla();
                 this.selectedCredit = null;
-                axios.get(`http://127.0.0.1:5000/api/v1/kredi/s/${sayfa}${siralama}`).then((response) => {
+                axios.get(`http://127.0.0.1:5000/api/v1/kredi/s/${sayfa}/k/${this.adet}${siralama}`).then((response) => {
                     this.krediler = response.data;
+
                     loading.yuklemeyiBitir();
                 })
             },
@@ -44,6 +45,9 @@ export const useKrediStore = defineStore('kredi',
             },
             onceki_sayfa() {
                 if (this.krediler.length === 0) {
+                    return;
+                }
+                if (this.sayfa === 0) {
                     return;
                 }
                 this.at_end = false;

@@ -7,7 +7,7 @@ import Kredi_main_component from "@/components/KrediTable/kredi_main_component.v
 </script>
 
 <template>
-    <main class="middle_section">
+    <main class="middle_section middle">
       <kredi_sidebar class="sidebar_comp"/>
       <kredi_main_component class="main_comp"/>
 
