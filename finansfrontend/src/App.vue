@@ -2,9 +2,9 @@
 import {ref} from "vue";
 import Nav_bar_component from "@/components/nav_bar_component.vue";
 import Footer_component from "@/components/footer_component.vue";
-import Middle_component from "@/components/middle_component.vue";
 import {useThemeStore} from "@/stores/temastore";
 import {storeToRefs} from "pinia";
+import Kredi_component from "@/components/KrediTable/kredi_component.vue";
 
 
 
@@ -18,7 +18,7 @@ console.log(secili_tema);
 <template>
   <div id="page" class="kapsayici" :class="secili_tema">
     <Nav_bar_component class="nav_comp"/>
-    <middle_component class="middle"/>
+    <kredi_component class="middle"/>
     <!--    <sidebar_component class="sidebar_comp"/>-->
 
     <footer_component class="footer_comp"/>

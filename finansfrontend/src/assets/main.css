@@ -167,19 +167,19 @@ main {
     overflow-inline: auto;
     grid-area: main;
     font-size: 30px;
-    padding: 20px;
+
     font-weight: bolder;
     background: var(--arkaplan);
 }
-
-#inside_side {
+#sidebar_content {
     display: none;
-    width: fit-content;
+    flex-direction: column;
+    min-width: 250px;
+    overflow-wrap: break-word;
     font-size: 14px;
     text-align: left;
     margin-left: 4px;
 }
-
 .sidebar_comp {
     height: auto;
     flex-basis: 20px;
