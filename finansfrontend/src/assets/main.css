@@ -13,6 +13,7 @@ Tüm nesnelerin konumlarını ayarlama sistemi
 *,
 *::before,
 *::after {
+    transition: color 10ms, background-color 300ms;
     margin: 0;
     box-sizing: border-box;
     font-weight: normal;
@@ -37,8 +38,7 @@ body {
     font-family: "Rubik", sans-serif;
     background-color: var(--arkaplan);
     color: var(--yazirengi);
-    transition: color 1s,
-    background-color 1s;
+
     padding: 5px 5px 1px;
     gap: 10px;
     animation: fadein 1s ease-in-out;
