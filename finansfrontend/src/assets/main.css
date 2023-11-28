@@ -171,6 +171,7 @@ main {
     font-weight: bolder;
     background: var(--arkaplan);
 }
+
 #sidebar_content {
     display: none;
     flex-direction: column;
@@ -180,6 +181,7 @@ main {
     text-align: left;
     margin-left: 4px;
 }
+
 .sidebar_comp {
     height: auto;
     flex-basis: 20px;
@@ -214,9 +216,11 @@ main {
       "footer";
     }
 }
-.middle{
+
+.middle {
     grid-area: middle;
 }
+
 .middle_comp {
     min-width: inherit;
     column-gap: 8px;

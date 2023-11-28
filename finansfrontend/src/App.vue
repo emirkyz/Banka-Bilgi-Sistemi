@@ -7,7 +7,6 @@ import {storeToRefs} from "pinia";
 import Kredi_component from "@/components/KrediTable/kredi_component.vue";
 
 
-
 const secili_tema = storeToRefs(useThemeStore()).secili_tema;
 
 // const secili_tema = ref("light_mode");
