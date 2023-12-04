@@ -27,7 +27,7 @@ body {
 .kapsayici {
     display: grid;
     grid-template-columns: 12rem 0.5fr 1fr 1fr;
-    grid-template-rows: 0.05fr 1.5fr 1fr 1fr 4rem;
+    grid-template-rows: 0.4fr 1.5fr 1fr 1fr 4rem;
     grid-template-areas:
     "navbar navbar navbar navbar"
     "middle middle middle middle"

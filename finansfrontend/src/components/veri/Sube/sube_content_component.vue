@@ -5,7 +5,7 @@ import {useSubeStore} from "@/stores/subestore";
 const sube_store = useSubeStore()
 const loading = useLoadingState()
 
-sube_store.yukle()
+sube_store.init()
 sube_store.get_all_kredi()
 </script>
 

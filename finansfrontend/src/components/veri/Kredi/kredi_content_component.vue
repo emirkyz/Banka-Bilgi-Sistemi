@@ -5,7 +5,8 @@ import {useLoadingState} from "@/stores/loading_state";
 const kredi_store = useKrediStore();
 const loading = useLoadingState()
 
-kredi_store.yukle()
+kredi_store.init()
+
 kredi_store.get_all_kredi()
 </script>
 

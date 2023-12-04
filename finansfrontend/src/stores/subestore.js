@@ -4,7 +4,6 @@ import {useLoadingState} from "@/stores/loading_state";
 
 export const useSubeStore = defineStore('sube',
     {
-
         state: () => ({
             subeler: [],
             selectedSube: null,
@@ -15,6 +14,12 @@ export const useSubeStore = defineStore('sube',
             at_end: false,
         }),
         actions: {
+            init() {
+                this.sayfa = 0;
+                this.ade = 10;
+                this.at_end = false;
+                this.yukle();
+            },
             yukle(sayfa = 0, siralama = this.id_order) {
                 const loading = useLoadingState();
                 loading.yuklemeyeBasla();

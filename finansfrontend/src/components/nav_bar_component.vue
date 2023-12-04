@@ -11,10 +11,10 @@
         </a>
       </div>
       <div
-          id="test"
+
           class="w-full block flex-grow sm:flex sm:items-center sm:w-auto"
       >
-        <div class="text-sm sm:flex-grow">
+        <div id="test" class="text-sm sm:flex-grow">
           <router-link to="/sube"
                        class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
           >
@@ -54,13 +54,21 @@
 <style scoped>
 .link-active,
 .link-active:hover{
-  padding: 5px;
+
+  padding: 10px 10px;
   align-items: center;
-  border-radius: 8px;
-  background-color: #5b5b5b;
+  border-radius: 15px;
+  background-color: #804949;
   color: white !important;
 }
 .link-active #title{
   color: #d01b1b !important;
 }
+#test{
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+  align-items: center;
+}
+
 </style>
