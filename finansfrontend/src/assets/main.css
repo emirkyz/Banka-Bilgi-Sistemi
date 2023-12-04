@@ -26,13 +26,13 @@ body {
 
 .kapsayici {
     display: grid;
-    grid-template-columns: 2rem 1fr 1fr 1fr;
+    grid-template-columns: 12rem 0.5fr 1fr 1fr;
     grid-template-rows: 0.05fr 1.5fr 1fr 1fr 4rem;
     grid-template-areas:
     "navbar navbar navbar navbar"
-    "middle middle middle middle"
-    "middle middle middle middle"
-    "middle middle middle middle"
+    "sidebar middle middle middle"
+    "sidebar middle middle middle"
+    "sidebar middle middle middle"
     "footer footer footer footer";
     min-height: 100vh;
     font-family: "Rubik", sans-serif;
@@ -80,7 +80,9 @@ hr {
 
 .nav_comp,
 .main_comp,
+.home_comp,
 .sidebar_comp,
+.sidebar_test,
 .footer_comp {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -88,7 +90,9 @@ hr {
 
 .nav_comp:hover,
 .main_comp:hover,
+.home_comp:hover,
 .sidebar_comp:hover,
+.sidebar_test:hover,
 .footer_comp:hover {
 
     transform: scale(1.005);
@@ -125,8 +129,12 @@ tr {
 .main_comp::-webkit-scrollbar {
     display: none;
 }
+.home_comp::-webkit-scrollbar {
+    display: none;
+}
 
 .main_comp {
+    grid-area: content;
     /*min-height: 100vh; !*To make main_comp grow forever*!*/
     min-height: 100vh;
     /*max-height: 800px;*/
@@ -144,6 +152,27 @@ tr {
     background: var(--menu_arkaplan);
 }
 
+
+.home_comp {
+    border-radius: 23px;
+
+    display: flex;
+    flex-direction: row;
+    grid-area: content;
+    min-height: 100vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    white-space: pre-line;
+    overflow-inline: auto;
+    flex-basis: 100vw;
+    font-size: 16px;
+    padding: 15px;
+    min-width: inherit;
+    font-weight: lighter;
+    color: var(--yazirengi);
+    background: var(--menu_arkaplan);
+}
 .fixedElement {
     position: relative;
     top: 0;
@@ -165,7 +194,7 @@ table {
 main {
     white-space: pre-line;
     overflow-inline: auto;
-    grid-area: main;
+
     font-size: 30px;
 
     font-weight: bolder;
@@ -173,9 +202,8 @@ main {
 }
 
 #sidebar_content {
-    display: none;
+    display: block;
     flex-direction: column;
-    min-width: 250px;
     overflow-wrap: break-word;
     font-size: 14px;
     text-align: left;
@@ -183,14 +211,36 @@ main {
 }
 
 .sidebar_comp {
+    align-content: flex-start;
+    justify-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    min-width: fit-content;
+    max-width: min-content;
+    margin-left: 2px;
+    grid-area: sidebar;
     height: auto;
-    flex-basis: 20px;
-    padding: 10px;
+    flex-basis: 35px;
+    padding:10px;
     font-size: 25px;
     font-weight: bolder;
     background: grey;
+    min-height: 100vh;
 }
 
+
+.sidebar_test {
+    width: initial;
+    margin-left: 2px;
+    grid-area: sidebar;
+    height: auto;
+    flex-basis: 35px;
+    padding:10px;
+    font-size: 25px;
+    font-weight: bolder;
+    background: grey;
+    min-height: 100vh;
+}
 .footer_comp {
     position: relative;
     margin-bottom: 10px;
@@ -211,21 +261,21 @@ main {
         grid-template-rows: 1fr;
         grid-template-areas:
       "navbar"
-      "middle"
+      "sidebar"
       "middle"
       "footer";
     }
 }
 
-.middle {
+.middle{
+    gap: 10px;
     grid-area: middle;
+    display:flex;
+    flex-direction: row;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+
 }
 
-.middle_comp {
-    min-width: inherit;
-    column-gap: 8px;
-    grid-area: middle;
-    display: grid;
-    grid-template-columns: 0.1fr 0.4fr 1fr 1fr;
-    grid-template-rows: 1fr;
-}

@@ -1,22 +1,24 @@
 <script setup>
 
-import Kredi_sidebar from "@/components/KrediTable/kredi_sidebar.vue";
-import Kredi_main_component from "@/components/KrediTable/kredi_main_component.vue";
+import Sidebar_component from "@/components/ortak/sidebar_component.vue";
+import Main_component from "@/components/ortak/main_component.vue";
 
 
 </script>
 
 <template>
-    <main class="middle_section middle">
-      <kredi_sidebar class="sidebar_comp"/>
-      <kredi_main_component class="main_comp"/>
-
+    <main>
+      <sidebar_component class="sidebar_comp"/>
+      <main_component class="main_comp "/>
     </main>
 
 </template>
 
 <style scoped>
-
+main{
+  margin-left: 2px;
+  margin-right: 2px;
+}
 
 .middle_section {
   display: flex;

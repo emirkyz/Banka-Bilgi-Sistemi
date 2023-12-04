@@ -4,7 +4,8 @@ import Nav_bar_component from "@/components/nav_bar_component.vue";
 import Footer_component from "@/components/footer_component.vue";
 import {useThemeStore} from "@/stores/temastore";
 import {storeToRefs} from "pinia";
-import Kredi_component from "@/components/KrediTable/kredi_component.vue";
+import Sidebar_component from "@/components/ortak/sidebar_component.vue";
+import Kredi_sidebar_component from "@/components/veri/Kredi/kredi_sidebar_component.vue";
 
 
 const secili_tema = storeToRefs(useThemeStore()).secili_tema;
@@ -17,8 +18,10 @@ console.log(secili_tema);
 <template>
   <div id="page" class="kapsayici" :class="secili_tema">
     <Nav_bar_component class="nav_comp"/>
-    <kredi_component/>
-    <!--    <sidebar_component class="sidebar_comp"/>-->
+    <main class="sidebar_test">
+        <a class="font-medium text-2xl"> test</a>
+    </main>
+    <router-view id="router" class="middle"> </router-view>
 
     <footer_component class="footer_comp"/>
   </div>
@@ -30,5 +33,13 @@ console.log(secili_tema);
 .tema_secici {
   position: absolute;
 //bottom: -72px; top: 0; right: 0; z-index: 0;
+}
+.link-active,
+.link-active:hover{
+  padding: 5px;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #5b5b5b;
+  color: white !important;
 }
 </style>
