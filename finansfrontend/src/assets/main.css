@@ -30,9 +30,9 @@ body {
     grid-template-rows: 0.05fr 1.5fr 1fr 1fr 4rem;
     grid-template-areas:
     "navbar navbar navbar navbar"
-    "sidebar middle middle middle"
-    "sidebar middle middle middle"
-    "sidebar middle middle middle"
+    "middle middle middle middle"
+    "middle middle middle middle"
+    "middle middle middle middle"
     "footer footer footer footer";
     min-height: 100vh;
     font-family: "Rubik", sans-serif;
@@ -155,7 +155,6 @@ tr {
 
 .home_comp {
     border-radius: 23px;
-
     display: flex;
     flex-direction: row;
     grid-area: content;

@@ -4,10 +4,11 @@
 <template>
   <div class="nav_container">
     <nav class="flex items-center justify-center w-screen">
-      <div class="flex text-white mr-6">
-        <router-link to="/" class="font-extrabold text-xl cursor-pointer"
+      <div id="title" class="flex text-white mr-6">
+<!--        TODO: Change this to a router-link-->
+        <a  href="/" class="font-bold text-xl cursor-pointer"
         >KYZ FİNANS
-        </router-link>
+        </a>
       </div>
       <div
           id="test"
@@ -58,5 +59,8 @@
   border-radius: 8px;
   background-color: #5b5b5b;
   color: white !important;
+}
+.link-active #title{
+  color: #d01b1b !important;
 }
 </style>
