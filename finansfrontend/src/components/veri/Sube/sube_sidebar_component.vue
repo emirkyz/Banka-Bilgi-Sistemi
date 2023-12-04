@@ -20,18 +20,22 @@ function expand_sidebar() {
 </script>
 
 <template>
-  <div id="side_" class="sidebar_comp text-center content-center">
+  <div id="side_" class="sidebar_comp">
     <button @click="expand_sidebar" class="flex relative plus_sign">+</button>
 
-    <div id="sidebar_content">
+    <div class="flex flex-col">
       <br>
-      <router-link to="/sube/ekle">
-        <a class="font-medium text-xl ">Şube Ekle</a>
-      </router-link>
+      <div id="sidebar_content_1">
+        <router-link to="/sube/ekle">
+          <a class="font-medium text-xl">Şube Ekle</a>
+        </router-link>
+      </div>
       <hr class="my-4">
-      <router-link to="/sube/list">
-        <a class="font-medium text-xl">Şubeleri Listele</a>
-      </router-link>
+      <div id="sidebar_content_2">
+        <router-link to="/sube/list" class="font-medium text-2xl">
+          <a class="font-medium text-xl">Şubeleri Listele</a>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -46,7 +50,10 @@ function expand_sidebar() {
     min-width: 100vw;
   }
 }
-
+#sidebar_content_1,
+#sidebar_content_2 {
+  display: block;
+}
 .link-active a {
   padding: 3px;
   border-radius: 4px;

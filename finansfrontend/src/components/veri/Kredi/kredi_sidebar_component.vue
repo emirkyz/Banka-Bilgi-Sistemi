@@ -53,6 +53,10 @@ function expand_sidebar() {
     min-width: 100vw;
   }
 }
+#sidebar_content_1,
+#sidebar_content_2 {
+  display: block;
+}
 .link-active,
 .link-active a {
   padding: 3px;
