@@ -5,11 +5,7 @@ import App from "./App.vue";
 import "./assets/main.css";
 import {createPinia} from "pinia";
 import {createRouter, createWebHistory} from 'vue-router'
-import middle_component from "@/components/ortak/middle_component.vue";
-import kredi_sidebar_component from "@/components/veri/Kredi/kredi_sidebar_component.vue";
-import sidebar_component from "@/components/ortak/sidebar_component.vue";
 import kredi_component from "@/components/veri/Kredi/kredi_component.vue";
-import sube_sidebar_component from "@/components/veri/Sube/sube_sidebar_component.vue";
 import sube_component from "@/components/veri/Sube/sube_component.vue";
 import home_component from "@/components/veri/Home/home_component.vue";
 import kredi_ekleme_component from "@/components/veri/Kredi/kredi_ekleme_component.vue";
