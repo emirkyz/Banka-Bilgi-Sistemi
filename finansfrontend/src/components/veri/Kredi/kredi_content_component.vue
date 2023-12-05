@@ -6,7 +6,6 @@ const kredi_store = useKrediStore();
 const loading = useLoadingState()
 
 kredi_store.init()
-
 kredi_store.get_all_kredi()
 </script>
 
@@ -90,10 +89,6 @@ kredi_store.get_all_kredi()
 </template>
 
 <style scoped>
-.kredi-content {
-  min-height: 100vh;
-  flex-grow: 1;
-}
 
 button {
   transition: all 300ms ease-out;
