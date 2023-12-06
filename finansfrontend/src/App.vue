@@ -12,7 +12,7 @@ console.log(secili_tema);
 </script>
 
 <template>
-  <div id="page" class="kapsayici" :class="secili_tema">
+  <div class="kapsayici" :class="secili_tema">
     <Nav_bar_component class="nav_comp" />
     <!--    <main class="sidebar_test">-->
     <!--        <a class="font-medium text-2xl"> test</a>-->

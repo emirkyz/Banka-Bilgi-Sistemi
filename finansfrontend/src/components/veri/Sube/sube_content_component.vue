@@ -27,7 +27,7 @@ sube_store.get_all_sube();
              role="alert">
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
-          >API Bağlantısı sağlanamadı. Sayfayı Yenilemeye Deneyin.</span>
+          >API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin.</span>
         </div>
       </div>
       <div id="error_component" v-if="sube_store.total_sube === 0 && sube_store.net_error===false">

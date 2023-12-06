@@ -21,7 +21,7 @@
         >Sayfanın en üstünde yer alan navigasyon çubuğu ile çeşitli sayfalar
         arasında gezinebilirsiniz.</a
       >
-      <img src="/src/assets/nav_bar_1.png" alt="nav_bar" class="w-full" />
+      <img src="/src/assets/nav_bar_.png" alt="nav_bar" class="w-full" />
     </div>
 
     <hr />

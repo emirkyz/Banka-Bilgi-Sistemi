@@ -23,10 +23,6 @@ main {
   min-width: 100vh;
 }
 
-@media (max-width: 768px) {
-  .middle_section {
-    flex-direction: column;
-  }
 
   .sidebar_comp * {
     justify-content: center;
