@@ -56,6 +56,13 @@ export const useSubeStore = defineStore("sube", {
                     this.subeler.push(sube);
                 });
         },
+        subeDuzenle(sube, sube_id) {
+            axios.put('http://127.0.0.1:5000/api/v1/sube/' + sube_id, sube).then((response) => {
+                const sube = response.data;
+                console.log(sube);
+                this.yukle();
+            })
+        },
         subeSil(sube) {
             axios.delete('http://127.0.0.1:5000/api/v1/sube/' + sube["id"]).then((response) => {
                 const sube = response.data;
