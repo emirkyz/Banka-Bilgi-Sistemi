@@ -11,6 +11,7 @@ export const useSubeStore = defineStore("sube", {
         sayfa: 0,
         adet: 10,
         at_end: false,
+        net_error: false,
         // cached_sube : []
     }),
     actions: {
@@ -36,8 +37,21 @@ export const useSubeStore = defineStore("sube", {
                     //     return;
                     // }
                     // this.cached_sube = response.data;
+                    this.at_end = false;
                     this.subeler = response.data;
+
                     loading.yuklemeyiBitir();
+                })
+                .catch(error => {
+                    if (!error.response) {
+                        // network error
+                        this.net_error = true;
+                        this.total_sube = 0;
+                        console.log("Network Error");
+                    } else {
+                        this.net_error = false;
+                    }
+
                 });
 
         },
@@ -60,7 +74,7 @@ export const useSubeStore = defineStore("sube", {
             axios.put('http://127.0.0.1:5000/api/v1/sube/' + sube_id, sube).then((response) => {
                 const sube = response.data;
                 console.log(sube);
-                this.yukle();
+                this.yukle(this.sayfa=0);
             })
         },
         subeSil(sube) {
@@ -89,6 +103,7 @@ export const useSubeStore = defineStore("sube", {
                 this.at_end = true;
                 return;
             }
+            this.at_end = false;
             this.sayfa+=1;
             this.yukle(this.sayfa);
         },

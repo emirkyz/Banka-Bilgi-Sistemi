@@ -4,7 +4,6 @@ import {ref} from "vue";
 
 const subeStore = useSubeStore();
 subeStore.yukle();
-
 const eklenecek_sube = ref({
   sube_adi: "",
   sube_adresi: "",
@@ -19,6 +18,9 @@ function kaydet() {
     sube_tel: "",
   };
 }
+
+// const canContinue = (eklenecek_sube.value.sube_adi === '' || eklenecek_sube.value.sube_adresi ==='' || eklenecek_sube.value.sube_tel ==='');
+
 </script>
 
 <template>
@@ -64,7 +66,8 @@ function kaydet() {
             />
           </div>
         </div>
-        <div class="mt-4" v-if="eklenecek_sube.sube_adi === ''">
+        <div class="mt-4"
+             v-if="eklenecek_sube.sube_adi === '' || eklenecek_sube.sube_adresi ==='' || eklenecek_sube.sube_tel ===''">
           <div id="error_component">
             <div
                 class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
@@ -77,7 +80,8 @@ function kaydet() {
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div class="mt-4" v-if="eklenecek_sube.sube_adi !== ''">
+        <div class="mt-4"
+             v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' && subeStore.net_error===false">
           <button class="btn" @click="kaydet">Kaydet</button>
         </div>
       </div>

@@ -22,18 +22,26 @@ sube_store.get_all_sube();
       </div>
       <hr class="style"/>
 
-      <div id="error_component" v-if="sube_store.subeler.length === 0">
-        <div
-            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
-            role="alert"
-        >
+      <div id="error_component" v-if="sube_store.net_error === true && sube_store.total_sube ===0">
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
+             role="alert">
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
-          >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span
-          >
+          >API Bağlantısı sağlanamadı. Sayfayı Yenilemeye Deneyin.</span>
         </div>
       </div>
-
+      <div id="error_component" v-if="sube_store.total_sube === 0 && sube_store.net_error===false">
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
+            role="alert">
+          <strong class="font-bold">Hata!</strong>
+          <span class="mx-2 block sm:inline"
+          >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span>
+          <router-link to="/sube/ekle">
+            <a class="font-medium ">Şube Eklemek için Tıklayınız</a>
+          </router-link>
+        </div>
+      </div>
+      <div v-if="loading.loading" class="font-bold loader"></div>
       <!--    <div id="table-limiter" class=" h-[10px]">-->
       <table class="h-[2px] table-fixed">
         <thead>
@@ -63,7 +71,7 @@ sube_store.get_all_sube();
             <button
                 @click="
                   sube_store.yukle((sube_store.sayfa = 0));
-                  sube_store.get_all_kredi();
+                  sube_store.get_all_sube();
                   sube_store.at_end = false;
                 "
                 class="btn white right hover:bg-teal-300 hover:text-black"
@@ -72,6 +80,7 @@ sube_store.get_all_sube();
             </button>
           </th>
         </tr>
+
         </thead>
         <tr
             v-for="sube in sube_store.subeler"
@@ -108,7 +117,7 @@ sube_store.get_all_sube();
       </button>
 
       <sube_duzenleme_component></sube_duzenleme_component>
-      <div v-if="loading.loading" class="font-bold loader"></div>
+
 
     </div>
 
