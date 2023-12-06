@@ -1,10 +1,8 @@
 <script setup>
-
 import Nav_bar_component from "@/components/nav_bar_component.vue";
 import Footer_component from "@/components/footer_component.vue";
-import {useThemeStore} from "@/stores/temastore";
-import {storeToRefs} from "pinia";
-
+import { useThemeStore } from "@/stores/temastore";
+import { storeToRefs } from "pinia";
 
 const secili_tema = storeToRefs(useThemeStore()).secili_tema;
 
@@ -15,22 +13,19 @@ console.log(secili_tema);
 
 <template>
   <div id="page" class="kapsayici" :class="secili_tema">
-    <Nav_bar_component class="nav_comp"/>
-<!--    <main class="sidebar_test">-->
-<!--        <a class="font-medium text-2xl"> test</a>-->
-<!--    </main>-->
+    <Nav_bar_component class="nav_comp" />
+    <!--    <main class="sidebar_test">-->
+    <!--        <a class="font-medium text-2xl"> test</a>-->
+    <!--    </main>-->
     <router-view id="router" class="middle"> </router-view>
 
-    <footer_component class="footer_comp"/>
+    <footer_component class="footer_comp" />
   </div>
-
-
 </template>
 
 <style scoped>
-
 .link-active,
-.link-active:hover{
+.link-active:hover {
   padding: 5px;
   align-items: center;
   border-radius: 8px;

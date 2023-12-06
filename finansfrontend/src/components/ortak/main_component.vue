@@ -1,6 +1,4 @@
 <script setup>
-
-import Kredi_content_component from "@/components/veri/Kredi/kredi_content_component.vue";
 </script>
 
 <template>
@@ -9,9 +7,9 @@ import Kredi_content_component from "@/components/veri/Kredi/kredi_content_compo
 
 <style scoped>
 #main_ {
-  transition: color 300ms ease-out, background-color 300ms ease-out;
+  transition:
+    color 300ms ease-out,
+    background-color 300ms ease-out;
   height: fit-content;
 }
-
-
 </style>

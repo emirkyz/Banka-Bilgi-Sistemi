@@ -1,22 +1,17 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="nav_container">
     <nav class="flex items-center justify-center w-screen">
       <div id="title" class="flex text-white mr-6">
-<!--        TODO: Change this to a router-link-->
-        <a  href="/" class="font-bold text-xl cursor-pointer"
-        >KYZ FİNANS
-        </a>
+        <!--        TODO: Change this to a router-link-->
+        <a href="/" class="font-bold text-xl cursor-pointer">KYZ FİNANS </a>
       </div>
-      <div
-
-          class="w-full block flex-grow sm:flex sm:items-center sm:w-auto"
-      >
+      <div class="w-full block flex-grow sm:flex sm:items-center sm:w-auto">
         <div id="test" class="text-sm sm:flex-grow">
-          <router-link to="/sube"
-                       class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+          <router-link
+              to="/sube"
+              class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
           >
             Banka Şubeleri
           </router-link>
@@ -24,7 +19,7 @@
               href="/musteri"
               class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
           >
-            Müşteri Listesi
+            Müşteri
           </a>
           <a
               href="/hesap"
@@ -32,8 +27,9 @@
           >
             Hesaplar
           </a>
-          <router-link to="/kredi"
-                       class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+          <router-link
+              to="/kredi"
+              class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
           >
             Krediler
           </router-link>
@@ -50,25 +46,24 @@
   </div>
 </template>
 
-
 <style scoped>
 .link-active,
-.link-active:hover{
-
+.link-active:hover {
   padding: 10px 10px;
   align-items: center;
   border-radius: 15px;
   background-color: #804949;
   color: white !important;
 }
-.link-active #title{
+
+.link-active #title {
   color: #d01b1b !important;
 }
-#test{
+
+#test {
   display: flex;
   justify-content: flex-start;
   gap: 14px;
   align-items: center;
 }
-
 </style>

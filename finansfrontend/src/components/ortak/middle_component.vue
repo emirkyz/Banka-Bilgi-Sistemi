@@ -1,21 +1,17 @@
 <script setup>
-
 import Sidebar_component from "@/components/ortak/sidebar_component.vue";
 import Main_component from "@/components/ortak/main_component.vue";
-
-
 </script>
 
 <template>
-    <main>
-      <sidebar_component class="sidebar_comp"/>
-      <main_component class="main_comp "/>
-    </main>
-
+  <main>
+    <sidebar_component class="sidebar_comp" />
+    <main_component class="main_comp" />
+  </main>
 </template>
 
 <style scoped>
-main{
+main {
   margin-left: 2px;
   margin-right: 2px;
 }

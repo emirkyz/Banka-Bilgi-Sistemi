@@ -1,12 +1,11 @@
 <script setup>
-import { ref } from "vue";
-import { useThemeStore} from "@/stores/temastore";
-import {storeToRefs} from "pinia";
+import { useThemeStore } from "@/stores/temastore";
+import { storeToRefs } from "pinia";
 
 const temalar = [
-  {tema_adi: "Açık renk tema", tema_class: "light_mode"},
-  {tema_adi: "Koyu renk tema", tema_class: "dark_mode"}
-]
+  { tema_adi: "Açık renk tema", tema_class: "light_mode" },
+  { tema_adi: "Koyu renk tema", tema_class: "dark_mode" },
+];
 
 const secili_tema = storeToRefs(useThemeStore()).secili_tema;
 
@@ -16,18 +15,18 @@ console.log(secili_tema);
 <template>
   <div class="mb-2 footerdiv rounded-2xl">
     <a href="/about" class="text-xl">Trabzon / Ortahisar</a>
-    <a class="text-xl ml-4 "> Tel:12345678901</a>
+    <a class="text-xl ml-4"> Tel:12345678901</a>
 
     <select class="tema_secici" v-model="secili_tema">
-      <option v-for="tema in temalar" :value="tema.tema_class">{{ tema.tema_adi }}</option>
+      <option v-for="tema in temalar" :value="tema.tema_class">
+        {{ tema.tema_adi }}
+      </option>
     </select>
   </div>
-
-
 </template>
 
 <style scoped>
-option{
+option {
   background-color: #1a202c;
   color: #f7fafc;
 }
@@ -35,7 +34,10 @@ option{
   margin-left: 20px;
   justify-content: right;
   font-size: 18px;
-//bottom: -72px; top: 0; right: 0; z-index: 0;
+  //bottom: -72px;
+  top: 0;
+  right: 0;
+  z-index: 0;
   background-color: transparent;
   outline: transparent;
 }

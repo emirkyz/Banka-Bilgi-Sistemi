@@ -1,16 +1,13 @@
-import {defineStore} from "pinia";
-import {ref} from "vue";
+import { defineStore } from "pinia";
 
-export const useLoadingState = defineStore('loading',
-    {
-        state: () => ({loading: false}),
-        actions: {
-            yuklemeyeBasla() {
-                this.loading = true;
-            },
-            yuklemeyiBitir() {
-                this.loading = false
-            }
-
-        },
-    });
+export const useLoadingState = defineStore("loading", {
+  state: () => ({ loading: false }),
+  actions: {
+    yuklemeyeBasla() {
+      this.loading = true;
+    },
+    yuklemeyiBitir() {
+      this.loading = false;
+    },
+  },
+});
