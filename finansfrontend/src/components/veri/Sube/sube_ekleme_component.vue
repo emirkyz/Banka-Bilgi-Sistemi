@@ -79,9 +79,7 @@ function kaydet() {
 
   padding: 10px;
 }
-.input-area {
-  border: 1px solid #e5e7eb;
-}
+
 input {
   width: 100%;
   padding: 10px;
