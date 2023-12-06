@@ -11,7 +11,7 @@ export const useSubeStore = defineStore("sube", {
         sayfa: 0,
         adet: 10,
         at_end: false,
-        cached_sube : []
+        // cached_sube : []
     }),
     actions: {
         init() {
@@ -28,24 +28,24 @@ export const useSubeStore = defineStore("sube", {
                     `http://127.0.0.1:5000/api/v1/sube/s/${sayfa}/k/${this.adet}${siralama}`,
                 )
                 .then((response) => {
-                    if (response.data.length === 0) {
-                        this.at_end = true;
-                        this.sayfa -= 1;
-                        this.subeler = this.cached_sube;
-                        loading.yuklemeyiBitir();
-                        return;
-                    }
-                    this.cached_sube = response.data;
+                    // if (response.data.length === 0) {
+                    //     this.at_end = true;
+                    //     this.sayfa -= 1;
+                    //     this.subeler = this.cached_sube;
+                    //     loading.yuklemeyiBitir();
+                    //     return;
+                    // }
+                    // this.cached_sube = response.data;
                     this.subeler = response.data;
                     loading.yuklemeyiBitir();
                 });
 
         },
-        get_all_kredi() {
+        get_all_sube() {
             axios
                 .get(`http://127.0.0.1:5000/api/v1/sube/k/100000000000`)
                 .then((response) => {
-                    this.total_sube = response.data;
+                    this.total_sube = response.data.length;
                 });
         },
         subeEkle(sube) {
@@ -62,8 +62,18 @@ export const useSubeStore = defineStore("sube", {
                 console.log(sube);
                 this.yukle();
             })
+            this.sayfa = 0;
+            console.log(this.total_sube)
+            this.total_sube -=1;
         },
         sonraki_sayfa() {
+            // console.log((this.sayfa+1) * this.adet)
+            // console.log(this.total_sube.length)
+            if((this.sayfa+1) * this.adet >= this.total_sube){
+                console.log("burdayım")
+                this.at_end = true;
+                return;
+            }
             if (this.subeler.length === 0) {
                 this.at_end = true
                 return;

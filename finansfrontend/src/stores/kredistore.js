@@ -11,6 +11,7 @@ export const useKrediStore = defineStore("kredi", {
         sayfa: 0,
         adet: 10,
         at_end: false,
+        cached_kredi: []
     }),
     actions: {
         init() {
@@ -28,8 +29,15 @@ export const useKrediStore = defineStore("kredi", {
                     `http://127.0.0.1:5000/api/v1/kredi/s/${sayfa}/k/${this.adet}${siralama}`,
                 )
                 .then((response) => {
+                    // if(response.data.length === 0){
+                    //     this.at_end = true;
+                    //     this.sayfa -= 1;
+                    //     this.krediler = this.cached_kredi;
+                    //     loading.yuklemeyiBitir();
+                    //     return;
+                    // }
                     this.krediler = response.data;
-
+                    this.cached_kredi = response.data;
                     loading.yuklemeyiBitir();
                 });
         },
@@ -37,10 +45,14 @@ export const useKrediStore = defineStore("kredi", {
             axios
                 .get(`http://127.0.0.1:5000/api/v1/kredi/k/100000000000`)
                 .then((response) => {
-                    this.total_credits = response.data;
+                    this.total_credits = response.data.length;
                 });
         },
         sonraki_sayfa() {
+            if ((this.sayfa+1) * this.adet >= this.total_credits){
+                this.at_end = true;
+                return;
+            }
             if (this.krediler.length === 0) {
                 this.at_end = true;
                 return;
@@ -49,7 +61,6 @@ export const useKrediStore = defineStore("kredi", {
                 this.at_end = true;
                 return;
             }
-            this.at_end = false;
             this.sayfa += 1;
             this.yukle(this.sayfa);
         },

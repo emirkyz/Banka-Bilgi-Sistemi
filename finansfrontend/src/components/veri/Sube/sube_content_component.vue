@@ -7,7 +7,7 @@ const sube_store = useSubeStore();
 const loading = useLoadingState();
 
 sube_store.init();
-sube_store.get_all_kredi();
+sube_store.get_all_sube();
 </script>
 
 <template>
@@ -18,8 +18,7 @@ sube_store.get_all_kredi();
         <a class="text-xl transition-all"
         >{{ sube_store.sayfa + 1 }}. sayfada
           {{ sube_store.subeler.length }} Tane kayıt gösteriliyor. Toplam
-          {{ sube_store.total_sube.length }} tane kayıt mevcut.</a
-        >
+          {{ sube_store.total_sube }} tane kayıt mevcut.</a>
       </div>
       <hr class="style"/>
 

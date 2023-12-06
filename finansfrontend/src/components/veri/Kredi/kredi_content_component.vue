@@ -17,7 +17,7 @@ kredi_store.get_all_kredi();
         <a class="text-xl transition-all"
           >{{ kredi_store.sayfa + 1 }}. sayfada
           {{ kredi_store.krediler.length }} Tane kayıt gösteriliyor. Toplam
-          {{ kredi_store.total_credits.length }} tane kayıt mevcut.</a
+          {{ kredi_store.total_credits }} tane kayıt mevcut.</a
         >
       </div>
       <hr class="style" />
