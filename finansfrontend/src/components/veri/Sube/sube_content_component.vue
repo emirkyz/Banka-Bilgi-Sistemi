@@ -1,6 +1,7 @@
 <script setup>
 import {useLoadingState} from "@/stores/loading_state";
 import {useSubeStore} from "@/stores/subestore";
+import Sube_duzenleme_component from "@/components/veri/Sube/sube_duzenleme_component.vue";
 
 const sube_store = useSubeStore();
 const loading = useLoadingState();
@@ -86,7 +87,7 @@ sube_store.get_all_kredi();
           <td>{{ sube["sube_adresi"] }}</td>
           <td>{{ sube["sube_tel"] }}</td>
           <td class="right">
-            <button class="btn content-center">Düzenle</button>
+            <button class="btn content-center" @click="sube_store.selectedSube=sube">Düzenle</button>
             <button class="btn-sil  content-center" @click="sube_store.subeSil(sube)">Sil</button>
           </td>
         </tr>
@@ -106,8 +107,12 @@ sube_store.get_all_kredi();
       >
         Sonraki
       </button>
+
+      <sube_duzenleme_component></sube_duzenleme_component>
       <div v-if="loading.loading" class="font-bold loader"></div>
+
     </div>
+
   </main>
 </template>
 

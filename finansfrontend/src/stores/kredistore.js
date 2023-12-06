@@ -41,7 +41,8 @@ export const useKrediStore = defineStore("kredi", {
                 });
         },
         sonraki_sayfa() {
-            if (this.krediler.length + 1 === 0) {
+            if (this.krediler.length === 0) {
+                this.at_end = true;
                 return;
             }
             if (this.krediler.length < 10) {
