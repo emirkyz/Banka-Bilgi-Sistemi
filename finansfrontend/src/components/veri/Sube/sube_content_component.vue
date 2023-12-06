@@ -1,6 +1,6 @@
 <script setup>
-import { useLoadingState } from "@/stores/loading_state";
-import { useSubeStore } from "@/stores/subestore";
+import {useLoadingState} from "@/stores/loading_state";
+import {useSubeStore} from "@/stores/subestore";
 
 const sube_store = useSubeStore();
 const loading = useLoadingState();
@@ -15,21 +15,21 @@ sube_store.get_all_kredi();
       <div id="sube" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
         <h1 class="text-xl">Şubeler</h1>
         <a class="text-xl transition-all"
-          >{{ sube_store.sayfa + 1 }}. sayfada
+        >{{ sube_store.sayfa + 1 }}. sayfada
           {{ sube_store.subeler.length }} Tane kayıt gösteriliyor. Toplam
           {{ sube_store.total_sube.length }} tane kayıt mevcut.</a
         >
       </div>
-      <hr class="style" />
+      <hr class="style"/>
 
       <div id="error_component" v-if="sube_store.subeler.length === 0">
         <div
-          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
-          role="alert"
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
+            role="alert"
         >
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
-            >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span
+          >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span
           >
         </div>
       </div>
@@ -37,46 +37,46 @@ sube_store.get_all_kredi();
       <!--    <div id="table-limiter" class=" h-[10px]">-->
       <table class="h-[2px] table-fixed">
         <thead>
-          <tr>
-            <th
+        <tr>
+          <th
               v-if="sube_store.id_order === '?sırala=ar_id'"
               class="cursor-pointer"
               @click="sube_store.order_by_id()"
-            >
-              <a>ID</a>
-              <a class="font-bold text-green-500">(asc)</a>
-            </th>
-            <th
+          >
+            <a>ID</a>
+            <a class="font-bold text-green-500">(asc)</a>
+          </th>
+          <th
               v-if="sube_store.id_order === '?sırala=az_id'"
               class="cursor-pointer"
               @click="sube_store.order_by_id()"
-            >
-              <a>ID</a>
-              <a class="font-bold text-red-500">(desc)</a>
-            </th>
-            <th>Şube Adı</th>
-            <th>Şube Adresi</th>
-            <th>Şube Telefonu</th>
+          >
+            <a>ID</a>
+            <a class="font-bold text-red-500">(desc)</a>
+          </th>
+          <th>Şube Adı</th>
+          <th>Şube Adresi</th>
+          <th>Şube Telefonu</th>
 
-            <th>
-              <a class="-ml-8">logo</a>
-              <button
+          <th>
+            <a class="-ml-8">logo</a>
+            <button
                 @click="
                   sube_store.yukle((sube_store.sayfa = 0));
                   sube_store.get_all_kredi();
                   sube_store.at_end = false;
                 "
                 class="btn white right hover:bg-teal-300 hover:text-black"
-              >
-                Yenile
-              </button>
-            </th>
-          </tr>
+            >
+              Yenile
+            </button>
+          </th>
+        </tr>
         </thead>
         <tr
-          v-for="sube in sube_store.subeler"
-          :key="sube"
-          v-bind:class="{ 'opacity-0': loading.loading }"
+            v-for="sube in sube_store.subeler"
+            :key="sube"
+            v-bind:class="{ 'opacity-0': loading.loading }"
         >
           <td>{{ sube["id"] }}</td>
           <!--        <td v-if="sube['kredi_durum'] ==='Aktif'" class="text-green-500 font-bold">{{ sube["kredi_durum"] }}</td>-->
@@ -87,21 +87,22 @@ sube_store.get_all_kredi();
           <td>{{ sube["sube_tel"] }}</td>
           <td class="right">
             <button class="btn content-center">Düzenle</button>
+            <button class="btn-sil  content-center" @click="sube_store.subeSil(sube)">Sil</button>
           </td>
         </tr>
       </table>
-      <br class="space" />
+      <br class="space"/>
 
-      <br class="space" />
+      <br class="space"/>
       <!--    </div>-->
 
       <button @click="sube_store.onceki_sayfa()" class="btn">
         <a> Önceki</a>
       </button>
       <button
-        @click="sube_store.sonraki_sayfa()"
-        v-bind:class="{ 'bg-gray-600': sube_store.at_end }"
-        class="btn bg:var(--menu_arkaplan)"
+          @click="sube_store.sonraki_sayfa()"
+          v-bind:class="{ 'bg-gray-600': sube_store.at_end }"
+          class="btn bg:var(--menu_arkaplan)"
       >
         Sonraki
       </button>

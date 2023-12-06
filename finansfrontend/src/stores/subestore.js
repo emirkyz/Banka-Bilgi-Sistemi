@@ -48,6 +48,14 @@ export const useSubeStore = defineStore("sube", {
           this.subeler.push(sube);
         });
     },
+    subeSil(sube) {
+
+      axios.delete('http://127.0.0.1:5000/api/v1/sube/' + sube["id"]).then((response) => {
+        const sube = response.data;
+        console.log(sube);
+        this.yukle();
+      })
+    },
     sonraki_sayfa() {
       if (this.subeler.length === 0) {
         return;
