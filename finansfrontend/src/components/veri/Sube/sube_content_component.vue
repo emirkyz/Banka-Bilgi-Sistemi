@@ -2,6 +2,7 @@
 import {useLoadingState} from "@/stores/loading_state";
 import {useSubeStore} from "@/stores/subestore";
 import Sube_duzenleme_component from "@/components/veri/Sube/sube_duzenleme_component.vue";
+import Error_component from "@/components/ortak/error_component.vue";
 
 const sube_store = useSubeStore();
 const loading = useLoadingState();
@@ -22,17 +23,14 @@ sube_store.get_all_sube();
       </div>
       <hr class="style"/>
 
-      <div id="error_component" v-if="sube_store.net_error === true && sube_store.total_sube ===0">
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
-             role="alert">
-          <strong class="font-bold">Hata!</strong>
-          <span class="mx-2 block sm:inline"
-          >API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin.</span>
-        </div>
-      </div>
+      <error_component
+          v-if="sube_store.net_error === true && sube_store.total_sube ===0"
+          :store="sube_store"
+          message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
+
       <div id="error_component" v-if="sube_store.total_sube === 0 && sube_store.net_error===false">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
-            role="alert">
+             role="alert">
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
           >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span>
@@ -41,6 +39,7 @@ sube_store.get_all_sube();
           </router-link>
         </div>
       </div>
+
       <div v-if="loading.loading" class="font-bold loader"></div>
       <!--    <div id="table-limiter" class=" h-[10px]">-->
       <table class="h-[2px] table-fixed">

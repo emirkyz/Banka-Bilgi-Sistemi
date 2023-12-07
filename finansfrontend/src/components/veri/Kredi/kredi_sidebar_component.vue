@@ -19,7 +19,8 @@ function expand_sidebar() {
 
 <template>
   <div id="side_" class="sidebar_comp">
-    <button @click="expand_sidebar" class="flex relative plus_sign">+</button>
+<!--    <button @click="expand_sidebar" class="flex relative plus_sign">+</button>-->
+    <button @click="expand_sidebar" class="flex relative plus_sign"></button>
 
     <div class="flex flex-col">
       <br />

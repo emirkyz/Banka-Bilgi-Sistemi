@@ -11,7 +11,7 @@ export const useKrediStore = defineStore("kredi", {
         sayfa: 0,
         adet: 10,
         at_end: false,
-        cached_kredi: []
+        net_error: false,
     }),
     actions: {
         init() {
@@ -36,9 +36,23 @@ export const useKrediStore = defineStore("kredi", {
                     //     loading.yuklemeyiBitir();
                     //     return;
                     // }
+                    if (response.status === 200) {
+                        this.net_error = false;
+                    }
+                    this.at_end = false;
                     this.krediler = response.data;
-                    this.cached_kredi = response.data;
                     loading.yuklemeyiBitir();
+                })
+                .catch(error => {
+                    if (!error.response) {
+                        // network error
+                        this.net_error = true;
+                        this.total_credits = 0;
+                        console.log("Network Error");
+                    } else {
+                        this.net_error = false;
+                    }
+
                 });
         },
         get_all_kredi() {
@@ -49,7 +63,7 @@ export const useKrediStore = defineStore("kredi", {
                 });
         },
         sonraki_sayfa() {
-            if ((this.sayfa+1) * this.adet >= this.total_credits){
+            if ((this.sayfa + 1) * this.adet >= this.total_credits) {
                 this.at_end = true;
                 return;
             }

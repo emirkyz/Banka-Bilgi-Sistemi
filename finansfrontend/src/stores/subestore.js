@@ -26,8 +26,8 @@ export const useSubeStore = defineStore("sube", {
             loading.yuklemeyeBasla();
             this.selectedSube = null;
             axios.get(
-                    `http://127.0.0.1:5000/api/v1/sube/s/${sayfa}/k/${this.adet}${siralama}`,
-                )
+                `http://127.0.0.1:5000/api/v1/sube/s/${sayfa}/k/${this.adet}${siralama}`,
+            )
                 .then((response) => {
                     // if (response.data.length === 0) {
                     //     this.at_end = true;
@@ -37,9 +37,11 @@ export const useSubeStore = defineStore("sube", {
                     //     return;
                     // }
                     // this.cached_sube = response.data;
+                    if (response.status === 200) {
+                        this.net_error = false;
+                    }
                     this.at_end = false;
                     this.subeler = response.data;
-
                     loading.yuklemeyiBitir();
                 })
                 .catch(error => {
@@ -68,13 +70,23 @@ export const useSubeStore = defineStore("sube", {
                 .then((response) => {
                     const sube = response.data;
                     this.subeler.push(sube);
-                });
+                }).catch(error => {
+                if (!error.response) {
+                    // network error
+                    this.net_error = true;
+                    this.total_sube = 0;
+                    console.log("Network Error");
+                } else {
+                    this.net_error = false;
+                }
+
+            });
         },
         subeDuzenle(sube, sube_id) {
             axios.put('http://127.0.0.1:5000/api/v1/sube/' + sube_id, sube).then((response) => {
                 const sube = response.data;
                 console.log(sube);
-                this.yukle(this.sayfa=0);
+                this.yukle(this.sayfa = 0);
             })
         },
         subeSil(sube) {
@@ -85,12 +97,12 @@ export const useSubeStore = defineStore("sube", {
             })
             this.sayfa = 0;
             console.log(this.total_sube)
-            this.total_sube -=1;
+            this.total_sube -= 1;
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)
             // console.log(this.total_sube.length)
-            if((this.sayfa+1) * this.adet >= this.total_sube){
+            if ((this.sayfa + 1) * this.adet >= this.total_sube) {
                 console.log("burdayım")
                 this.at_end = true;
                 return;
@@ -104,7 +116,7 @@ export const useSubeStore = defineStore("sube", {
                 return;
             }
             this.at_end = false;
-            this.sayfa+=1;
+            this.sayfa += 1;
             this.yukle(this.sayfa);
         },
         onceki_sayfa() {

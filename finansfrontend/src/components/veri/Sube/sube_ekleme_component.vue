@@ -1,6 +1,8 @@
 <script setup>
 import {useSubeStore} from "@/stores/subestore";
 import {ref} from "vue";
+import Api_error from "@/components/ortak/error_component.vue";
+import Error_component from "@/components/ortak/error_component.vue";
 
 const subeStore = useSubeStore();
 subeStore.yukle();
@@ -66,23 +68,21 @@ function kaydet() {
             />
           </div>
         </div>
+
         <div class="mt-4"
              v-if="eklenecek_sube.sube_adi === '' || eklenecek_sube.sube_adresi ==='' || eklenecek_sube.sube_tel ===''">
-          <div id="error_component">
-            <div
-                class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
-                role="alert">
-              <strong class="font-bold">Hata!</strong>
-              <span class="mx-2 block sm:inline"
-              >Lütfen Tüm Kutucukları Doldurun.</span>
-            </div>
-          </div>
+
+          <error_component :store="subeStore" message="Lütfen Tüm Kutucukları Doldurun."></error_component>
+
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
         <div class="mt-4"
-             v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' && subeStore.net_error===false">
-          <button class="btn" @click="kaydet">Kaydet</button>
+             v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' || subeStore.net_error===true">
+
+          <error_component v-if="subeStore.net_error ===true" :store="subeStore" message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
+
+          <button class="btn" v-if="subeStore.net_error === false" @click="kaydet">Kaydet</button>
         </div>
       </div>
     </div>
