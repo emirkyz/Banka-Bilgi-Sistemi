@@ -72,7 +72,7 @@ function kaydet() {
         <div class="mt-4"
              v-if="eklenecek_sube.sube_adi === '' || eklenecek_sube.sube_adresi ==='' || eklenecek_sube.sube_tel ===''">
 
-          <error_component :store="subeStore" message="Lütfen Tüm Kutucukları Doldurun."></error_component>
+          <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
@@ -80,7 +80,7 @@ function kaydet() {
         <div class="mt-4"
              v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' || subeStore.net_error===true">
 
-          <error_component v-if="subeStore.net_error ===true" :store="subeStore" message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
+          <error_component v-if="subeStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
           <button class="btn" v-if="subeStore.net_error === false" @click="kaydet">Kaydet</button>
         </div>
