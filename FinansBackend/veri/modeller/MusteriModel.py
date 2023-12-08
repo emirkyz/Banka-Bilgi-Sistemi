@@ -36,5 +36,6 @@ class MusteriModeli(TemelVeriSinifi):
     musteri_hesap_id: Mapped[List["HesapModeli"]] = relationship()
     musteri_fatura_id: Mapped[List["FaturaModeli"]] = relationship()
     musteri_kredileri: Mapped[list["KrediModeli"]] = relationship()
-
+    musteri_total_kredi: Mapped[float] = mapped_column(nullable=True, default=0)
     musteri_kredi_skor: Mapped[float] = mapped_column(nullable=True, default=0)
+

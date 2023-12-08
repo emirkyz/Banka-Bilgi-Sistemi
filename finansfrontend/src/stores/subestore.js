@@ -90,14 +90,22 @@ export const useSubeStore = defineStore("sube", {
             })
         },
         subeSil(sube) {
-            axios.delete('http://127.0.0.1:5000/api/v1/sube/' + sube["id"]).then((response) => {
-                const sube = response.data;
-                console.log(sube);
-                this.yukle();
-            })
-            this.sayfa = 0;
-            console.log(this.total_sube)
-            this.total_sube -= 1;
+            if (confirm("Bu şubeyi silmek istediğinize emin misiniz?")) {
+                axios.delete('http://127.0.0.1:5000/api/v1/sube/' + sube["id"]).then((response) => {
+                    const sube = response.data;
+                    console.log(sube);
+                    this.yukle();
+                }).catch(error => {
+                    if (error.code === "ERR_BAD_RESPONSE") {
+                        alert("Bu şubeye ait bir müşteri var. Önce müşteriyi silin.")
+                        this.get_all_sube();
+                    }
+                }) // TODO: hata mesajı API ye istek atmadan önce verilecek.
+                this.sayfa = 0;
+                // console.log(this.total_sube)
+                this.total_sube -= 1;
+            }
+
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)

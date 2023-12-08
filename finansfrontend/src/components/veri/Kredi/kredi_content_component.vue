@@ -94,6 +94,7 @@ kredi_store.get_all_kredi();
           <td>{{ kredi["kredi_faiz_orani"] }}</td>
           <td class="right">
             <button class="btn content-center">Düzenle</button>
+            <button class="btn-sil  content-center" @click="kredi_store.krediSil(kredi)">Sil</button>
           </td>
         </tr>
       </table>

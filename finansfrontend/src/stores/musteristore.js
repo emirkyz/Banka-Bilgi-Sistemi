@@ -90,11 +90,19 @@ export const useMusteriStore = defineStore("musteri", {
             })
         },
         musteriSil(musteri) {
+            if (confirm("Müşteriyi silmek istediğinize emin misiniz?")) {
+                if (musteri["musteri_total_kredi"] > 0) {
+                    alert(`Müşteriye ait ${musteri['musteri_total_kredi']} (ler) bulunmaktadır. Önce Kredileri siliniz.`)
+                    return;
+                }
+            }
             axios.delete('http://127.0.0.1:5000/api/v1/musteri/' + musteri["id"]).then((response) => {
                 const musteri = response.data;
                 console.log(musteri);
                 this.yukle();
+
             })
+            this.get_all_musteri();
             this.sayfa = 0;
             this.total_musteri -= 1;
         },

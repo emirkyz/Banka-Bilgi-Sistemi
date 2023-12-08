@@ -15,7 +15,7 @@ musteri_store.get_all_musteri();
   <main>
     <div class="sube-content main_comp">
       <div id="sube" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
-        <h1 class="text-xl">Şubeler</h1>
+        <h1 class="text-xl">Müşteriler</h1>
         <a class="text-xl transition-all"
         >{{ musteri_store.sayfa + 1 }}. sayfada
           {{ musteri_store.musteriler.length }} Tane kayıt gösteriliyor. Toplam
@@ -34,7 +34,7 @@ musteri_store.get_all_musteri();
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
           >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span>
-          <router-link to="/sube/ekle">
+          <router-link to="/musteri/ekle">
             <a class="font-medium ">Müşteri Eklemek için Tıklayınız</a>
           </router-link>
         </div>
@@ -47,7 +47,7 @@ musteri_store.get_all_musteri();
         <tr>
           <th
               v-if="musteri_store.id_order === '?sırala=ar_id'"
-              class="cursor-pointer"
+              class="cursor-pointer w-[70px]"
               @click="musteri_store.order_by_id()"
           >
             <a>ID</a>
@@ -55,7 +55,7 @@ musteri_store.get_all_musteri();
           </th>
           <th
               v-if="musteri_store.id_order === '?sırala=az_id'"
-              class="cursor-pointer"
+              class="cursor-pointer w-[70px]"
               @click="musteri_store.order_by_id()"
           >
             <a>ID</a>
@@ -66,8 +66,8 @@ musteri_store.get_all_musteri();
           <th>Müşteri TC</th>
           <th>Müşteri Şube ID</th>
           <th>Müşteri Kredi Skor</th>
-
-          <th>
+          <th>Müşteri Toplam Kredi Sayısı</th>
+          <th class="w-[200px]">
             <a class="-ml-8">logo</a>
             <button
                 @click="
@@ -96,11 +96,19 @@ musteri_store.get_all_musteri();
           <td>{{ musteri["musteri_soyad"] }}</td>
           <td>{{ musteri["musteri_tc"] }}</td>
           <td>{{ musteri["musteri_sube_id"] }}</td>
-          <td>{{ musteri["musteri_kredi_skor"].toFixed(6) }}</td>
+          <td v-if="musteri['musteri_kredi_skor'] === 0 ">Yeterli Kredi Yok</td>
+<!--          {{ musteri["musteri_kredi_skor"].toFixed(6) }}-->
+
+          <td>{{ musteri["musteri_total_kredi"] }}</td>
+
+
 
           <td class="right">
             <button class="btn content-center" @click="musteri_store.selectedMusteri=musteri">Düzenle</button>
+<!--            <button @click="console.log(musteri)">a</button>-->
             <button class="btn-sil  content-center" @click="musteri_store.musteriSil(musteri)">Sil</button>
+            <br>
+            <router-link to="/kredi/ekle" class="btn-kredi-ekle content-center">Kredi Ekle</router-link>
           </td>
         </tr>
       </table>
@@ -129,6 +137,19 @@ musteri_store.get_all_musteri();
 </template>
 
 <style scoped>
+.btn-kredi-ekle{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
 .kredi-content {
   min-height: 100vh;
 }

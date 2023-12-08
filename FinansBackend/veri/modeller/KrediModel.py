@@ -15,6 +15,7 @@ from veri.veritabani import db
 
 
 class KrediModeli(TemelVeriSinifi):
+
     """
     KrediModeli, kredi tablosunun modelini içerir.
 
@@ -56,7 +57,7 @@ class KrediModeli(TemelVeriSinifi):
             """
             tarih_str = context.get_current_parameters()["kredi_son_tarih"]
             # ay = context.get_current_parameters()["kredi_ay"]
-            tarih_date = datetime.strptime(tarih_str, "%d-%m-%Y").date()
+            tarih_date = datetime.strptime(tarih_str, "%Y-%m-%d").date()
             if tarih_date < datetime.now().date():
                 return "Pasif"
             else:
@@ -77,8 +78,8 @@ class KrediModeli(TemelVeriSinifi):
     kredi_musteri_id: Mapped[int] = mapped_column(ForeignKey('musteri.id'), nullable=False)
     kredi_faiz_orani: Mapped[float] = mapped_column()
     kredi_son_tarih: Mapped[datetime] = mapped_column()
-
     kredi_tutar: Mapped[float] = mapped_column()
+
     kredi_ay: Mapped[int] = mapped_column(nullable=True)
     kredi_geri_odeme: Mapped[float] = mapped_column(nullable=True)
 
@@ -114,8 +115,11 @@ def set_credit_score(mapper, connection, target):
 
     musteri = new_session.scalars(sorgu).first()
     total = len(musteri.musteri_kredileri)
+    total = 1 if total == 0 else total
     print(f"total: {total}")
-    if total < 5:
+    if total <5:
+        musteri.musteri_total_kredi = total
+        new_session.commit()
         return
     else:
         for kredi in musteri.musteri_kredileri:
@@ -125,6 +129,6 @@ def set_credit_score(mapper, connection, target):
                 pass
         score = (1-(active / total)) + (total//100)
         musteri.musteri_kredi_skor = score
-
+        musteri.musteri_total_kredi = total
         new_session.commit()
         print(f"musteri kredi skoru: {score}")
