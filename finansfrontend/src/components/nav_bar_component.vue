@@ -16,12 +16,12 @@
           >
             Banka Şubeleri
           </router-link>
-          <a
-              href="/musteri"
+          <router-link
+              to="/musteri"
               class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
           >
             Müşteri
-          </a>
+          </router-link>
           <a
               href="/hesap"
               class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
