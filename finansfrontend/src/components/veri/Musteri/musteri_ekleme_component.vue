@@ -7,6 +7,7 @@ import {useSubeStore} from "@/stores/subestore";
 
 const subeStore = useSubeStore();
 const musteriStore = useMusteriStore();
+
 musteriStore.yukle();
 subeStore.yukle();
 
@@ -115,7 +116,7 @@ function kaydet() {
 
         </div>
         <div class="mt-4"
-             v-if="eklenecek_musteri.musteri_adi !== '' && eklenecek_musteri.musteri_soyad !=='' && eklenecek_musteri.musteri_tc !=='' && eklenecek_musteri.musteri_sube_id !=='' && eklenecek_musteri.musteri_imza !=='' || eklenecek_musteri.net_error===true">
+             v-if="eklenecek_musteri.musteri_adi !== '' && eklenecek_musteri.musteri_soyad !=='' && eklenecek_musteri.musteri_tc !==''  && eklenecek_musteri.musteri_imza !=='' || eklenecek_musteri.net_error===true">
 
           <error_component v-if="musteriStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 

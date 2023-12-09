@@ -35,10 +35,10 @@
             Krediler
           </router-link>
           <div>
-            <a id="i"
-                href="/documentation"
+            <router-link id="i"
+                to="/doc"
                 class="right-0 rounded-xl inline-block text-sm px-2 py-1 leading-none text-white border-2 border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0 cursor-pointer"
-            >i</a
+            >i</router-link
             >
           </div>
         </div>

@@ -15,6 +15,7 @@ import sube_ekleme_component from "@/components/veri/Sube/sube_ekleme_component.
 import musteri_component from "@/components/veri/Musteri/musteri_component.vue";
 import musteri_content_component from "@/components/veri/Musteri/musteri_content_component.vue";
 import musteri_ekleme_component from "@/components/veri/Musteri/musteri_ekleme_component.vue";
+import document_component from "@/components/veri/dökümantasyon/document_component.vue";
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -46,6 +47,10 @@ const routes = [
             {path: "/musteri/ekle", component: musteri_ekleme_component},
         ],
     },
+    {
+        path: "/doc", component: document_component,
+
+    }
 
 ];
 const router = createRouter({
