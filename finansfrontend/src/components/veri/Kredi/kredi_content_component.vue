@@ -39,7 +39,7 @@ kredi_store.get_all_kredi();
         <tr>
           <th
               v-if="kredi_store.id_order === '?sırala=ar_id'"
-              class="cursor-pointer"
+              class="cursor-pointer w-[90px]"
               @click="kredi_store.order_by_id()"
           >
             <a>ID</a>
@@ -47,14 +47,15 @@ kredi_store.get_all_kredi();
           </th>
           <th
               v-if="kredi_store.id_order === '?sırala=az_id'"
-              class="cursor-pointer"
+              class="cursor-pointer w-[90px]"
               @click="kredi_store.order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-red-500">(desc)</a>
           </th>
-          <th>Kredi Durum</th>
+          <th class="w-[70px]">Kredi Durum</th>
           <th>Müşteri ID</th>
+          <th>Hesap ID</th>
           <th>Kredi Miktarı</th>
           <th>Kredi Son Tarih</th>
           <th>Kredi Faiz Oranı</th>
@@ -92,9 +93,11 @@ kredi_store.get_all_kredi();
           </td>
 
           <td>{{ kredi["kredi_musteri_id"] }}</td>
+          <td> test </td>
           <td>{{ kredi["kredi_tutar"].toLocaleString() + " TL" }}</td>
           <td>{{ new Date(kredi["kredi_son_tarih"]).toLocaleDateString("tr-tr") }}</td>
           <td>{{ kredi["kredi_faiz_orani"] }}</td>
+
           <td class="right">
             <button class="btn content-center">Düzenle</button>
             <button class="btn-sil  content-center" @click="kredi_store.krediSil(kredi)">Sil</button>

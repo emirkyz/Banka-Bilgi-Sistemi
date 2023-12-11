@@ -2,10 +2,19 @@
 import {ref} from "vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useSubeStore} from "@/stores/subestore";
+import Error_component from "@/components/ortak/error_component.vue";
 
 const subeStore = useSubeStore();
 subeStore.yukle()
 const musteriStore = useMusteriStore();
+
+const bos_musteri = {
+  musteri_adi: "",
+  musteri_soyad: "",
+  musteri_tc: "",
+  musteri_sube_id: "",
+  musteri_imza: "",
+};
 const duzenlenecek_musteri = ref({
   musteri_adi: "",
   musteri_soyad: "",
@@ -42,9 +51,13 @@ function duzenle() {
           </div>
 
           <div class="input-area">
-            <select class="input-area  bg-transparent w-2/4 border border-black" name="fsubeid" v-model="duzenlenecek_musteri.musteri_sube_id">
+            <select class="input-area  bg-transparent w-2/4 border border-black" name="fsubeid"
+                    v-model="duzenlenecek_musteri.musteri_sube_id">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{sube.id}} - {{ sube.sube_adi }} </option>
+              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{ sube.id }} - {{
+                  sube.sube_adi
+                }}
+              </option>
             </select>
           </div>
         </div>
@@ -76,7 +89,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_tc'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text"  placeholder="Yeni Müşteri TC'sini Giriniz" v-model="duzenlenecek_musteri.musteri_tc" >
+            <input type="text" placeholder="Yeni Müşteri TC'sini Giriniz" v-model="duzenlenecek_musteri.musteri_tc">
           </div>
         </div>
 
@@ -86,17 +99,23 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_imza'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text"  placeholder="Yeni Müşteri İmzasını Giriniz" v-model="duzenlenecek_musteri.musteri_imza" >
+            <input type="text" placeholder="Yeni Müşteri İmzasını Giriniz" v-model="duzenlenecek_musteri.musteri_imza">
           </div>
         </div>
 
-        <div>
+
+        <div
+            v-if="duzenlenecek_musteri.musteri_adi !== '' && duzenlenecek_musteri.musteri_soyad !=='' && duzenlenecek_musteri.musteri_tc !=='' && duzenlenecek_musteri.musteri_imza !=='' && duzenlenecek_musteri.musteri_sube_id!=='' ">
           <button class="btn  my-4 p-2" @click="duzenle">
             Kaydet
           </button>
           <button class="btn exit my-4 p-2" @click="musteriStore.selectedMusteri=null">
             İptal
           </button>
+        </div>
+        <div class="mt-4"
+             v-else>
+          <error_component class="w-2/3" message="Lütfen Tüm Kutucukları Doldurun."></error_component>
         </div>
       </div>
     </div>
@@ -109,7 +128,7 @@ function duzenle() {
   height: fit-content;
 
 
-  background: transparent ;
+  background: transparent;
   font-family: arial, serif;
   margin: 25px;
   font-size: 18px;
@@ -137,10 +156,12 @@ input:focus {
 .edit-input-area {
   width: 65%;
 }
-.edit-input-row{
+
+.edit-input-row {
   margin: 0px 10px;
 }
-.exit{
+
+.exit {
   background: #342b2b;
   color: #ffffff;
 }

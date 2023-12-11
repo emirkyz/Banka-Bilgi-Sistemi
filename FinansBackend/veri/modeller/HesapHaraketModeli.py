@@ -22,9 +22,7 @@ class HesapHaraketModeli(TemelVeriSinifi):
     # hareketHesap: Mapped[str] = mapped_column(nullable=False)
     hareket_hesap_id: Mapped[int] = mapped_column(ForeignKey('hesap.id'))
     hareketMiktar: Mapped[str] = mapped_column(nullable=False)
-    haraketTarih: Mapped[str] = mapped_column(nullable=False)
-    hareketAciklama: Mapped[str] = mapped_column(nullable=False)
+    # haraketTarih: Mapped[str] = mapped_column(nullable=False)
+    # hareketAciklama: Mapped[str] = mapped_column(nullable=False)
 
     hareket_turu: Mapped[str] = mapped_column(nullable=False)
-
-    # def get_kredi_or_fatura_id_foreign_key(self):

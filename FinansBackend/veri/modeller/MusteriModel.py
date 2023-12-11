@@ -46,9 +46,23 @@ class MusteriModeli(TemelVeriSinifi):
     musteri_total_kredi_tutar: Mapped[float] = mapped_column(nullable=True, default=1.0)
 
 
-@event.listens_for(KrediModeli, "after_insert")
-@event.listens_for(KrediModeli, "after_update")
-def update_credit_score_on_new(mapper, connection, target):
+def inser_kredi_skoru_guncelle(mapper, connection, target):
+    """
+    Kredi skoru güncelleme işlemini gerçekleştiren fonksiyon.
+
+    Formül: (w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı)
+    Burada w1 ve w2 ağırlık değerleridir.
+    w1 = 0.4
+    w2 = 0.6
+
+    kredi_kullanımı = (aktif kredilerin toplam tutarı / toplam kredilerin toplam tutarı)
+    aktif_kredi_oranı = (aktif kredi sayısı / toplam kredi sayısı)
+
+    :param mapper: SQLAlchemy mapper.
+    :param connection: SQLAlchemy connection.
+    :param target: KrediModeli nesnesi.
+    """
+    print("Ekleme İşlemi")
     new_session = Session(db)
     new_session.begin()
 
@@ -105,11 +119,12 @@ def update_credit_score_on_new(mapper, connection, target):
         musteri.musteri_kredi_skor = score
         musteri.musteri_total_kredi = total
         musteri.musteri_total_kredi_tutar = toplam_kredi_tutar
+
         new_session.commit()
+        new_session.close()
 
 
-@event.listens_for(KrediModeli, "after_delete")
-def update_credit_score_on_delete(mapper, connection, target):
+def delete_kredi_skoru_guncelle(mapper, connection, target):
     print("Silme İşlemi")
     new_session = Session(db)
     new_session.begin()
@@ -173,81 +188,21 @@ def update_credit_score_on_delete(mapper, connection, target):
                                                                                           musteri_total_kredi_tutar=toplam_kredi_tutar))
         new_session.commit()
 
-#     """
-#     KrediModeli nesnesi eklendikten sonra çalışan fonksiyon.
-#     Bu fonksiyon, kredi tablosuna ekleme yapıldıktan sonra müşteri tablosundaki müşteri kredi skorunu günceller.
-#     Tablolarda güncelleme yapabilmek için yeni bir session oluşturulur.
-#
-#     Açıklama:
-#     @event.listeners_for() SQL Alchemy tarafından sağlanan bir dekoratördür,
-#     bu dekoratör sayesinde, belirtilen modelin belirtilen olayından sonra çalışan bir fonksiyon yazılabilir.
-#
-#     Hesaplama formülü:
-#     score = (1-(active / total)) + (total//100)
-#     active: Müşterinin aktif kredilerinin sayısı.
-#     total: Müşterinin toplam kredilerinin sayısı.
-#     score: Müşterinin kredi skoru.
-#
-#     :param mapper: SQLAlchemy mapper.
-#     :param connection: SQLAlchemy connection.
-#     :param target: KrediModeli nesnesi.
-#     :return: None.
-#     """
-#
-#     # new_session = Session(db)
-#     # new_session.begin()
-#     #
-#     # sorgu = select(MusteriModeli).where(MusteriModeli.id == target.kredi_musteri_id)
-#     #
-#     # active = 0
-#     # musteri = new_session.scalars(sorgu).first()
-#     # print(musteri.musteri_kredileri)
-#     # total = len(musteri.musteri_kredileri)
-#     # print(len(musteri.musteri_kredileri))
-#     # print(f"total: {total}")
-#     #
-#     # aktif_total = 0
-#     # passive_total = 0
-#     #
-#     # if total <5:
-#     #     musteri.musteri_total_kredi = total
-#     #     new_session.commit()
-#     #     return
-#     # else:
-#     #     for kredi in musteri.musteri_kredileri:
-#     #         if kredi.kredi_durum == "Aktif":
-#     #
-#     #             active += 1
-#     #         else:
-#     #             pass
-#     #         if kredi.kredi_durum == "Aktif":
-#     #             print("h")
-#     #             aktif_total += kredi.kredi_tutar
-#     #         else:
-#     #             print("o")
-#     #             passive_total += kredi.kredi_tutar
-#     #
-#     #     print(f"aktif toplam: {aktif_total}")
-#     #
-#     #     print(f"pasif toplam: {passive_total}")
-#     #     toplam_kredi_tutar = aktif_total + passive_total
-#     #     kredi_kullanımı = ((aktif_total / toplam_kredi_tutar)) # *100
-#     #     aktif_kredi_oranı = (active / total) # *100
-#     #     print(f"kredi kullanımı: {kredi_kullanımı}")
-#     #     print(f"aktif kredi oranı: {aktif_kredi_oranı}")
-#     #
-#     #     w1 = 0.4
-#     #     w2 = 0.6
-#     #
-#     #     score =((w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı))
-#     #
-#     #
-#     #     print(f"toplam kredi tutar: {toplam_kredi_tutar}")
-#     #
-#     #     # score = (1-(active / total)) + (total//100) + (toplam_kredi_tutar // 1000000)
-#     #     musteri.musteri_kredi_skor = score
-#     #     musteri.musteri_total_kredi = total
-#     #     musteri.musteri_total_kredi_tutar = toplam_kredi_tutar
-#     #     new_session.commit()
-#     #     print(f"musteri kredi skoru: {score}")
-#     #     new_session.close()
+
+@event.listens_for(KrediModeli, "after_insert")
+@event.listens_for(KrediModeli, "after_update")
+def kredi_skor_guncelle(mapper, connection, target):
+    """
+    Bu fonksiyon, kredi ekleme ve güncelleme işlemlerinden sonra kredi skorunu günceller.
+    """
+    inser_kredi_skoru_guncelle(mapper, connection, target)
+
+
+@event.listens_for(KrediModeli, "after_delete")
+def kredi_skor_guncelle(mapper, connection, target):
+    """
+    Bu fonksiyon, kredi silme işleminden sonra kredi skorunu günceller.
+    """
+    delete_kredi_skoru_guncelle(mapper, connection, target)
+
+

@@ -1,6 +1,7 @@
 <script setup>
 import {useSubeStore} from "@/stores/subestore";
 import {ref} from "vue";
+import Error_component from "@/components/ortak/error_component.vue";
 
 const subeStore = useSubeStore();
 const duzenlenecek_sube = ref({
@@ -54,17 +55,23 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ subeStore.selectedSube['sube_tel'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text"  placeholder="Yeni Şube Telefonunu Giriniz" v-model="duzenlenecek_sube.sube_tel" >
+            <input type="text" placeholder="Yeni Şube Telefonunu Giriniz" v-model="duzenlenecek_sube.sube_tel">
           </div>
         </div>
 
-        <div>
+
+        <div
+            v-if="duzenlenecek_sube.sube_adi!=='' && duzenlenecek_sube.sube_adresi!=='' && duzenlenecek_sube.sube_tel!==''">
+
           <button class="btn  my-4 p-2" @click="duzenle">
             Kaydet
           </button>
           <button class="btn exit my-4 p-2" @click="subeStore.selectedSube=null">
             İptal
           </button>
+        </div>
+        <div v-else>
+          <error_component class="w-2/3" message="Lütfen Tüm Kutucukları Doldurun."></error_component>
         </div>
       </div>
     </div>
@@ -77,7 +84,7 @@ function duzenle() {
   height: fit-content;
 
 
-  background: transparent ;
+  background: transparent;
   font-family: arial, serif;
   margin: 25px;
   font-size: 18px;
@@ -105,10 +112,12 @@ input:focus {
 .edit-input-area {
   width: 65%;
 }
-.edit-input-row{
+
+.edit-input-row {
   margin: 0px 10px;
 }
-.exit{
+
+.exit {
   background: #342b2b;
   color: #ffffff;
 }

@@ -19,12 +19,12 @@ class KrediModeli(TemelVeriSinifi):
 
     Attributes:
         kredi_durum: KrediModeli nesnesinin durumunu belirtir.
-        kredi_musteri_id: KrediModeli nesnesinin ilişkili olduğu müşteri tablosunun id'si.
-        kredi_faiz_orani: Kredinin faiz oranını belirtir.
-        kredi_son_tarih:  Kredinin son tarihini belirtir.
-        kredi_tutar: KrediModeli nesnesinin tutarını belirtir.
-        kredi_ay: Kredinin kaç ay süreceğini belirtir.
-        kredi_geri_odeme: Kredinin geri ödeme miktarını belirtir.
+        kredi_musteri_id: KrediModeli nesnesinin ilişkili olduğu müşterinin id'si.
+        kredi_faiz_orani: KrediModeli nesnesinin faiz oranını belirtir.
+        kredi_son_tarih: KrediModeli nesnesinin son ödeme tarihini belirtir.
+        kredi_tutar: KrediModeli nesnesinin kredi tutarını belirtir.
+        kredi_ay: KrediModeli nesnesinin kredi ayını belirtir.
+        kredi_geri_odeme: KrediModeli nesnesinin geri ödeme tutarını belirtir.
     """
     __tablename__ = 'kredi'
 
@@ -86,85 +86,3 @@ class KrediModeli(TemelVeriSinifi):
 
 
 
-
-# @event.listens_for(KrediModeli, "after_insert")
-# @event.listens_for(KrediModeli, "after_update")
-# def set_credit_score(mapper, connection, target):
-#     """
-#     KrediModeli nesnesi eklendikten sonra çalışan fonksiyon.
-#     Bu fonksiyon, kredi tablosuna ekleme yapıldıktan sonra müşteri tablosundaki müşteri kredi skorunu günceller.
-#     Tablolarda güncelleme yapabilmek için yeni bir session oluşturulur.
-#
-#     Açıklama:
-#     @event.listeners_for() SQL Alchemy tarafından sağlanan bir dekoratördür,
-#     bu dekoratör sayesinde, belirtilen modelin belirtilen olayından sonra çalışan bir fonksiyon yazılabilir.
-#
-#     Hesaplama formülü:
-#     score = (1-(active / total)) + (total//100)
-#     active: Müşterinin aktif kredilerinin sayısı.
-#     total: Müşterinin toplam kredilerinin sayısı.
-#     score: Müşterinin kredi skoru.
-#
-#     :param mapper: SQLAlchemy mapper.
-#     :param connection: SQLAlchemy connection.
-#     :param target: KrediModeli nesnesi.
-#     :return: None.
-#     """
-#
-#     new_session = Session(db)
-#     new_session.begin()
-#
-#     sorgu = select(MusteriModeli).where(MusteriModeli.id == target.kredi_musteri_id)
-#
-#     active = 0
-#     musteri = new_session.scalars(sorgu).first()
-#     print(musteri.musteri_kredileri)
-#     total = len(musteri.musteri_kredileri)
-#     print(len(musteri.musteri_kredileri))
-#     print(f"total: {total}")
-#
-#     aktif_total = 0
-#     passive_total = 0
-#
-#     if total <5:
-#         musteri.musteri_total_kredi = total
-#         new_session.commit()
-#         return
-#     else:
-#         for kredi in musteri.musteri_kredileri:
-#             if kredi.kredi_durum == "Aktif":
-#
-#                 active += 1
-#             else:
-#                 pass
-#             if kredi.kredi_durum == "Aktif":
-#                 print("h")
-#                 aktif_total += kredi.kredi_tutar
-#             else:
-#                 print("o")
-#                 passive_total += kredi.kredi_tutar
-#
-#         print(f"aktif toplam: {aktif_total}")
-#
-#         print(f"pasif toplam: {passive_total}")
-#         toplam_kredi_tutar = aktif_total + passive_total
-#         kredi_kullanımı = ((aktif_total / toplam_kredi_tutar)) # *100
-#         aktif_kredi_oranı = (active / total) # *100
-#         print(f"kredi kullanımı: {kredi_kullanımı}")
-#         print(f"aktif kredi oranı: {aktif_kredi_oranı}")
-#
-#         w1 = 0.4
-#         w2 = 0.6
-#
-#         score =((w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı))
-#
-#
-#         print(f"toplam kredi tutar: {toplam_kredi_tutar}")
-#
-#         # score = (1-(active / total)) + (total//100) + (toplam_kredi_tutar // 1000000)
-#         musteri.musteri_kredi_skor = score
-#         musteri.musteri_total_kredi = total
-#         musteri.musteri_total_kredi_tutar = toplam_kredi_tutar
-#         new_session.commit()
-#         print(f"musteri kredi skoru: {score}")
-#         new_session.close()

@@ -4,10 +4,14 @@ import Error_component from "@/components/ortak/error_component.vue";
 import {useKrediStore} from "@/stores/kredistore";
 import {useMusteriStore} from "@/stores/musteristore";
 
+const onayKutusu = ref(false);
 const musteriStore = useMusteriStore();
 const krediStore = useKrediStore();
+
+
 musteriStore.yukle();
 krediStore.yukle();
+
 const eklenecek_kredi = ref({
   kredi_musteri_id: "",
   kredi_son_tarih: "",
@@ -25,6 +29,7 @@ function kaydet() {
     kredi_tutar: "",
   };
 }
+
 
 // const canContinue = (eklenecek_sube.value.sube_adi === '' || eklenecek_sube.value.sube_adresi ==='' || eklenecek_sube.value.sube_tel ==='');
 
@@ -87,21 +92,6 @@ function kaydet() {
             />
           </div>
         </div>
-
-<!--        <div class="input-row">-->
-<!--          <div class="label-area">-->
-<!--            <label for="fsoyad" class="text-xl">Müşteri İmza</label>-->
-<!--          </div>-->
-<!--          <div class="input-area">-->
-<!--            <input-->
-<!--                type="text"-->
-<!--                placeholder="Müşteri İmzasını Giriniz"-->
-<!--                v-model="eklenecek_musteri.musteri_imza"-->
-<!--            />-->
-<!--          </div>-->
-<!--        </div>-->
-
-
         <div class="mt-4"
              v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.kredi_musteri_id ==='' || eklenecek_kredi.kredi_tutar ===''">
 
@@ -115,15 +105,86 @@ function kaydet() {
 
           <error_component v-if="krediStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-          <button class="btn" v-if="krediStore.net_error === false" @click="kaydet">Kaydet</button>
+          <button class="btn" v-if="krediStore.net_error === false" @click="onayKutusu=true">Kaydet</button>
         </div>
       </div>
+      <teleport to="body">
+        <div class="modal" v-if="onayKutusu === true" @click="onayKutusu=false">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Onay</h2>
+              <div class="cursor-pointer" @click="onayKutusu=false">X</div>
+            </div>
+            <div class="modal-body">
+              <p>Kaydetmek istediğinizden emin misiniz?.</p>
+            </div>
+            <div class="modal-footer">
+              <button class="buton olumlu" @click="onayKutusu=false, kaydet()" >Kaydet</button>
+              <button class="buton olumsuz" @click="onayKutusu=false">Kapat</button>
+            </div>
+          </div>
+        </div>
+      </teleport>
+
 
     </div>
   </main>
 </template>
 
 <style scoped>
+.buton {
+  color: var(--yazirengi);
+  border: #161612 1px solid;
+  background-color: var(--menu_arkaplan);
+  padding: 7px 14px;
+  margin: 7px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+.buton.olumlu:hover {
+  background-color: forestgreen;
+  color: var(--yazirengi);
+  scale: 1.1;
+}
+.buton.olumsuz:hover {
+  background-color: #f65e5e;
+  color: var(--yazirengi);
+  scale: 1.1;
+}
+.modal{
+  display: flex; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+  justify-content: center;
+  align-items: center;
+
+}
+.modal-content{
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  min-width: 30vw;
+  z-index: 100;
+}
+.modal-header{
+  font-size: 14pt;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .label-area {
   display: block;
   height: 100%;
