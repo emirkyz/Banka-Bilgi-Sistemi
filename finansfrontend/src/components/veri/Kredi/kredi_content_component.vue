@@ -55,6 +55,7 @@ kredi_store.get_all_kredi();
           </th>
           <th>Kredi Durum</th>
           <th>Müşteri ID</th>
+          <th>Kredi Miktarı</th>
           <th>Kredi Son Tarih</th>
           <th>Kredi Faiz Oranı</th>
 
@@ -80,16 +81,18 @@ kredi_store.get_all_kredi();
         >
           <td>{{ kredi["id"] }}</td>
           <td
-              v-if="kredi['kredi_durum'] === 'Aktif'"
+              v-if="new Date(kredi['kredi_son_tarih']) > new Date()"
               class="text-green-500 font-bold"
           >
-            {{ kredi["kredi_durum"] }}
+            Aktif
           </td>
-          <td v-if="kredi['kredi_durum'] === 'Pasif'" class="text-red-500">
-            {{ kredi["kredi_durum"] }}
+          <td v-if="new Date(kredi['kredi_son_tarih']) < new Date()"
+              class="text-red-500">
+            Pasif
           </td>
 
           <td>{{ kredi["kredi_musteri_id"] }}</td>
+          <td>{{ kredi["kredi_tutar"].toLocaleString() + " TL" }}</td>
           <td>{{ new Date(kredi["kredi_son_tarih"]).toLocaleDateString() }}</td>
           <td>{{ kredi["kredi_faiz_orani"] }}</td>
           <td class="right">

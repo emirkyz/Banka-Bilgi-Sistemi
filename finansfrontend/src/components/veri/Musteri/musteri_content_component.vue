@@ -96,9 +96,9 @@ musteri_store.get_all_musteri();
           <td>{{ musteri["musteri_soyad"] }}</td>
           <td>{{ musteri["musteri_tc"] }}</td>
           <td>{{ musteri["musteri_sube_id"] }}</td>
-          <td v-if="musteri['musteri_kredi_skor'] === 0 ">Yeterli Kredi Yok</td>
+          <td id="score" v-if="musteri['musteri_kredi_skor'] === 0 ">Yeterli Kredi Yok <br><span class="extra">{{ musteri['musteri_kredi_skor'] }}</span> </td>
 <!--          {{ musteri["musteri_kredi_skor"].toFixed(6) }}-->
-
+          <td id="score" v-if="musteri['musteri_kredi_skor'] !== 0 ">Kredi Alabilir <br><span class="extra">{{ musteri['musteri_kredi_skor'].toFixed(6) }}</span> </td>
           <td>{{ musteri["musteri_total_kredi"] }}</td>
 
 
@@ -157,7 +157,13 @@ musteri_store.get_all_musteri();
 button {
   transition: all 300ms ease-out;
 }
-
+.extra {
+  font-size: 12px;
+  display: none;
+}
+td:hover .extra {
+  display: inline;
+}
 .loader {
   position: relative;
   bottom: 0;

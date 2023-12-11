@@ -69,6 +69,9 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
 
         db.session.add(veri)
         db.session.commit()
+        # if "kredi_musteri_id" in sutunlar:
+        #     get_credits(veri)
+
         return veri.to_dict()
 
     @bp.route('/<int:id>', methods=['PUT'])
@@ -94,6 +97,8 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         # manav.manav_tel = request.json['manav_tel']
 
         db.session.commit()
+        # if "kredi_musteri_id" in sutunlar:
+        #     get_credits(veri)
         return veri.to_dict()
 
     @bp.route('/<int:id>', methods=['DELETE'])
@@ -107,6 +112,7 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         veri = db.session.scalars(sorgu).one()
         db.session.delete(veri)
         db.session.commit()
+
         return {"silinen": veri.to_dict()}
 
     return bp

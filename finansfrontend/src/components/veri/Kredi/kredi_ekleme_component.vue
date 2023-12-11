@@ -103,7 +103,7 @@ function kaydet() {
 
 
         <div class="mt-4"
-             v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.musteri_id ===''">
+             v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.kredi_musteri_id ==='' || eklenecek_kredi.kredi_tutar ===''">
 
           <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
@@ -111,7 +111,7 @@ function kaydet() {
 
         </div>
         <div class="mt-4"
-             v-if="eklenecek_kredi.kredi_faiz_orani !== '' && eklenecek_kredi.kredi_son_tarih !=='' && eklenecek_kredi.musteri_id !==''|| eklenecek_kredi.net_error===true">
+             v-if="eklenecek_kredi.kredi_faiz_orani !== '' && eklenecek_kredi.kredi_son_tarih !=='' && eklenecek_kredi.kredi_tutar !=='' && eklenecek_kredi.kredi_musteri_id !==''|| eklenecek_kredi.net_error===true">
 
           <error_component v-if="krediStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
