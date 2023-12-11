@@ -14,9 +14,8 @@ def create_app():
     :return: Flask uygulamasını döndürür.
     """
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://finans_user:12345@localhost:5432/Finans'
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://finans_user:12345@db:5432/Finans'
-
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://finans_user:12345@localhost:5432/Finans'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://finans_user:test123@localhost:5432/Finans'
     db.init_app(app)
     migrate = Migrate()
     migrate.init_app(app, db)

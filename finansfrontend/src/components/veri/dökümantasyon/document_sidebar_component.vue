@@ -21,22 +21,26 @@ function expand_sidebar() {
     <button @click="expand_sidebar" class="flex relative plus_sign"></button>
 
     <div class="flex flex-col">
+      <div class="mb-2 font-medium border-b-8 px-2 p-1.5 rounded">
+        Dökümantasyon Paneli
+      </div>
+
       <br />
       <div id="sidebar_content_1">
-        <router-link to="/">
+        <router-link to="/doc/sube">
           <a class="font-medium text-xl">Şube Ekranı</a>
         </router-link>
       </div>
       <hr class="my-4" />
       <div id="sidebar_content_2">
-        <router-link to="/" class="font-medium text-2xl">
-          <a class="font-medium text-xl">Müşteriler Ekranı</a>
+        <router-link to="/doc/musteri" class="font-medium text-2xl">
+          <a class="font-medium text-xl">Müşteri Ekranı</a>
         </router-link>
       </div>
       <hr class="my-4" />
       <div id="sidebar_content_2">
-        <router-link to="/" class="font-medium text-2xl">
-          <a class="font-medium text-xl">Krediler Ekranı</a>
+        <router-link to="/doc/kredi" class="font-medium text-2xl">
+          <a class="font-medium text-xl">Kredi Ekranı</a>
         </router-link>
       </div>
     </div>

@@ -93,7 +93,7 @@ kredi_store.get_all_kredi();
 
           <td>{{ kredi["kredi_musteri_id"] }}</td>
           <td>{{ kredi["kredi_tutar"].toLocaleString() + " TL" }}</td>
-          <td>{{ new Date(kredi["kredi_son_tarih"]).toLocaleDateString() }}</td>
+          <td>{{ new Date(kredi["kredi_son_tarih"]).toLocaleDateString("tr-tr") }}</td>
           <td>{{ kredi["kredi_faiz_orani"] }}</td>
           <td class="right">
             <button class="btn content-center">Düzenle</button>

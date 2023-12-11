@@ -47,7 +47,7 @@ musteri_store.get_all_musteri();
         <tr>
           <th
               v-if="musteri_store.id_order === '?sırala=ar_id'"
-              class="cursor-pointer w-[70px]"
+              class="cursor-pointer w-[90px]"
               @click="musteri_store.order_by_id()"
           >
             <a>ID</a>
@@ -55,7 +55,7 @@ musteri_store.get_all_musteri();
           </th>
           <th
               v-if="musteri_store.id_order === '?sırala=az_id'"
-              class="cursor-pointer w-[70px]"
+              class="cursor-pointer w-[90px]"
               @click="musteri_store.order_by_id()"
           >
             <a>ID</a>

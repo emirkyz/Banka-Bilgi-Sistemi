@@ -100,6 +100,7 @@ hr {
 .footer_comp {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
 }
 
 .nav_comp:hover,
@@ -168,6 +169,7 @@ tr {
 }
 
 .home_comp {
+    margin:5px !important;
     border-radius: 23px;
     display: flex;
     flex-direction: row;
@@ -253,6 +255,7 @@ main {
 }
 
 .footer_comp {
+    z-index: 100;
     position: relative;
     margin-bottom: 10px;
     grid-area: footer;
@@ -265,9 +268,22 @@ main {
     background: var(--menu_arkaplan);
     color: var(--yazirengi);
 }
+.middle-custom {
+
+    margin: auto !important;
+    gap: 10px;
+    grid-area: middle;
+    display: flex;
+    flex-direction: row;
+
+}
 
 
 .middle {
+
+    padding: 10px;
+    margin: -10px;
+    height: fit-content;
     gap: 10px;
     grid-area: middle;
     display: flex;

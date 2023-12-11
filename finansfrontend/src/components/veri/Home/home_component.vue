@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="home_comp outline outline-blue-950">
+  <div class="home_comp flex flex-row content-between outline outline-blue-950">
     <div id="baslik" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
       <h1 class="text-4xl">KYZ Finans'a Hoş Geldiniz.</h1>
       <br />

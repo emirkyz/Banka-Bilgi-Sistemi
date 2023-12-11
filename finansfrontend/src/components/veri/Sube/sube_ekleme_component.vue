@@ -26,7 +26,7 @@ function kaydet() {
 </script>
 
 <template>
-  <main class="main_comp flex-col">
+  <main class="main_comp flex-col middle-custom">
     <div class="flex flex-col w-full">
       <a class="font-medium text-2xl"> Şube Ekleme Ekranı </a>
       <a>Lütfen aşağıdaki kutucuklara ilgili bilgileri giriniz.</a>
