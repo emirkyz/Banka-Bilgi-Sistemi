@@ -1,15 +1,19 @@
 <script setup>
 import {useLoadingState} from "@/stores/loading_state";
 import Error_component from "@/components/ortak/error_component.vue";
-
-import musteri_duzenleme_component from "@/components/veri/Musteri/musteri_duzenleme_component.vue";
 import {useHesapStore} from "@/stores/hesapstore";
+import Bakiye_update_component from "@/components/veri/Hesap/bakiye_update_component.vue";
+import {useMusteriStore} from "@/stores/musteristore";
 
 const hesap_store = useHesapStore();
 const loading = useLoadingState();
-
+const musteri_store = useMusteriStore();
 hesap_store.init();
 hesap_store.get_all_hesap();
+
+musteri_store.get_all_musteri();
+
+
 </script>
 
 <template>
@@ -62,7 +66,7 @@ hesap_store.get_all_hesap();
             <a>ID</a>
             <a class="font-bold text-red-500">(desc)</a>
           </th>
-          <th>Müşteri ID</th>
+          <th>Müşteri İsmi</th>
           <th>Kayıtlı Şube</th>
           <th>Para Birimi</th>
           <th>Bakiye</th>
@@ -87,18 +91,20 @@ hesap_store.get_all_hesap();
             :key="hesap"
             v-bind:class="{ 'opacity-0': loading.loading }"
         >
-          <td>{{hesap['id']}}</td>
-          <td>{{ hesap["hesap_musteri_id"] }}</td>
+          <td>{{ hesap['id'] }}</td>
+          <td>{{ musteri_store.find_musteri(hesap['hesap_musteri_id']) }}</td>
           <td>{{ hesap["hesap_AcanSube"] }}</td>
           <td>{{ hesap["hesap_ParaBirim"] }}</td>
-          <td>{{ hesap["hesap_bakiye"]+" "+ hesap['hesap_ParaBirim'] }}</td>
+          <td>{{ hesap["hesap_bakiye"] + " " + hesap['hesap_ParaBirim'] }}</td>
 
           <td class="right">
             <button class="btn content-center" @click="hesap_store.selectedHesap=hesap">Düzenle</button>
-<!--            <button @click="console.log(musteri)">a</button>-->
+            <!--            <button @click="console.log(musteri)">a</button>-->
             <button class="btn-sil  content-center" @click="hesap_store.hesapSil(hesap)">Sil</button>
             <br>
-            <button class="btn-kredi-ekle content-center" @click="hesap_store.bakiye_arttir(hesap['id'],12)">Bakiye ekle</button>
+            <button class="btn-kredi-ekle content-center"
+                    @click="hesap_store.bakiye_update=hesap ; hesap_store.selectedHesap=hesap;">Bakiye ekle
+            </button>
           </td>
         </tr>
       </table>
@@ -118,8 +124,8 @@ hesap_store.get_all_hesap();
         Sonraki
       </button>
 
-<!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
-
+      <!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
+      <bakiye_update_component></bakiye_update_component>
 
     </div>
 
@@ -127,7 +133,7 @@ hesap_store.get_all_hesap();
 </template>
 
 <style scoped>
-.btn-kredi-ekle{
+.btn-kredi-ekle {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
@@ -140,6 +146,7 @@ hesap_store.get_all_hesap();
   cursor: pointer;
   border-radius: 4px;
 }
+
 .kredi-content {
   min-height: 100vh;
 }
@@ -147,13 +154,16 @@ hesap_store.get_all_hesap();
 button {
   transition: all 300ms ease-out;
 }
+
 .extra {
   font-size: 12px;
   display: none;
 }
+
 td:hover .extra {
   display: inline;
 }
+
 .loader {
   position: relative;
   bottom: 0;

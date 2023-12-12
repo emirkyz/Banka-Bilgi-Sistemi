@@ -12,6 +12,8 @@ export const useHesapStore = defineStore("hesap", {
         adet: 10,
         at_end: false,
         net_error: false,
+        bakiye_update: null,
+        not_enough: false,
         // cached_sube : []
     }),
     actions: {
@@ -29,14 +31,6 @@ export const useHesapStore = defineStore("hesap", {
                 `http://127.0.0.1:5000/api/v1/hesap/s/${sayfa}/k/${this.adet}${siralama}`,
             )
                 .then((response) => {
-                    // if (response.data.length === 0) {
-                    //     this.at_end = true;
-                    //     this.sayfa -= 1;
-                    //     this.subeler = this.cached_sube;
-                    //     loading.yuklemeyiBitir();
-                    //     return;
-                    // }
-                    // this.cached_sube = response.data;
                     if (response.status === 200) {
                         this.net_error = false;
                     }
@@ -104,15 +98,21 @@ export const useHesapStore = defineStore("hesap", {
         bakiye_arttir(hesap, miktar) {
             axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/e/${hesap}/${miktar}`).then((response) => {
                 const hesap = response.data;
+                this.bakiye_update = null;
                 console.log(hesap);
-                this.yukle();
+                this.yukle()
             })
         },
         bakiye_azalt(hesap, miktar) {
             axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`).then((response) => {
                 const hesap = response.data;
-                console.log(hesap);
-                this.yukle();
+                if (hesap['hata']) {
+                    this.not_enough = true;
+                    return;
+                }
+                this.bakiye_update = null;
+                this.not_enough = null;
+                this.yukle()
             })
         },
         sonraki_sayfa() {

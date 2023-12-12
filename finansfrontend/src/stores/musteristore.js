@@ -12,6 +12,7 @@ export const useMusteriStore = defineStore("musteri", {
         adet: 10,
         at_end: false,
         net_error: false,
+        all_musteri_list: [],
         // cached_sube : []
     }),
     actions: {
@@ -61,7 +62,7 @@ export const useMusteriStore = defineStore("musteri", {
             axios
                 .get(`http://127.0.0.1:5000/api/v1/musteri/k/100000000000${this.id_order}`)
                 .then((response) => {
-                    this.musteriler = response.data;
+                    this.all_musteri_list = response.data;
                     this.total_musteri = response.data.length;
                 });
         },
@@ -106,6 +107,13 @@ export const useMusteriStore = defineStore("musteri", {
             this.get_all_musteri();
             this.sayfa = 0;
             this.total_musteri -= 1;
+        },
+        find_musteri(id){
+            for (let i = 0; i < this.all_musteri_list.length; i++) {
+                if (this.all_musteri_list[i]['id'] === id){
+                    return (this.all_musteri_list[i]['musteri_adi'])
+                }
+            }
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)
