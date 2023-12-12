@@ -75,7 +75,7 @@ class KrediModeli(TemelVeriSinifi):
     kredi_durum: Mapped[str] = mapped_column(nullable=True, default=container(), onupdate=container())
 
     kredi_musteri_id: Mapped[int] = mapped_column(ForeignKey('musteri.id'), nullable=False)
-
+    kredi_hesap_id: Mapped[int] = mapped_column(ForeignKey('hesap.id'), nullable=False)
     kredi_faiz_orani: Mapped[float] = mapped_column()
     kredi_son_tarih: Mapped[datetime] = mapped_column()
     kredi_tutar: Mapped[float] = mapped_column()

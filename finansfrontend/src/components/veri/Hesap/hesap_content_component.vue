@@ -66,8 +66,8 @@ musteri_store.get_all_musteri();
             <a>ID</a>
             <a class="font-bold text-red-500">(desc)</a>
           </th>
-          <th>Müşteri İsmi</th>
-          <th>Kayıtlı Şube</th>
+          <th>Hesap Sahibi</th>
+          <th>Kayıtlı Şube ID</th>
           <th>Para Birimi</th>
           <th>Bakiye</th>
           <th class="w-[200px]">

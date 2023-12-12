@@ -12,7 +12,7 @@ const eklenecek_bakiye = ref(0);
   <div class="flex flex-row">
     <div class="edit p-16 mx-2" v-if="hesapStore.bakiye_update !== null">
       <a class="mr-2 font-bold">{{ hesapStore.selectedHesap['id'] }}</a>
-      <a>Hesap </a>
+      <a>Numaralı Hesap </a>
       <a>için Düzenleme Ekranı</a>
       <br>
       <br>
