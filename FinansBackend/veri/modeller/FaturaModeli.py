@@ -30,6 +30,7 @@ class FaturaModeli(TemelVeriSinifi):
     fatura_musteri_id: Mapped[int] = mapped_column(ForeignKey('musteri.id'))
     fatura_hesap_id: Mapped[int] = mapped_column(ForeignKey('hesap.id'))
 
-    fatura_miktar: Mapped[str] = mapped_column(nullable=False)
-    fatura_tarih: Mapped[str] = mapped_column(nullable=False)
-    fatura_son_tarih: Mapped[str] = mapped_column(nullable=False)
+    fatura_miktar: Mapped[float] = mapped_column(nullable=False,default=0)
+    fatura_türü: Mapped[str] = mapped_column(nullable=False)
+
+

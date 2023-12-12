@@ -2,12 +2,12 @@ import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
 
-export const useMusteriStore = defineStore("musteri", {
+export const useHesapStore = defineStore("hesap", {
     state: () => ({
-        musteriler: [],
-        selectedMusteri: null,
+        hesaplar: [],
+        selectedHesap: null,
         id_order: "?sırala=ar_id",
-        total_musteri: 0,
+        total_hesap: 0,
         sayfa: 0,
         adet: 10,
         at_end: false,
@@ -24,9 +24,9 @@ export const useMusteriStore = defineStore("musteri", {
         yukle(sayfa = 0, siralama = this.id_order) {
             const loading = useLoadingState();
             loading.yuklemeyeBasla();
-            this.selectedMusteri = null;
+            this.selectedHesap = null;
             axios.get(
-                `http://127.0.0.1:5000/api/v1/musteri/s/${sayfa}/k/${this.adet}${siralama}`,
+                `http://127.0.0.1:5000/api/v1/hesap/s/${sayfa}/k/${this.adet}${siralama}`,
             )
                 .then((response) => {
                     // if (response.data.length === 0) {
@@ -41,14 +41,14 @@ export const useMusteriStore = defineStore("musteri", {
                         this.net_error = false;
                     }
                     this.at_end = false;
-                    this.musteriler = response.data;
+                    this.hesaplar = response.data;
                     loading.yuklemeyiBitir();
                 })
                 .catch(error => {
                     if (!error.response) {
                         // network error
                         this.net_error = true;
-                        this.total_musteri = 0;
+                        this.total_hesap = 0;
                         console.log("Network Error");
                     } else {
                         this.net_error = false;
@@ -57,20 +57,20 @@ export const useMusteriStore = defineStore("musteri", {
                 });
 
         },
-        get_all_musteri() {
+        get_all_hesap() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/musteri/k/100000000000${this.id_order}`)
+                .get(`http://127.0.0.1:5000/api/v1/hesap/k/100000000000`)
                 .then((response) => {
-                    this.musteriler = response.data;
-                    this.total_musteri = response.data.length;
+                    this.total_hesap = response.data.length;
                 });
         },
-        musteriEkle(musteri) {
+        hesapEkle(hesap) {
+            console.log(hesap);
             axios
-                .post("http://127.0.0.1:5000/api/v1/musteri/", musteri)
+                .post("http://127.0.0.1:5000/api/v1/hesap/", hesap)
                 .then((response) => {
-                    const musteri = response.data;
-                    this.musteriler.push(musteri);
+                    const hesap = response.data;
+                    this.hesaplar.push(hesap);
                 }).catch(error => {
                 if (!error.response) {
                     // network error
@@ -83,43 +83,37 @@ export const useMusteriStore = defineStore("musteri", {
 
             });
         },
-        musteriDuzenle(musteri, musteri_id) {
-            axios.put('http://127.0.0.1:5000/api/v1/musteri/' + musteri_id, musteri).then((response) => {
-                const musteri = response.data;
-                console.log(musteri);
+        hesapDuzenle(hesap, hesap_id) {
+            axios.put('http://127.0.0.1:5000/api/v1/hesap/' + hesap_id, hesap).then((response) => {
+                const hesap = response.data;
+                console.log(hesap);
                 this.yukle(this.sayfa = 0);
             })
         },
-        musteriSil(musteri) {
-            if (confirm("Müşteriyi silmek istediğinize emin misiniz?")) {
-                if (musteri["musteri_total_kredi"] > 0) {
-                    alert(`Müşteriye ait ${musteri['musteri_total_kredi']} (ler) bulunmaktadır. Önce Kredileri siliniz.`)
-                    return;
-                }
-            }
-            axios.delete('http://127.0.0.1:5000/api/v1/musteri/' + musteri["id"]).then((response) => {
-                const musteri = response.data;
-                console.log(musteri);
+        hesapSil(hesap) {
+            axios.delete('http://127.0.0.1:5000/api/v1/hesap/' + hesap["id"]).then((response) => {
+                const hesap = response.data;
+                console.log(hesap);
                 this.yukle();
 
             })
-            this.get_all_musteri();
+            this.get_all_hesap();
             this.sayfa = 0;
-            this.total_musteri -= 1;
+            this.total_hesap -= 1;
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)
             // console.log(this.total_sube.length)
-            if ((this.sayfa + 1) * this.adet >= this.total_musteri) {
+            if ((this.sayfa + 1) * this.adet >= this.total_hesap) {
 
                 this.at_end = true;
                 return;
             }
-            if (this.musteriler.length === 0) {
+            if (this.hesaplar.length === 0) {
                 this.at_end = true
                 return;
             }
-            if (this.musteriler.length < 10) {
+            if (this.hesaplar.length < 10) {
                 this.at_end = true;
                 return;
             }
@@ -128,7 +122,7 @@ export const useMusteriStore = defineStore("musteri", {
             this.yukle(this.sayfa);
         },
         onceki_sayfa() {
-            if (this.musteriler.length === 0) {
+            if (this.hesaplar.length === 0) {
                 return;
             }
             if (this.sayfa === 0) {

@@ -27,3 +27,4 @@ class SubeModeli(TemelVeriSinifi):
     sube_adresi: Mapped[str] = mapped_column(nullable=False)
     sube_tel: Mapped[str] = mapped_column(nullable=True)
     sube_musterileri: Mapped[List["MusteriModeli"]] = relationship(backref="musteri")
+    sube_hesaplar: Mapped[List["HesapModeli"]] = relationship(backref="hesap")

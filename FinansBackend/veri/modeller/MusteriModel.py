@@ -36,7 +36,7 @@ class MusteriModeli(TemelVeriSinifi):
     musteri_imza: Mapped[str] = mapped_column(nullable=False)  # TODO: imza resmi base64 olarak kaydedilecek
 
     musteri_sube_id: Mapped[int] = mapped_column(ForeignKey('sube.id'), nullable=False)
-    musteri_hesap_id: Mapped[List["HesapModeli"]] = relationship()
+    musteri_hesap_id: Mapped[List["HesapModeli"]] = relationship(backref='hesap')
 
     musteri_fatura_id: Mapped[List["FaturaModeli"]] = relationship()
     musteri_kredileri: Mapped[list["KrediModeli"]] = relationship(backref="kredi")
@@ -125,6 +125,21 @@ def inser_kredi_skoru_guncelle(mapper, connection, target):
 
 
 def delete_kredi_skoru_guncelle(mapper, connection, target):
+    """
+        Kredi skoru güncelleme işlemini gerçekleştiren fonksiyon.
+
+        Formül: (w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı)
+        Burada w1 ve w2 ağırlık değerleridir.
+        w1 = 0.4
+        w2 = 0.6
+
+        kredi_kullanımı = (aktif kredilerin toplam tutarı / toplam kredilerin toplam tutarı)
+        aktif_kredi_oranı = (aktif kredi sayısı / toplam kredi sayısı)
+
+        :param mapper: SQLAlchemy mapper.
+        :param connection: SQLAlchemy connection.
+        :param target: KrediModeli nesnesi.
+        """
     print("Silme İşlemi")
     new_session = Session(db)
     new_session.begin()
@@ -144,7 +159,7 @@ def delete_kredi_skoru_guncelle(mapper, connection, target):
 
     if total < 5:
         musteri.musteri_total_kredi = total
-        connection.execute(
+        new_session.execute(
             MusteriModeli.__table__.update().where(MusteriModeli.id == musteri.id).values(musteri_kredi_skor=0,
                                                                                           musteri_total_kredi=total))
         new_session.commit()
@@ -182,11 +197,19 @@ def delete_kredi_skoru_guncelle(mapper, connection, target):
 
         # score = (1-(active / total)) + (total//100) + (toplam_kredi_tutar // 1000000)
 
-        connection.execute(
+        new_session.execute(
             MusteriModeli.__table__.update().where(MusteriModeli.id == musteri.id).values(musteri_kredi_skor=score,
                                                                                           musteri_total_kredi=total,
                                                                                           musteri_total_kredi_tutar=toplam_kredi_tutar))
         new_session.commit()
+
+def test(mapper, connection, target):
+    session = Session(db)
+
+    krediler = session.query(KrediModeli).filter(KrediModeli.kredi_musteri_id == MusteriModeli.id).all()
+
+    for i in range(len(krediler)):
+        print(krediler[i].id)
 
 
 @event.listens_for(KrediModeli, "after_insert")
@@ -196,7 +219,7 @@ def kredi_skor_guncelle(mapper, connection, target):
     Bu fonksiyon, kredi ekleme ve güncelleme işlemlerinden sonra kredi skorunu günceller.
     """
     inser_kredi_skoru_guncelle(mapper, connection, target)
-
+    # test(mapper, connection, target)
 
 @event.listens_for(KrediModeli, "after_delete")
 def kredi_skor_guncelle(mapper, connection, target):

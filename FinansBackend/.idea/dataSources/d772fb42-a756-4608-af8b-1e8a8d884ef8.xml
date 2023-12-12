@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.51">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2128</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2208</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
-      <StartupTime>1702300502</StartupTime>
+      <StartupTime>1702376260</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -801,7 +801,7 @@ false Zulu
 14643||10|C|G
 14643||-9223372036854775808|U|G
 14643||10|U|G</Grants>
-      <IntrospectionStateNumber>2128</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2208</IntrospectionStateNumber>
       <ObjectId>16463</ObjectId>
       <OwnerName>finans_user</OwnerName>
     </database>
@@ -818,52 +818,60 @@ false Zulu
       <ObjectId>16435</ObjectId>
       <OwnerName>market_user</OwnerName>
     </database>
-    <role id="6" parent="1" name="pg_database_owner">
+    <role id="6" parent="1" name="finans_user">
+      <CanLogin>1</CanLogin>
+      <ObjectId>16462</ObjectId>
+    </role>
+    <role id="7" parent="1" name="market_user">
+      <CanLogin>1</CanLogin>
+      <ObjectId>16434</ObjectId>
+    </role>
+    <role id="8" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="9" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
+    </role>
+    <role id="10" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="7" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
+    <role id="11" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
-    </role>
-    <role id="9" parent="1" name="pg_monitor">
+    <role id="12" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="10" parent="1" name="pg_read_all_settings">
+    <role id="13" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="14" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_read_all_stats">
+    <role id="15" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="12" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_read_server_files">
+    <role id="16" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="14" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
-    </role>
-    <role id="15" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
-    </role>
-    <role id="16" parent="1" name="pg_signal_backend">
+    <role id="17" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="17" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
+    <role id="18" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
     </role>
-    <role id="18" parent="1" name="pg_use_reserved_connections">
+    <role id="19" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="19" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
+    <role id="20" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
     </role>
-    <role id="20" parent="1" name="postgres">
+    <role id="21" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
+    </role>
+    <role id="22" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
       <CanLogin>1</CanLogin>
       <CreateDb>1</CreateDb>
@@ -871,14 +879,6 @@ false Zulu
       <ObjectId>10</ObjectId>
       <Replication>1</Replication>
       <SuperRole>1</SuperRole>
-    </role>
-    <role id="21" parent="1" name="market_user">
-      <CanLogin>1</CanLogin>
-      <ObjectId>16434</ObjectId>
-    </role>
-    <role id="22" parent="1" name="finans_user">
-      <CanLogin>1</CanLogin>
-      <ObjectId>16462</ObjectId>
     </role>
     <tablespace id="23" parent="1" name="pg_default">
       <ObjectId>1663</ObjectId>
@@ -4241,8 +4241,8 @@ false Zulu
     <schema id="268" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2128</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2023-12-11.14:55:23</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>2208</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2023-12-12.11:47:41</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4303,26 +4303,26 @@ false Zulu
     </schema>
     <sequence id="278" parent="268" name="fatura_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>17381</ObjectId>
+      <ObjectId>17529</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <OwnerName>finans_user</OwnerName>
     </sequence>
     <sequence id="279" parent="268" name="hesapHaraket_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>17400</ObjectId>
+      <ObjectId>17548</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <OwnerName>finans_user</OwnerName>
     </sequence>
     <sequence id="280" parent="268" name="hesap_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>17367</ObjectId>
+      <ObjectId>17510</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <OwnerName>finans_user</OwnerName>
     </sequence>
     <sequence id="281" parent="268" name="kredi_id_seq">
@@ -4356,20 +4356,20 @@ false Zulu
       <OwnerName>finans_user</OwnerName>
     </table>
     <table id="285" parent="268" name="fatura">
-      <ObjectId>17382</ObjectId>
-      <StateNumber>2126</StateNumber>
+      <ObjectId>17530</ObjectId>
+      <StateNumber>2206</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>finans_user</OwnerName>
     </table>
     <table id="286" parent="268" name="hesap">
-      <ObjectId>17368</ObjectId>
-      <StateNumber>2126</StateNumber>
+      <ObjectId>17511</ObjectId>
+      <StateNumber>2206</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>finans_user</OwnerName>
     </table>
     <table id="287" parent="268" name="hesapHaraket">
-      <ObjectId>17401</ObjectId>
-      <StateNumber>2126</StateNumber>
+      <ObjectId>17549</ObjectId>
+      <StateNumber>2206</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>finans_user</OwnerName>
     </table>
@@ -4419,275 +4419,282 @@ false Zulu
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="295" parent="285" name="fatura_hesap_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="296" parent="285" name="fatura_miktar">
-      <DasType>varchar|0s</DasType>
+      <DasType>double precision|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2126</StateNumber>
-      <TypeId>1043</TypeId>
+      <StateNumber>2206</StateNumber>
+      <TypeId>701</TypeId>
     </column>
-    <column id="297" parent="285" name="fatura_tarih">
+    <column id="297" parent="285" name="fatura_türü">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="298" parent="285" name="fatura_son_tarih">
-      <DasType>varchar|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-      <StateNumber>2126</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="299" parent="285" name="id">
+    <column id="298" parent="285" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;fatura_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StateNumber>2126</StateNumber>
-      <SequenceId>17381</SequenceId>
+      <Position>5</Position>
+      <StateNumber>2206</StateNumber>
+      <SequenceId>17529</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="300" parent="285" name="olusturulma_tarihi">
+    <column id="299" parent="285" name="olusturulma_tarihi">
+      <DasType>timestamp|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>2206</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="300" parent="285" name="guncellenme_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="301" parent="285" name="guncellenme_tarihi">
-      <DasType>timestamp|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>8</Position>
-      <StateNumber>2126</StateNumber>
-      <TypeId>1114</TypeId>
-    </column>
-    <foreign-key id="302" parent="285" name="fatura_fatura_musteri_id_fkey">
+    <foreign-key id="301" parent="285" name="fatura_fatura_musteri_id_fkey">
       <ColNames>fatura_musteri_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17395</ObjectId>
-      <StateNumber>2126</StateNumber>
+      <ObjectId>17543</ObjectId>
+      <StateNumber>2206</StateNumber>
       <RefKeyColPositions>9</RefKeyColPositions>
       <RefTableId>17293</RefTableId>
     </foreign-key>
-    <foreign-key id="303" parent="285" name="fatura_fatura_hesap_id_fkey">
+    <foreign-key id="302" parent="285" name="fatura_fatura_hesap_id_fkey">
       <ColNames>fatura_hesap_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17390</ObjectId>
-      <StateNumber>2126</StateNumber>
-      <RefKeyColPositions>4</RefKeyColPositions>
-      <RefTableId>17368</RefTableId>
+      <ObjectId>17538</ObjectId>
+      <StateNumber>2206</StateNumber>
+      <RefKeyColPositions>5</RefKeyColPositions>
+      <RefTableId>17511</RefTableId>
     </foreign-key>
-    <index id="304" parent="285" name="fatura_pkey">
+    <index id="303" parent="285" name="fatura_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17388</ObjectId>
+      <ObjectId>17536</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="305" parent="285" name="fatura_pkey">
+    <key id="304" parent="285" name="fatura_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17389</ObjectId>
+      <ObjectId>17537</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2126</StateNumber>
-      <UnderlyingIndexId>17388</UnderlyingIndexId>
+      <StateNumber>2206</StateNumber>
+      <UnderlyingIndexId>17536</UnderlyingIndexId>
     </key>
-    <column id="306" parent="286" name="hesap_AcanSube">
-      <DasType>varchar|0s</DasType>
+    <column id="305" parent="286" name="hesap_AcanSube">
+      <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2126</StateNumber>
-      <TypeId>1043</TypeId>
+      <StateNumber>2206</StateNumber>
+      <TypeId>23</TypeId>
     </column>
-    <column id="307" parent="286" name="hesap_ParaBirim">
+    <column id="306" parent="286" name="hesap_ParaBirim">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1043</TypeId>
+    </column>
+    <column id="307" parent="286" name="hesap_bakiye">
+      <DasType>double precision|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>2206</StateNumber>
+      <TypeId>701</TypeId>
     </column>
     <column id="308" parent="286" name="hesap_musteri_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>3</Position>
-      <StateNumber>2126</StateNumber>
+      <Position>4</Position>
+      <StateNumber>2206</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="309" parent="286" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;hesap_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
-      <Position>4</Position>
-      <StateNumber>2126</StateNumber>
-      <SequenceId>17367</SequenceId>
+      <Position>5</Position>
+      <StateNumber>2206</StateNumber>
+      <SequenceId>17510</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="310" parent="286" name="olusturulma_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>5</Position>
-      <StateNumber>2126</StateNumber>
+      <Position>6</Position>
+      <StateNumber>2206</StateNumber>
       <TypeId>1114</TypeId>
     </column>
     <column id="311" parent="286" name="guncellenme_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>6</Position>
-      <StateNumber>2126</StateNumber>
+      <Position>7</Position>
+      <StateNumber>2206</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="312" parent="286" name="hesap_hesap_musteri_id_fkey">
+    <foreign-key id="312" parent="286" name="hesap_hesap_AcanSube_fkey">
+      <ColNames>hesap_AcanSube</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17519</ObjectId>
+      <StateNumber>2206</StateNumber>
+      <RefKeyColPositions>4</RefKeyColPositions>
+      <RefTableId>17284</RefTableId>
+    </foreign-key>
+    <foreign-key id="313" parent="286" name="hesap_hesap_musteri_id_fkey">
       <ColNames>hesap_musteri_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17376</ObjectId>
-      <StateNumber>2126</StateNumber>
+      <ObjectId>17524</ObjectId>
+      <StateNumber>2206</StateNumber>
       <RefKeyColPositions>9</RefKeyColPositions>
       <RefTableId>17293</RefTableId>
     </foreign-key>
-    <index id="313" parent="286" name="hesap_pkey">
+    <index id="314" parent="286" name="hesap_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17374</ObjectId>
+      <ObjectId>17517</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="314" parent="286" name="hesap_pkey">
+    <key id="315" parent="286" name="hesap_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17375</ObjectId>
+      <ObjectId>17518</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2126</StateNumber>
-      <UnderlyingIndexId>17374</UnderlyingIndexId>
+      <StateNumber>2206</StateNumber>
+      <UnderlyingIndexId>17517</UnderlyingIndexId>
     </key>
-    <column id="315" parent="287" name="hareket_hesap_id">
+    <column id="316" parent="287" name="hareket_hesap_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="316" parent="287" name="hareketMiktar">
+    <column id="317" parent="287" name="hareketMiktar">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="317" parent="287" name="hareket_turu">
+    <column id="318" parent="287" name="hareket_turu">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="318" parent="287" name="id">
+    <column id="319" parent="287" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;&quot;hesapHaraket_id_seq&quot;&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>2126</StateNumber>
-      <SequenceId>17400</SequenceId>
+      <StateNumber>2206</StateNumber>
+      <SequenceId>17548</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="319" parent="287" name="olusturulma_tarihi">
+    <column id="320" parent="287" name="olusturulma_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="320" parent="287" name="guncellenme_tarihi">
+    <column id="321" parent="287" name="guncellenme_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="321" parent="287" name="hesapHaraket_hareket_hesap_id_fkey">
+    <foreign-key id="322" parent="287" name="hesapHaraket_hareket_hesap_id_fkey">
       <ColNames>hareket_hesap_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17409</ObjectId>
-      <StateNumber>2126</StateNumber>
-      <RefKeyColPositions>4</RefKeyColPositions>
-      <RefTableId>17368</RefTableId>
+      <ObjectId>17557</ObjectId>
+      <StateNumber>2206</StateNumber>
+      <RefKeyColPositions>5</RefKeyColPositions>
+      <RefTableId>17511</RefTableId>
     </foreign-key>
-    <index id="322" parent="287" name="hesapHaraket_pkey">
+    <index id="323" parent="287" name="hesapHaraket_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17407</ObjectId>
+      <ObjectId>17555</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2126</StateNumber>
+      <StateNumber>2206</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="323" parent="287" name="hesapHaraket_pkey">
+    <key id="324" parent="287" name="hesapHaraket_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17408</ObjectId>
+      <ObjectId>17556</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2126</StateNumber>
-      <UnderlyingIndexId>17407</UnderlyingIndexId>
+      <StateNumber>2206</StateNumber>
+      <UnderlyingIndexId>17555</UnderlyingIndexId>
     </key>
-    <column id="324" parent="288" name="kredi_durum">
+    <column id="325" parent="288" name="kredi_durum">
       <DasType>varchar|0s</DasType>
       <Position>1</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="325" parent="288" name="kredi_musteri_id">
+    <column id="326" parent="288" name="kredi_musteri_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="326" parent="288" name="kredi_faiz_orani">
+    <column id="327" parent="288" name="kredi_faiz_orani">
       <DasType>double precision|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="327" parent="288" name="kredi_son_tarih">
+    <column id="328" parent="288" name="kredi_son_tarih">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="328" parent="288" name="kredi_tutar">
+    <column id="329" parent="288" name="kredi_tutar">
       <DasType>double precision|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="329" parent="288" name="kredi_ay">
+    <column id="330" parent="288" name="kredi_ay">
       <DasType>integer|0s</DasType>
       <Position>6</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="330" parent="288" name="kredi_geri_odeme">
+    <column id="331" parent="288" name="kredi_geri_odeme">
       <DasType>double precision|0s</DasType>
       <Position>7</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="331" parent="288" name="id">
+    <column id="332" parent="288" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;kredi_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4696,21 +4703,21 @@ false Zulu
       <SequenceId>17320</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="332" parent="288" name="olusturulma_tarihi">
+    <column id="333" parent="288" name="olusturulma_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="333" parent="288" name="guncellenme_tarihi">
+    <column id="334" parent="288" name="guncellenme_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="334" parent="288" name="kredi_kredi_musteri_id_fkey">
+    <foreign-key id="335" parent="288" name="kredi_kredi_musteri_id_fkey">
       <ColNames>kredi_musteri_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17329</ObjectId>
@@ -4718,7 +4725,7 @@ false Zulu
       <RefKeyColPositions>9</RefKeyColPositions>
       <RefTableId>17293</RefTableId>
     </foreign-key>
-    <index id="335" parent="288" name="kredi_pkey">
+    <index id="336" parent="288" name="kredi_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17327</ObjectId>
@@ -4727,67 +4734,67 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="336" parent="288" name="kredi_pkey">
+    <key id="337" parent="288" name="kredi_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17328</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1747</StateNumber>
       <UnderlyingIndexId>17327</UnderlyingIndexId>
     </key>
-    <column id="337" parent="289" name="musteri_adi">
+    <column id="338" parent="289" name="musteri_adi">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="338" parent="289" name="musteri_soyad">
+    <column id="339" parent="289" name="musteri_soyad">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="339" parent="289" name="musteri_tc">
+    <column id="340" parent="289" name="musteri_tc">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="340" parent="289" name="musteri_imza">
+    <column id="341" parent="289" name="musteri_imza">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="341" parent="289" name="musteri_sube_id">
+    <column id="342" parent="289" name="musteri_sube_id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="342" parent="289" name="musteri_total_kredi">
+    <column id="343" parent="289" name="musteri_total_kredi">
       <DasType>double precision|0s</DasType>
       <Position>6</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="343" parent="289" name="musteri_kredi_skor">
+    <column id="344" parent="289" name="musteri_kredi_skor">
       <DasType>double precision|0s</DasType>
       <Position>7</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="344" parent="289" name="musteri_total_kredi_tutar">
+    <column id="345" parent="289" name="musteri_total_kredi_tutar">
       <DasType>double precision|0s</DasType>
       <Position>8</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="345" parent="289" name="id">
+    <column id="346" parent="289" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;musteri_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4796,21 +4803,21 @@ false Zulu
       <SequenceId>17292</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="346" parent="289" name="olusturulma_tarihi">
+    <column id="347" parent="289" name="olusturulma_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="347" parent="289" name="guncellenme_tarihi">
+    <column id="348" parent="289" name="guncellenme_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="348" parent="289" name="musteri_musteri_sube_id_fkey">
+    <foreign-key id="349" parent="289" name="musteri_musteri_sube_id_fkey">
       <ColNames>musteri_sube_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17301</ObjectId>
@@ -4818,7 +4825,7 @@ false Zulu
       <RefKeyColPositions>4</RefKeyColPositions>
       <RefTableId>17284</RefTableId>
     </foreign-key>
-    <index id="349" parent="289" name="musteri_pkey">
+    <index id="350" parent="289" name="musteri_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17299</ObjectId>
@@ -4827,34 +4834,34 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="350" parent="289" name="musteri_pkey">
+    <key id="351" parent="289" name="musteri_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17300</ObjectId>
       <Primary>1</Primary>
       <StateNumber>1747</StateNumber>
       <UnderlyingIndexId>17299</UnderlyingIndexId>
     </key>
-    <column id="351" parent="290" name="sube_adi">
+    <column id="352" parent="290" name="sube_adi">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="352" parent="290" name="sube_adresi">
+    <column id="353" parent="290" name="sube_adresi">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="353" parent="290" name="sube_tel">
+    <column id="354" parent="290" name="sube_tel">
       <DasType>varchar|0s</DasType>
       <Position>3</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="354" parent="290" name="id">
+    <column id="355" parent="290" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;sube_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -4863,21 +4870,21 @@ false Zulu
       <SequenceId>17283</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="355" parent="290" name="olusturulma_tarihi">
+    <column id="356" parent="290" name="olusturulma_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="356" parent="290" name="guncellenme_tarihi">
+    <column id="357" parent="290" name="guncellenme_tarihi">
       <DasType>timestamp|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>1747</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <index id="357" parent="290" name="sube_pkey">
+    <index id="358" parent="290" name="sube_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17290</ObjectId>
@@ -4886,7 +4893,7 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="358" parent="290" name="sube_pkey">
+    <key id="359" parent="290" name="sube_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>17291</ObjectId>
       <Primary>1</Primary>

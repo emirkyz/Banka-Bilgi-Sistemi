@@ -22,12 +22,12 @@
           >
             Müşteri
           </router-link>
-          <a
-              href="/hesap"
+          <router-link
+              to="/hesap"
               class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
           >
             Hesaplar
-          </a>
+          </router-link>
           <router-link
               to="/kredi"
               class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"

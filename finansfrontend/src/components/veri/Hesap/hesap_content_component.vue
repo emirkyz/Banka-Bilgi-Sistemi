@@ -1,41 +1,42 @@
 <script setup>
 import {useLoadingState} from "@/stores/loading_state";
 import Error_component from "@/components/ortak/error_component.vue";
-import {useMusteriStore} from "@/stores/musteristore";
-import musteri_duzenleme_component from "@/components/veri/Musteri/musteri_duzenleme_component.vue";
 
-const musteri_store = useMusteriStore();
+import musteri_duzenleme_component from "@/components/veri/Musteri/musteri_duzenleme_component.vue";
+import {useHesapStore} from "@/stores/hesapstore";
+
+const hesap_store = useHesapStore();
 const loading = useLoadingState();
 
-musteri_store.init();
-musteri_store.get_all_musteri();
+hesap_store.init();
+hesap_store.get_all_hesap();
 </script>
 
 <template>
   <main>
     <div class="sube-content main_comp">
       <div id="sube" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
-        <h1 class="text-xl">Müşteriler</h1>
+        <h1 class="text-xl">Hesaplar</h1>
         <a class="text-xl transition-all"
-        >{{ musteri_store.sayfa + 1 }}. sayfada
-          {{ musteri_store.musteriler.length }} Tane kayıt gösteriliyor. Toplam
-          {{ musteri_store.total_musteri }} tane kayıt mevcut.</a>
+        >{{ hesap_store.sayfa + 1 }}. sayfada
+          {{ hesap_store.hesaplar.length }} Tane kayıt gösteriliyor. Toplam
+          {{ hesap_store.total_hesap }} tane kayıt mevcut.</a>
       </div>
       <hr class="style"/>
 
       <error_component
-          v-if="musteri_store.net_error === true && musteri_store.total_musteri ===0"
-          :store="musteri_store"
+          v-if="hesap_store.net_error === true && hesap_store.total_hesap ===0"
+          :store="hesap_store"
           message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-      <div id="error_component" v-if="musteri_store.total_musteri === 0 && musteri_store.net_error===false">
+      <div id="error_component" v-if="hesap_store.total_hesap === 0 && hesap_store.net_error===false">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
              role="alert">
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
           >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span>
-          <router-link to="/musteri/ekle">
-            <a class="font-medium ">Müşteri Eklemek için Tıklayınız</a>
+          <router-link to="/hesap/ekle">
+            <a class="font-medium ">Hesap Eklemek için Tıklayınız</a>
           </router-link>
         </div>
       </div>
@@ -46,34 +47,32 @@ musteri_store.get_all_musteri();
         <thead>
         <tr>
           <th
-              v-if="musteri_store.id_order === '?sırala=ar_id'"
+              v-if="hesap_store.id_order === '?sırala=ar_id'"
               class="cursor-pointer w-[90px]"
-              @click="musteri_store.order_by_id()"
+              @click="hesap_store.order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-green-500">(asc)</a>
           </th>
           <th
-              v-if="musteri_store.id_order === '?sırala=az_id'"
+              v-if="hesap_store.id_order === '?sırala=az_id'"
               class="cursor-pointer w-[90px]"
-              @click="musteri_store.order_by_id()"
+              @click="hesap_store.order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-red-500">(desc)</a>
           </th>
-          <th>Müşteri Adı</th>
-          <th>Müşteri Soyad</th>
-          <th>Müşteri TC</th>
-          <th>Müşteri Şube ID</th>
-          <th>Müşteri Kredi Skor</th>
-          <th>Müşteri Toplam Kredi Sayısı</th>
+          <th>Müşteri ID</th>
+          <th>Kayıtlı Şube</th>
+          <th>Para Birimi</th>
+          <th>Bakiye</th>
           <th class="w-[200px]">
             <a class="-ml-8">logo</a>
             <button
                 @click="
-                  musteri_store.yukle((musteri_store.sayfa = 0));
-                  musteri_store.get_all_musteri();
-                  musteri_store.at_end = false;
+                  hesap_store.yukle((hesap_store.sayfa = 0));
+                  hesap_store.get_all_hesap();
+                  hesap_store.at_end = false;
                 "
                 class="btn white right hover:bg-teal-300 hover:text-black"
             >
@@ -84,28 +83,20 @@ musteri_store.get_all_musteri();
 
         </thead>
         <tr
-            v-for="musteri in musteri_store.musteriler"
-
+            v-for="hesap in hesap_store.hesaplar"
+            :key="hesap"
             v-bind:class="{ 'opacity-0': loading.loading }"
         >
-          <td>{{ musteri["id"] }}</td>
-          <td>{{ musteri["musteri_adi"] }}</td>
-          <td>{{ musteri["musteri_soyad"] }}</td>
-          <td>{{ musteri["musteri_tc"] }}</td>
-          <td>{{ musteri["musteri_sube_id"] }}</td>
-          <td id="score" v-if="musteri['musteri_kredi_skor'] === 0 ">Yeterli Kredi Yok <br><span class="extra">{{ musteri['musteri_kredi_skor'] }}</span> </td>
-<!--          {{ musteri["musteri_kredi_skor"].toFixed(6) }}-->
-          <td id="score" v-if="musteri['musteri_kredi_skor'] !== 0 ">Kredi Alabilir <br><span class="extra">{{ musteri['musteri_kredi_skor'].toFixed(6) }}</span> </td>
-          <td>{{ musteri["musteri_total_kredi"] }}</td>
-
-
+          <td>{{hesap['id']}}</td>
+          <td>{{ hesap["hesap_musteri_id"] }}</td>
+          <td>{{ hesap["hesap_AcanSube"] }}</td>
+          <td>{{ hesap["hesap_ParaBirim"] }}</td>
+          <td>{{ hesap["hesap_bakiye"] }}</td>
 
           <td class="right">
-            <button class="btn content-center" @click="musteri_store.selectedMusteri=musteri">Düzenle</button>
+            <button class="btn content-center" @click="hesap_store.selectedHesap=hesap">Düzenle</button>
 <!--            <button @click="console.log(musteri)">a</button>-->
-            <button class="btn-sil  content-center" @click="musteri_store.musteriSil(musteri)">Sil</button>
-            <br>
-            <router-link to="/kredi/ekle" class="btn-kredi-ekle content-center">Kredi Ekle</router-link>
+            <button class="btn-sil  content-center" @click="hesap_store.hesapSil(hesap)">Sil</button>
           </td>
         </tr>
       </table>
@@ -114,18 +105,18 @@ musteri_store.get_all_musteri();
       <br class="space"/>
       <!--    </div>-->
 
-      <button @click="musteri_store.onceki_sayfa()" class="btn">
+      <button @click="hesap_store.onceki_sayfa()" class="btn">
         <a> Önceki</a>
       </button>
       <button
-          @click="musteri_store.sonraki_sayfa()"
-          v-bind:class="{ 'bg-gray-600': musteri_store.at_end }"
+          @click="hesap_store.sonraki_sayfa()"
+          v-bind:class="{ 'bg-gray-600': hesap_store.at_end }"
           class="btn bg:var(--menu_arkaplan)"
       >
         Sonraki
       </button>
 
-      <musteri_duzenleme_component></musteri_duzenleme_component>
+<!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
 
 
     </div>

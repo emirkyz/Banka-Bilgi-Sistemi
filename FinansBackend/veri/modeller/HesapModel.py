@@ -15,9 +15,10 @@ class HesapModeli(TemelVeriSinifi):
 
     # hesap_id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
 
-    hesap_AcanSube: Mapped[str] = mapped_column(nullable=False)
+    hesap_AcanSube: Mapped[int] = mapped_column(ForeignKey('sube.id'), nullable=False)
     # hesap_HesapNo: Mapped[str] = mapped_column(nullable=False) # TODO: Bir algoritma ile hesap numarası oluşturulacak
     hesap_ParaBirim: Mapped[str] = mapped_column(nullable=False)
+    hesap_bakiye: Mapped[float] = mapped_column(nullable=True, default=0)
     # hesap_Aciklama: Mapped[str] = mapped_column(nullable=False)
 
     hesap_musteri_id : Mapped[int] = mapped_column(ForeignKey('musteri.id'))
