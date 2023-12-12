@@ -21,6 +21,8 @@ class HesapModeli(TemelVeriSinifi):
     hesap_bakiye: Mapped[float] = mapped_column(nullable=True, default=0)
     # hesap_Aciklama: Mapped[str] = mapped_column(nullable=False)
 
+    hesap_kredileri: Mapped[List["KrediModeli"]] = relationship()
+
     hesap_musteri_id : Mapped[int] = mapped_column(ForeignKey('musteri.id'))
     hesap_fatura_id : Mapped[List["FaturaModeli"]] = relationship()
     hesap_hareket : Mapped[List["HesapHaraketModeli"]] = relationship()
