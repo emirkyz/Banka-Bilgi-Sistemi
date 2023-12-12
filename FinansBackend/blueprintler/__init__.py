@@ -1,7 +1,8 @@
 """
 Blueprintlerin tanımlandığı yer
 """
-from flask import Blueprint
+from flask import Blueprint, request
+from sqlalchemy import select
 
 # from blueprintler.manav_blueprint import manav_bp
 from blueprintler.GenelBP import GenelBP
@@ -24,6 +25,8 @@ def index():
 v1_bp.register_blueprint(GenelBP(MusteriModeli, 'musteri'), url_prefix='/musteri')
 v1_bp.register_blueprint(GenelBP(SubeModeli, 'sube'), url_prefix='/sube')
 v1_bp.register_blueprint(GenelBP(HesapModeli, "hesap"), url_prefix='/hesap')
+
+
 v1_bp.register_blueprint(GenelBP(HesapHaraketModeli, "hesaphareket"), url_prefix='/hesaphareket')
 v1_bp.register_blueprint(GenelBP(KrediModeli, "kredi"), url_prefix='/kredi')
 v1_bp.register_blueprint(GenelBP(FaturaModeli, "fatura"), url_prefix='/fatura')

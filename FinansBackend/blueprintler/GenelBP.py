@@ -115,4 +115,25 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
 
         return {"silinen": veri.to_dict()}
 
+    @bp.route('/bakiye/e/<int:id>/<int:miktar>', methods=['GET'])
+    def increase_hesap_bakiye(id,miktar):
+        sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
+        veri = db.session.scalars(sorgu).one()
+
+        veri.hesap_bakiye = veri.hesap_bakiye + miktar
+        if veri.hesap_bakiye < 0:
+            return {"hata":"bakiye yetersiz"}
+        db.session.commit()
+        return {"güncellenen hesap":veri.to_dict()}
+
+    @bp.route('/bakiye/c/<int:id>/<int:miktar>', methods=['GET'])
+    def decrease_hesap_bakiye(id,miktar):
+        sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
+        veri = db.session.scalars(sorgu).one()
+
+        veri.hesap_bakiye = veri.hesap_bakiye - miktar
+        if veri.hesap_bakiye < 0:
+            return {"hata":"bakiye yetersiz"}
+        db.session.commit()
+        return {"güncellenen hesap":veri.to_dict()}
     return bp
