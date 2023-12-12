@@ -54,7 +54,7 @@ kredi_store.get_all_kredi();
             <a class="font-bold text-red-500">(desc)</a>
           </th>
           <th class="w-[70px]">Kredi Durum</th>
-          <th>Müşteri ID</th>
+          <th>TEST</th>
           <th>Hesap ID</th>
           <th>Kredi Miktarı</th>
           <th>Kredi Son Tarih</th>
@@ -92,8 +92,9 @@ kredi_store.get_all_kredi();
             Pasif
           </td>
 
-          <td>{{ kredi["kredi_musteri_id"] }}</td>
           <td> test </td>
+          <td>{{ kredi["kredi_hesap_id"] }}</td>
+
           <td>{{ kredi["kredi_tutar"].toLocaleString() + " TL" }}</td>
           <td>{{ new Date(kredi["kredi_son_tarih"]).toLocaleDateString("tr-tr") }}</td>
           <td>{{ kredi["kredi_faiz_orani"] }}</td>

@@ -14,6 +14,7 @@ export const useHesapStore = defineStore("hesap", {
         net_error: false,
         bakiye_update: null,
         not_enough: false,
+        all_hesap_list: [],
         // cached_sube : []
     }),
     actions: {
@@ -55,6 +56,7 @@ export const useHesapStore = defineStore("hesap", {
             axios
                 .get(`http://127.0.0.1:5000/api/v1/hesap/k/100000000000`)
                 .then((response) => {
+                    this.all_hesap_list = response.data;
                     this.total_hesap = response.data.length;
                 });
         },
@@ -114,6 +116,16 @@ export const useHesapStore = defineStore("hesap", {
                 this.not_enough = null;
                 this.yukle()
             })
+        },
+        find_hesap_by_id(id) {
+
+            for (let i = 0; i < this.all_hesap_list.length; i++) {
+                if (this.all_hesap_list[i]['id'] === id) {
+                    return (this.all_hesap_list[i]['hesap_musteri_id'])
+                }
+            }
+
+
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)

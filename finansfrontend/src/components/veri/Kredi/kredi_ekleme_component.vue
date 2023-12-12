@@ -3,32 +3,44 @@ import {ref} from "vue";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useKrediStore} from "@/stores/kredistore";
 import {useMusteriStore} from "@/stores/musteristore";
+import {useHesapStore} from "@/stores/hesapstore";
 
 const onayKutusu = ref(false);
 const musteriStore = useMusteriStore();
 const krediStore = useKrediStore();
-
+const hesapStore = useHesapStore();
 
 musteriStore.yukle();
+musteriStore.get_all_musteri();
 krediStore.yukle();
+hesapStore.yukle();
+
 
 const eklenecek_kredi = ref({
+  kredi_hesap_id: "",
   kredi_musteri_id: "",
   kredi_son_tarih: "",
   kredi_faiz_orani: "",
   kredi_tutar: "",
 });
-
+function hesaba_ekle(){
+  const tutar = eklenecek_kredi.value.kredi_tutar;
+  const id = eklenecek_kredi.value.kredi_hesap_id;
+  hesapStore.bakiye_arttir(id,tutar);
+}
 function kaydet() {
-  console.log(eklenecek_kredi.value)
+  hesaba_ekle();
+  eklenecek_kredi.value.kredi_musteri_id = hesapStore.find_hesap_by_id(eklenecek_kredi.value.kredi_hesap_id);
   krediStore.krediEkle(eklenecek_kredi.value);
   eklenecek_kredi.value = {
+    kredi_hesap_id: "",
     kredi_musteri_id: "",
     kredi_son_tarih: "",
     kredi_faiz_orani: "",
     kredi_tutar: "",
   };
 }
+
 
 
 // const canContinue = (eklenecek_sube.value.sube_adi === '' || eklenecek_sube.value.sube_adresi ==='' || eklenecek_sube.value.sube_tel ==='');
@@ -45,12 +57,13 @@ function kaydet() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Kredi Verilecek Müşteri Seçiniz</label>
+            <label for="fsubeid" class="text-xl">Kredi Verilecek Hesabı Seçiniz</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_kredi.kredi_musteri_id">
+            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_kredi.kredi_hesap_id">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>
+<!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
+              <option v-for="hesap in hesapStore.hesaplar" :value="hesap['id']"> {{hesap.id}} - {{ musteriStore.find_musteri(hesap['hesap_musteri_id']) }} </option>
             </select>
           </div>
         </div>
@@ -93,7 +106,7 @@ function kaydet() {
           </div>
         </div>
         <div class="mt-4"
-             v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.kredi_musteri_id ==='' || eklenecek_kredi.kredi_tutar ===''">
+             v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.kredi_hesap_id ==='' || eklenecek_kredi.kredi_tutar ===''">
 
           <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
@@ -101,7 +114,7 @@ function kaydet() {
 
         </div>
         <div class="mt-4"
-             v-if="eklenecek_kredi.kredi_faiz_orani !== '' && eklenecek_kredi.kredi_son_tarih !=='' && eklenecek_kredi.kredi_tutar !=='' && eklenecek_kredi.kredi_musteri_id !==''|| eklenecek_kredi.net_error===true">
+             v-if="eklenecek_kredi.kredi_faiz_orani !== '' && eklenecek_kredi.kredi_son_tarih !=='' && eklenecek_kredi.kredi_tutar !=='' && eklenecek_kredi.kredi_hesap_id !==''|| eklenecek_kredi.net_error===true">
 
           <error_component v-if="krediStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
@@ -119,7 +132,7 @@ function kaydet() {
               <p>Kaydetmek istediğinizden emin misiniz?.</p>
             </div>
             <div class="modal-footer">
-              <button class="buton olumlu" @click="onayKutusu=false, kaydet()" >Kaydet</button>
+              <button class="buton olumlu" @click="onayKutusu=false; kaydet();" >Kaydet</button>
               <button class="buton olumsuz" @click="onayKutusu=false">Kapat</button>
             </div>
           </div>
