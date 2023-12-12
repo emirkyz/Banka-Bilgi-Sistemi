@@ -91,12 +91,14 @@ hesap_store.get_all_hesap();
           <td>{{ hesap["hesap_musteri_id"] }}</td>
           <td>{{ hesap["hesap_AcanSube"] }}</td>
           <td>{{ hesap["hesap_ParaBirim"] }}</td>
-          <td>{{ hesap["hesap_bakiye"] }}</td>
+          <td>{{ hesap["hesap_bakiye"]+" "+ hesap['hesap_ParaBirim'] }}</td>
 
           <td class="right">
             <button class="btn content-center" @click="hesap_store.selectedHesap=hesap">Düzenle</button>
 <!--            <button @click="console.log(musteri)">a</button>-->
             <button class="btn-sil  content-center" @click="hesap_store.hesapSil(hesap)">Sil</button>
+            <br>
+            <button class="btn-kredi-ekle content-center" @click="hesap_store.bakiye_arttir(hesap['id'],12)">Bakiye ekle</button>
           </td>
         </tr>
       </table>

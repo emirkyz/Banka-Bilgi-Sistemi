@@ -101,6 +101,20 @@ export const useHesapStore = defineStore("hesap", {
             this.sayfa = 0;
             this.total_hesap -= 1;
         },
+        bakiye_arttir(hesap, miktar) {
+            axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/e/${hesap}/${miktar}`).then((response) => {
+                const hesap = response.data;
+                console.log(hesap);
+                this.yukle();
+            })
+        },
+        bakiye_azalt(hesap, miktar) {
+            axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`).then((response) => {
+                const hesap = response.data;
+                console.log(hesap);
+                this.yukle();
+            })
+        },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)
             // console.log(this.total_sube.length)
