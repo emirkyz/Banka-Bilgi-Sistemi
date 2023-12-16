@@ -28,9 +28,8 @@ class FaturaModeli(TemelVeriSinifi):
     # fatura_id :Mapped[int] =  mapped_column(autoincrement=True, primary_key=True)
 
     fatura_musteri_id: Mapped[int] = mapped_column(ForeignKey('musteri.id'))
-    fatura_hesap_id: Mapped[int] = mapped_column(ForeignKey('hesap.id'))
+    # fatura_hesap_id: Mapped[int] = mapped_column(ForeignKey('hesap.id'))
 
-    fatura_miktar: Mapped[float] = mapped_column(nullable=False,default=0)
+    fatura_miktar: Mapped[float] = mapped_column(nullable=False, default=0)
     fatura_turu: Mapped[str] = mapped_column(nullable=False)
-
-
+    fatura_durum: Mapped[str] = mapped_column(nullable=True, default="Ödenmedi")

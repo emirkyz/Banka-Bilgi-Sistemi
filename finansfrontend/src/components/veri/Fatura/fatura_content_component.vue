@@ -4,14 +4,15 @@ import Error_component from "@/components/ortak/error_component.vue";
 import {useHesapStore} from "@/stores/hesapstore";
 import Bakiye_update_component from "@/components/veri/Hesap/bakiye_update_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
+import {useFaturaStore} from "@/stores/faturastore";
 
-const hesap_store = useHesapStore();
+const faturaStore = useFaturaStore();
 const loading = useLoadingState();
 const musteri_store = useMusteriStore();
 
-hesap_store.init();
-hesap_store.get_all_hesap();
 
+faturaStore.init();
+faturaStore.get_all_fatura();
 musteri_store.get_all_musteri();
 
 
@@ -21,27 +22,27 @@ musteri_store.get_all_musteri();
   <main>
     <div class="sube-content main_comp">
       <div id="sube" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
-        <h1 class="text-xl">Hesaplar</h1>
+        <h1 class="text-xl">Faturalar</h1>
         <a class="text-xl transition-all"
-        >{{ hesap_store.sayfa + 1 }}. sayfada
-          {{ hesap_store.hesaplar.length }} Tane kayıt gösteriliyor. Toplam
-          {{ hesap_store.total_hesap }} tane kayıt mevcut.</a>
+        >{{ faturaStore.sayfa + 1 }}. sayfada
+          {{ faturaStore.faturalar.length }} Tane kayıt gösteriliyor. Toplam
+          {{ faturaStore.total_fatura }} tane kayıt mevcut.</a>
       </div>
       <hr class="style"/>
 
       <error_component
-          v-if="hesap_store.net_error === true && hesap_store.total_hesap ===0"
-          :store="hesap_store"
+          v-if="faturaStore.net_error === true && faturaStore.total_fatura ===0"
+          :store="faturaStore"
           message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-      <div id="error_component" v-if="hesap_store.total_hesap === 0 && hesap_store.net_error===false">
+      <div id="error_component" v-if="faturaStore.total_fatura === 0 && faturaStore.net_error===false">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
              role="alert">
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
           >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span>
-          <router-link to="/hesap/ekle">
-            <a class="font-medium ">Hesap Eklemek için Tıklayınız</a>
+          <router-link to="/fatura/ekle">
+            <a class="font-medium ">Fatura Eklemek için Tıklayınız</a>
           </router-link>
         </div>
       </div>
@@ -52,32 +53,32 @@ musteri_store.get_all_musteri();
         <thead>
         <tr>
           <th
-              v-if="hesap_store.id_order === '?sırala=ar_id'"
+              v-if="faturaStore.id_order === '?sırala=ar_id'"
               class="cursor-pointer w-[90px]"
-              @click="hesap_store.order_by_id()"
+              @click="faturaStore.order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-green-500">(asc)</a>
           </th>
           <th
-              v-if="hesap_store.id_order === '?sırala=az_id'"
+              v-if="faturaStore.id_order === '?sırala=az_id'"
               class="cursor-pointer w-[90px]"
-              @click="hesap_store.order_by_id()"
+              @click="faturaStore.order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-red-500">(desc)</a>
           </th>
-          <th>Hesap Sahibi</th>
-          <th>Kayıtlı Şube ID</th>
-          <th>Para Birimi</th>
-          <th>Bakiye</th>
+          <th>Müşteri ID</th>
+          <th>Fatura Miktarı</th>
+          <th>Fatura Türü</th>
+          <th>Fatura Durumu</th>
           <th class="w-[200px]">
             <a class="-ml-8">logo</a>
             <button
                 @click="
-                  hesap_store.yukle((hesap_store.sayfa = 0));
-                  hesap_store.get_all_hesap();
-                  hesap_store.at_end = false;
+                  faturaStore.yukle((faturaStore.sayfa = 0));
+                  faturaStore.get_all_fatura();
+                  faturaStore.at_end = false;
                 "
                 class="btn white right hover:bg-teal-300 hover:text-black"
             >
@@ -88,23 +89,23 @@ musteri_store.get_all_musteri();
 
         </thead>
         <tr
-            v-for="hesap in hesap_store.hesaplar"
-            :key="hesap"
+            v-for="fatura in faturaStore.faturalar"
+            :key="fatura"
             v-bind:class="{ 'opacity-0': loading.loading }"
         >
-          <td>{{ hesap['id'] }}</td>
-          <td>{{ musteri_store.find_musteri(hesap['hesap_musteri_id']) }}</td>
-          <td>{{ hesap["hesap_AcanSube"] }}</td>
-          <td>{{ hesap["hesap_ParaBirim"] }}</td>
-          <td>{{ hesap["hesap_bakiye"] + " " + hesap['hesap_ParaBirim'] }}</td>
+          <td>{{ fatura['id'] }}</td>
+          <td>{{ musteri_store.find_musteri(fatura['fatura_musteri_id']) }}</td>
+          <td>{{ fatura["fatura_miktar"] + " TL" }}</td>
+          <td>{{ fatura["fatura_turu"] }}</td>
+          <td>{{ fatura["fatura_durum"] }}</td>
 
           <td class="right">
-            <button class="btn content-center" @click="hesap_store.selectedHesap=hesap">Düzenle</button>
+            <button class="btn content-center" @click="faturaStore.selectedHesap=fatura">Düzenle</button>
             <!--            <button @click="console.log(musteri)">a</button>-->
-            <button class="btn-sil  content-center" @click="hesap_store.hesapSil(hesap)">Sil</button>
+            <button class="btn-sil  content-center" @click="faturaStore.faturaSil(fatura)">Sil</button>
             <br>
             <button class="btn-kredi-ekle content-center"
-                    @click="hesap_store.bakiye_update=hesap ; hesap_store.selectedHesap=hesap;">Bakiye ekle
+                    @click="faturaStore.bakiye_update=fatura ; faturaStore.selectedHesap=fatura;">Bakiye ekle
             </button>
           </td>
         </tr>
@@ -114,19 +115,19 @@ musteri_store.get_all_musteri();
       <br class="space"/>
       <!--    </div>-->
 
-      <button @click="hesap_store.onceki_sayfa()" class="btn">
+      <button @click="faturaStore.onceki_sayfa()" class="btn">
         <a> Önceki</a>
       </button>
       <button
-          @click="hesap_store.sonraki_sayfa()"
-          v-bind:class="{ 'bg-gray-600': hesap_store.at_end }"
+          @click="faturaStore.sonraki_sayfa()"
+          v-bind:class="{ 'bg-gray-600': faturaStore.at_end }"
           class="btn bg:var(--menu_arkaplan)"
       >
         Sonraki
       </button>
 
       <!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
-      <bakiye_update_component></bakiye_update_component>
+<!--      <bakiye_update_component></bakiye_update_component>-->
 
     </div>
 

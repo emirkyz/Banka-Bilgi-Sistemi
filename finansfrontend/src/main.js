@@ -22,6 +22,10 @@ import doc_kredi_component from "@/components/veri/dökümantasyon/doc_kredi_com
 import hesap_component from "@/components/veri/Hesap/hesap_component.vue";
 import hesap_content_component from "@/components/veri/Hesap/hesap_content_component.vue";
 import hesap_ekleme_component from "@/components/veri/Hesap/hesap_ekleme_component.vue";
+import fatura_component from "@/components/veri/Fatura/fatura_component.vue";
+import fatura_ekleme_component from "@/components/veri/Fatura/fatura_ekleme_component.vue";
+import fatura_content_component from "@/components/veri/Fatura/fatura_content_component.vue";
+import fatura_odeme_component from "@/components/veri/Fatura/fatura_odeme_component.vue";
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -67,8 +71,15 @@ const routes = [
             {path: "/hesap/list", component: hesap_content_component},
             {path: "/hesap/ekle", component: hesap_ekleme_component}
         ]
+    },
+    {
+        path: "/fatura", component: fatura_component,
+        children: [
+            {path: "/fatura/list", component: fatura_content_component},
+            {path: "/fatura/ekle", component: fatura_ekleme_component},
+            {path: "/fatura/odeme", component: fatura_odeme_component}
+        ]
     }
-
 ];
 const router = createRouter({
     history: createWebHistory(),

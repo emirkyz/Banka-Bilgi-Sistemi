@@ -16,7 +16,7 @@ export const useKrediStore = defineStore("kredi", {
     actions: {
         init() {
             this.sayfa = 0;
-            this.ade = 10;
+            this.adet = 10;
             this.at_end = false;
             this.yukle();
         },
