@@ -124,8 +124,14 @@ export const useHesapStore = defineStore("hesap", {
                     return (this.all_hesap_list[i]['hesap_musteri_id'])
                 }
             }
-
-
+        },
+        get_all_hesap_by_musteri(siralama) {
+            axios
+                .get(`http://127.0.0.1:5000/api/v1/hesap/k/100000000000${siralama}`)
+                .then((response) => {
+                    this.all_hesap_list = response.data;
+                    this.total_hesap = response.data.length;
+                });
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)

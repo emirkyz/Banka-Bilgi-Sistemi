@@ -15,7 +15,7 @@ export const useFaturaStore = defineStore("fatura", {
 
         bakiye_update: null,
         not_enough: false,
-        all_hesap_list: [],
+        all_fatura_list: [],
         // cached_sube : []
     }),
     actions: {
@@ -36,6 +36,7 @@ export const useFaturaStore = defineStore("fatura", {
                     if (response.status === 200) {
                         this.net_error = false;
                     }
+
                     this.at_end = false;
                     this.faturalar = response.data;
                     loading.yuklemeyiBitir();
@@ -59,6 +60,22 @@ export const useFaturaStore = defineStore("fatura", {
                 .then((response) => {
                     this.all_hesap_list = response.data;
                     this.total_fatura = response.data.length;
+                });
+        },
+        get_all_fatura_by_musteri(siralama) {
+            axios
+                .get(`http://127.0.0.1:5000/api/v1/fatura/k/100000000000${siralama}`)
+                .then((response) => {
+                    this.all_fatura_list = response.data;
+                    this.total_fatura = response.data.length;
+                    for (let i = 0; i < this.all_fatura_list.length; i++) {
+                        // console.log(this.all_fatura_list[i]['fatura_durum'])
+                        if (this.all_fatura_list[i]['fatura_durum'] === "Ödendi") {
+                            this.all_fatura_list.splice(i, 1);
+                            i--;
+                        }
+                    }
+                    console.log("huh");
                 });
         },
         faturaEkle(fatura) {
@@ -98,28 +115,13 @@ export const useFaturaStore = defineStore("fatura", {
             this.sayfa = 0;
             this.total_fatura -= 1;
         },
-        bakiye_arttir(hesap, miktar) {
-            axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/e/${hesap}/${miktar}`).then((response) => {
-                const hesap = response.data;
-                this.bakiye_update = null;
-                console.log(hesap);
-                this.yukle()
+        faturaOdeme(fatura_id) {
+            axios.get('http://127.0.0.1:5000/api/v1/fatura/odeme/' + fatura_id).then((response) => {
+                const fatura = response.data;
+                this.yukle(this.sayfa = 0);
             })
         },
-        bakiye_azalt(hesap, miktar) {
-            axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`).then((response) => {
-                const hesap = response.data;
-                if (hesap['hata']) {
-                    this.not_enough = true;
-                    return;
-                }
-                this.bakiye_update = null;
-                this.not_enough = null;
-                this.yukle()
-            })
-        },
-        find_hesap_by_id(id) {
-
+        find_fatura_by_id(id) {
             for (let i = 0; i < this.all_hesap_list.length; i++) {
                 if (this.all_hesap_list[i]['id'] === id) {
                     return (this.all_hesap_list[i]['hesap_musteri_id'])

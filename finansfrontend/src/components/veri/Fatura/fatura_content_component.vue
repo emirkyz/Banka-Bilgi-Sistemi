@@ -195,7 +195,7 @@ thead tr:nth-child(1) th {
   background: var(--thead_arkaplan);
   position: sticky;
   top: 80px;
-  z-index: 10;
+
 }
 
 @keyframes spin {

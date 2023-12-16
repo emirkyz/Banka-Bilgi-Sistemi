@@ -68,6 +68,7 @@
             >
               Fatura Ödeme
             </router-link>
+
           </div>
         </div>
 
@@ -103,6 +104,7 @@
 }
 
 .nav-all {
+  z-index: 101;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -147,6 +149,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 101;
 }
 
 .dropdown-content {
