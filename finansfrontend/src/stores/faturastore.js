@@ -121,8 +121,6 @@ export const useFaturaStore = defineStore("fatura", {
             })
         },
         find_fatura_by_id(id) {
-
-
             for (let i = 0; i < this.all_hesap_list.length; i++) {
                 if (this.all_hesap_list[i]['id'] === id) {
                     return (this.all_hesap_list[i]['hesap_musteri_id'])
