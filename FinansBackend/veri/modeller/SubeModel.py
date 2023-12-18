@@ -5,7 +5,9 @@
 """
 
 from typing import List
+
 from sqlalchemy.orm import mapped_column, Mapped, relationship
+
 from veri.modeller.TemelVeriSinif import TemelVeriSinifi
 
 

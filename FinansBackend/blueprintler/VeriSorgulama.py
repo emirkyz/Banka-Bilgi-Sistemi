@@ -114,7 +114,7 @@ def sorgulama(sorgu: Select, veri_sinifi: type, sayfa_no: int = 0, kayit_sayisi:
                                 sorgu = sorgu.where(tablo_alani == float(deger))
 
                 elif tablo_alani.type.python_type in [str]:
-                    kabul_edilen_operatorler = ["|=", "=|", "|=|", "!=", "=!", "!=!", "=","<",">"]
+                    kabul_edilen_operatorler = ["|=", "=|", "|=|", "!=", "=!", "!=!", "=", "<", ">"]
                     if op not in kabul_edilen_operatorler:
                         abort(500)
                     else:

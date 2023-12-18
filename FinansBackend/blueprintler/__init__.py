@@ -1,8 +1,7 @@
 """
 Blueprintlerin tanımlandığı yer
 """
-from flask import Blueprint, request
-from sqlalchemy import select
+from flask import Blueprint
 
 # from blueprintler.manav_blueprint import manav_bp
 from blueprintler.GenelBP import GenelBP
@@ -27,17 +26,18 @@ v1_bp.register_blueprint(GenelBP(MusteriModeli, 'musteri'), url_prefix='/musteri
 v1_bp.register_blueprint(GenelBP(SubeModeli, 'sube'), url_prefix='/sube')
 v1_bp.register_blueprint(GenelBP(HesapModeli, "hesap"), url_prefix='/hesap')
 
-
 v1_bp.register_blueprint(GenelBP(HesapHaraketModeli, "hesaphareket"), url_prefix='/hesaphareket')
 v1_bp.register_blueprint(GenelBP(KrediModeli, "kredi"), url_prefix='/kredi')
 v1_bp.register_blueprint(GenelBP(FaturaModeli, "fatura"), url_prefix='/fatura')
 
 score_bp = Blueprint('score', __name__, url_prefix='/score')
 v1_bp.register_blueprint(score_bp, url_prefix='/score')
+
+
 @v1_bp.route('/score/<int:musteri_id>', methods=['GET'])
 def score(musteri_id):
     sonuc = kredi_skor_update(musteri_id)
-    return {'score':  sonuc }
+    return {'score': sonuc}
 
 
 '''api blueprinti oluşturuyoruz.'''

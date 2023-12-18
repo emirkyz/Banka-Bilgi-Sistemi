@@ -48,7 +48,6 @@ class MusteriModeli(TemelVeriSinifi):
 
 
 def inser_kredi_skoru_guncelle(mapper, connection, target):
-
     """
     Kredi skoru güncelleme işlemini gerçekleştiren fonksiyon.
 
@@ -205,6 +204,7 @@ def delete_kredi_skoru_guncelle(mapper, connection, target):
                                                                                           musteri_total_kredi_tutar=toplam_kredi_tutar))
         new_session.commit()
 
+
 def test(mapper, connection, target):
     session = Session(db)
 
@@ -223,11 +223,10 @@ def kredi_skor_guncelle(mapper, connection, target):
     # inser_kredi_skoru_guncelle(mapper, connection, target)
     # test(mapper, connection, target)
 
+
 @event.listens_for(KrediModeli, "after_delete")
 def kredi_skor_guncelle(mapper, connection, target):
     """
     Bu fonksiyon, kredi silme işleminden sonra kredi skorunu günceller.
     """
     # delete_kredi_skoru_guncelle(mapper, connection, target)
-
-

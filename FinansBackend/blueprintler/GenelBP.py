@@ -118,18 +118,18 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         return {"silinen": veri.to_dict()}
 
     @bp.route('/bakiye/e/<int:id>/<int:miktar>', methods=['GET'])
-    def increase_hesap_bakiye(id,miktar):
+    def increase_hesap_bakiye(id, miktar):
         sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
         veri = db.session.scalars(sorgu).one()
 
         veri.hesap_bakiye = veri.hesap_bakiye + miktar
         if veri.hesap_bakiye < 0:
-            return {"hata":"bakiye yetersiz"}
+            return {"hata": "bakiye yetersiz"}
         db.session.commit()
-        return {"güncellenen hesap":veri.to_dict()}
+        return {"güncellenen hesap": veri.to_dict()}
 
     @bp.route('/bakiye/c/<int:id>/<int:miktar>', methods=['GET'])
-    def decrease_hesap_bakiye(id,miktar):
+    def decrease_hesap_bakiye(id, miktar):
         print("inside decrease")
         sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
         veri = db.session.scalars(sorgu).one()
@@ -138,10 +138,10 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         print(veri.hesap_bakiye)
         if veri.hesap_bakiye < 0:
             print("inside if")
-            return {"hata":"bakiye yetersiz, işlem gerçekleştirilemedi"}
+            return {"hata": "bakiye yetersiz, işlem gerçekleştirilemedi"}
         db.session.commit()
 
-        return {"güncellenen hesap":veri.to_dict()}
+        return {"güncellenen hesap": veri.to_dict()}
 
     @bp.route('/odeme/<int:id>', methods=['GET'])
     def odeme(id):
@@ -150,6 +150,6 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
 
         veri.fatura_durum = "Ödendi"
         db.session.commit()
-        return {"güncellenen fatura":veri.to_dict()}
+        return {"güncellenen fatura": veri.to_dict()}
 
     return bp

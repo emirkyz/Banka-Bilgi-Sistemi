@@ -12,7 +12,6 @@ from sqlalchemy.orm import Mapped, mapped_column
 from veri.modeller.TemelVeriSinif import TemelVeriSinifi
 
 
-
 class KrediModeli(TemelVeriSinifi):
     """
     KrediModeli, kredi tablosunun modelini içerir.
@@ -43,6 +42,7 @@ class KrediModeli(TemelVeriSinifi):
             :return: KrediModeli nesnesinin durumunu döndürür.
 
         """
+
         def durum_belirle(context):
             """
             KrediModeli nesnesinin durumunu belirler.
@@ -82,7 +82,3 @@ class KrediModeli(TemelVeriSinifi):
 
     kredi_ay: Mapped[int] = mapped_column(nullable=True)
     kredi_geri_odeme: Mapped[float] = mapped_column(nullable=True)
-
-
-
-

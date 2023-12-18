@@ -5,4 +5,3 @@ from flask_sqlalchemy import SQLAlchemy
 from veri.modeller.TemelVeriSinif import TemelVeriSinifi
 
 db = SQLAlchemy(model_class=TemelVeriSinifi)
-
