@@ -33,7 +33,7 @@ const odenecek_fatura = ref({
 });
 
 
-async function fatura_ode() { // TODO : Fix this. it still shows as paid even if balance is not enough
+async function fatura_ode() {
   const hesap_id = odenecek_fatura.value.hesap_id.valueOf();
   const miktar = odenecek_fatura.value.fatura.fatura_miktar;
 

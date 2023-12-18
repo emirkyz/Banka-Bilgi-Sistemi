@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
+import {useMusteriStore} from "@/stores/musteristore";
 
 export const useKrediStore = defineStore("kredi", {
     state: () => ({
@@ -67,6 +68,8 @@ export const useKrediStore = defineStore("kredi", {
                 .post("http://127.0.0.1:5000/api/v1/kredi/", kredi)
                 .then((response) => {
                     const kredi = response.data;
+                    const musteri = useMusteriStore();
+                    musteri.kredi_skor_guncelle(kredi["kredi_musteri_id"])
                     this.krediler.push(kredi);
                 }).catch(error => {
                 if (!error.response) {

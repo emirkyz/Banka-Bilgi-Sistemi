@@ -108,12 +108,19 @@ export const useMusteriStore = defineStore("musteri", {
             this.sayfa = 0;
             this.total_musteri -= 1;
         },
-        find_musteri(id){
+        find_musteri(id) {
             for (let i = 0; i < this.all_musteri_list.length; i++) {
-                if (this.all_musteri_list[i]['id'] === id){
+                if (this.all_musteri_list[i]['id'] === id) {
                     return (this.all_musteri_list[i]['musteri_adi'] + " " + this.all_musteri_list[i]['musteri_soyad'])
                 }
             }
+        },
+        kredi_skor_guncelle(musteri_id) {
+            axios.get(`http://127.0.0.1:5000/api/v1/score/${musteri_id}`).then((response) => {
+                const musteri = response.data;
+                console.log(musteri);
+                this.yukle();
+            })
         },
         sonraki_sayfa() {
             // console.log((this.sayfa+1) * this.adet)
