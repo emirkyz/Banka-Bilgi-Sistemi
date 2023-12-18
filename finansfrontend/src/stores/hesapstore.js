@@ -3,9 +3,16 @@ import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
 import {ref} from "vue";
 
+
+// export const useHesapStore = defineStore("hesap", () =>{
+//     const net_error = ref(false);
+//
+//
+//
+// })
+
 export const useHesapStore = defineStore("hesap", {
     state: () => ({
-
         hesaplar: [],
         selectedHesap: null,
         id_order: "?sırala=ar_id",
@@ -20,11 +27,6 @@ export const useHesapStore = defineStore("hesap", {
         // cached_sube : []
 
     }),
-    getters: {
-        get_enough_state(state) {
-            return state.not_enough;
-        }
-    },
     actions: {
         init() {
             this.sayfa = 0;
@@ -105,7 +107,7 @@ export const useHesapStore = defineStore("hesap", {
             this.sayfa = 0;
             this.total_hesap -= 1;
         },
-        bakiye_arttir(hesap, miktar) {
+        async bakiye_arttir(hesap, miktar) {
             axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/e/${hesap}/${miktar}`).then((response) => {
                 const hesap = response.data;
                 this.bakiye_update = null;
@@ -113,23 +115,24 @@ export const useHesapStore = defineStore("hesap", {
                 this.yukle()
             })
         },
-        bakiye_azalt(hesap, miktar) {
-            axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`).then((response) => {
-                const hesap = response.data;
-                if (hesap['hata']) {
-                    console.log(hesap['hata'])
-                    this.not_enough = true;
-                    this.yukle()
-                    return this.get_enough_state
+        async bakiye_azalt(hesap, miktar) {
+            await axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`)
+                .then((response) => {
+                    const hesap = response.data;
+                    if (hesap['hata']) {
+                        // console.log("if içinde");
+                        console.log(hesap['hata'])
+                        this.not_enough = true;
+                        this.yukle()
+                        return this.not_enough
 
-                } else {
-                    console.log("else içinde");
-                    this.not_enough = false;
-                    this.yukle()
-                    return this.get_enough_state
-
-                }
-            })
+                    } else {
+                        // console.log("else içinde");
+                        this.not_enough = false;
+                        this.yukle()
+                        return this.not_enough
+                    }
+                })
         },
         find_hesap_by_id(id) {
 
