@@ -6,6 +6,7 @@ from sqlalchemy import select
 
 # from blueprintler.manav_blueprint import manav_bp
 from blueprintler.GenelBP import GenelBP
+from tools.kredi_skor_updater import kredi_skor_update
 from veri import *
 
 '''api versiyonu olarak bir blueprint oluşturuyoruz.'''
@@ -30,6 +31,14 @@ v1_bp.register_blueprint(GenelBP(HesapModeli, "hesap"), url_prefix='/hesap')
 v1_bp.register_blueprint(GenelBP(HesapHaraketModeli, "hesaphareket"), url_prefix='/hesaphareket')
 v1_bp.register_blueprint(GenelBP(KrediModeli, "kredi"), url_prefix='/kredi')
 v1_bp.register_blueprint(GenelBP(FaturaModeli, "fatura"), url_prefix='/fatura')
+
+score_bp = Blueprint('score', __name__, url_prefix='/score')
+v1_bp.register_blueprint(score_bp, url_prefix='/score')
+@v1_bp.route('/score/<int:musteri_id>', methods=['GET'])
+def score(musteri_id):
+    kredi_skor_update(musteri_id)
+    return {'score': ' OK '}
+
 
 '''api blueprinti oluşturuyoruz.'''
 api_bp = Blueprint('api', __name__, url_prefix='/api')

@@ -1,9 +1,11 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
+import {ref} from "vue";
 
 export const useHesapStore = defineStore("hesap", {
     state: () => ({
+
         hesaplar: [],
         selectedHesap: null,
         id_order: "?sırala=ar_id",
@@ -13,15 +15,22 @@ export const useHesapStore = defineStore("hesap", {
         at_end: false,
         net_error: false,
         bakiye_update: null,
-        not_enough: false,
+        not_enough: ref(false),
         all_hesap_list: [],
         // cached_sube : []
+
     }),
+    getters: {
+        get_enough_state(state) {
+            return state.not_enough;
+        }
+    },
     actions: {
         init() {
             this.sayfa = 0;
             this.adet = 10;
             this.at_end = false;
+            this.not_enough = false;
             this.yukle();
         },
         yukle(sayfa = 0, siralama = this.id_order) {
@@ -91,7 +100,6 @@ export const useHesapStore = defineStore("hesap", {
                 const hesap = response.data;
                 console.log(hesap);
                 this.yukle();
-
             })
             this.get_all_hesap();
             this.sayfa = 0;
@@ -109,12 +117,18 @@ export const useHesapStore = defineStore("hesap", {
             axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`).then((response) => {
                 const hesap = response.data;
                 if (hesap['hata']) {
+                    console.log(hesap['hata'])
                     this.not_enough = true;
-                    return;
+                    this.yukle()
+                    return this.get_enough_state
+
+                } else {
+                    console.log("else içinde");
+                    this.not_enough = false;
+                    this.yukle()
+                    return this.get_enough_state
+
                 }
-                this.bakiye_update = null;
-                this.not_enough = null;
-                this.yukle()
             })
         },
         find_hesap_by_id(id) {
@@ -176,4 +190,5 @@ export const useHesapStore = defineStore("hesap", {
             }
         },
     },
+
 });

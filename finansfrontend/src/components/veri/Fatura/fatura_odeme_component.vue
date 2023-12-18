@@ -24,7 +24,7 @@ const para_birimleri=[
   "TL",
 ]
 
-
+const bakiye_error = ref(false);
 
 const odenecek_fatura = ref({
   fatura_musteri_id: "",
@@ -33,17 +33,31 @@ const odenecek_fatura = ref({
 });
 
 
-function fatura_ode() {
+function fatura_ode() { // TODO : Fix this. it still shows as paid even if balance is not enough
   const hesap_id = odenecek_fatura.value.hesap_id.valueOf();
   const miktar = odenecek_fatura.value.fatura.fatura_miktar;
-  hesapStore.bakiye_azalt(hesap_id, miktar);
-  faturaStore.faturaOdeme(odenecek_fatura.value.fatura.id);
-  console.log("fatura ödendi");
-  odenecek_fatura.value = {
-    fatura_musteri_id: "",
-    hesap_id: "",
-    fatura: "",
-  };
+  console.log(hesapStore.get_enough_state)
+  console.log(hesapStore.bakiye_azalt(hesap_id, miktar));
+  if (hesapStore.get_enough_state === true) {
+    console.log("ne bilim yoktir");
+  } else if(hesapStore.get_enough_state === false) {
+    faturaStore.faturaOdeme(odenecek_fatura.value.fatura.id);
+    console.log("fatura ödendi lan ");
+    odenecek_fatura.value = {
+      fatura_musteri_id: "",
+      hesap_id: "",
+      fatura: "",
+    };
+
+  }
+
+  // faturaStore.faturaOdeme(odenecek_fatura.value.fatura.id);
+  // console.log("fatura ödendi");
+  // odenecek_fatura.value = {
+  //   fatura_musteri_id: "",
+  //   hesap_id: "",
+  //   fatura: "",
+  // };
 }
 
 function fatura_filtre_on_musteri() {
@@ -106,8 +120,10 @@ function fatura_filtre_on_musteri() {
             </select>
           </div>
         </div>
+        <error_component v-if="hesapStore.not_enough===true"  message='Hesabınızda Yeterli Bakiye Yok. Farklı Hesap deneyiniz.'></error_component>
+
         <button class="btn" @click="fatura_ode">Fatura Öde</button>
-        <error_component v-if="hesapStore.not_enough===true" message='Hesabınızda Yeterli Bakiye Yok. Farklı miktar deneyiniz.'></error_component>
+
 
         <!--        <div class="input-row">-->
         <!--          <div class="label-area">-->

@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
+import {useHesapStore} from "@/stores/hesapstore";
 
 export const useFaturaStore = defineStore("fatura", {
     state: () => ({
@@ -75,7 +76,6 @@ export const useFaturaStore = defineStore("fatura", {
                             i--;
                         }
                     }
-                    console.log("huh");
                 });
         },
         faturaEkle(fatura) {
@@ -173,4 +173,5 @@ export const useFaturaStore = defineStore("fatura", {
             }
         },
     },
+
 });

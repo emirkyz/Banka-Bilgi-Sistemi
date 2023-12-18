@@ -8,6 +8,7 @@ from flask_sqlalchemy.session import Session
 from sqlalchemy import ForeignKey, select, event
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+# from tools.kredi_skor_updater import kredi_skor_update
 from veri.veritabani import db
 from veri.modeller.KrediModel import KrediModeli
 from veri.modeller.TemelVeriSinif import TemelVeriSinifi
@@ -47,6 +48,7 @@ class MusteriModeli(TemelVeriSinifi):
 
 
 def inser_kredi_skoru_guncelle(mapper, connection, target):
+
     """
     Kredi skoru güncelleme işlemini gerçekleştiren fonksiyon.
 
