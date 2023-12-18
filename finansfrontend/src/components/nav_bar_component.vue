@@ -40,30 +40,35 @@
           Fatura Ödeme
         </router-link>
 
-        <div class="dropdown">
-          <button class="dropbtn">Dropdown</button>
+        <div class="dropdown ">
+          <button class="dropbtn">Menü</button>
           <div class="dropdown-content">
             <router-link
                 to="/sube"
             >
               Banka Şubeleri
             </router-link>
+
             <router-link
                 to="/musteri"
             >
               Müşteri
             </router-link>
+
             <router-link
                 to="/hesap"
             >
               Hesaplar
             </router-link>
+
             <router-link
                 to="/kredi"
             >
               Krediler
             </router-link>
+
             <router-link
+                class="test"
                 to="/fatura"
             >
               Fatura Ödeme
@@ -72,7 +77,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="info">
           <router-link id="i"
                        class="right-0 rounded-xl inline-block text-sm px-2 py-1 leading-none text-white border-2 border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0 cursor-pointer"
                        to="/doc"
@@ -80,21 +85,18 @@
           </router-link
           >
         </div>
-
-
       </div>
-
     </div>
   </nav>
 
 </template>
 
 <style scoped>
-.link-active,
-.link-active:hover {
+.link-active{
   padding: 10px 10px;
   align-items: center;
-  border-radius: 15px;
+  justify-content: center;
+  border-radius: 5px;
   background-color: #804949;
   color: white !important;
 }
@@ -117,7 +119,6 @@
 }
 
 #test {
-
   display: flex;
   justify-content: flex-start;
   gap: 14px;
@@ -131,28 +132,30 @@
 }
 
 #test > div {
+  margin-left: 2px;
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+}
+#test .info {
   margin-left: auto;
   @media (max-width: 768px) {
     margin-left: 0;
   }
 }
 
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+
 
 .dropdown {
-  position: relative;
   display: inline-block;
   z-index: 101;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 
 .dropdown-content {
+  padding: 10px 5px;
+  border-radius: 7px;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -163,20 +166,33 @@
 
 .dropdown-content a {
   color: black;
-  padding: 12px 16px;
+  padding: 12px ;
   text-decoration: none;
   display: block;
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1
+  color: #d01b1b;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown .dropbtn{
+  border-radius: 7px;
+  background-color: gray;
+  outline: dimgray  1px solid;
+  border: #1a202c 1px solid;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition-duration: 0.4s;
+}
+
+.dropdown.hover .dropbtn {
   background-color: #3e8e41;
 }
 </style>

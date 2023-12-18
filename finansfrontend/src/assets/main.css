@@ -124,7 +124,17 @@ tr {
     padding-bottom: 5px;
     padding-top: 5px;
 }
-
+option {
+    background: var(--menu_arkaplan);
+}
+select:not(.tema_secici){
+    background: var(--menu_arkaplan);
+    width: 100%;
+    padding: 10px;
+}
+select:hover:not(.tema_secici){
+    outline: #342b2b 1px solid
+}
 .btn {
     color: var(--yazirengi);
     border: #161612 1px solid;

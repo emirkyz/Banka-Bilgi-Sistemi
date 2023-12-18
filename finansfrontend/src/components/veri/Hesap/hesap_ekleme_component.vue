@@ -37,6 +37,9 @@ function kaydet() {
 }
 
 function hesap_filtre_on_musteri() {
+  if (eklenecek_hesap.value.hesap_AcanSube === '') {
+    return
+  }
   console.log(eklenecek_hesap.value.hesap_AcanSube)
   const sube_id = eklenecek_hesap.value.hesap_AcanSube
   musteriStore.yukle(0, `?filtre=musteri_sube_id=${sube_id}`)
