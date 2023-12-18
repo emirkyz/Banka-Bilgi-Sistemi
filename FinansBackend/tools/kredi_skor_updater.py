@@ -44,6 +44,7 @@ def kredi_skor_update(musteri_id):
     if total < 5:
         musteri.musteri_total_kredi = total
         db.session.commit()
+        print("total kredi sayısı 5 ten küçük")
         return
     else:
         for kredi in krediler:
