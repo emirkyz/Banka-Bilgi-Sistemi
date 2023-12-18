@@ -96,7 +96,6 @@ export const useKrediStore = defineStore("kredi", {
             }
             axios.delete('http://127.0.0.1:5000/api/v1/kredi/' + kredi["id"]).then((response) => {
                 const kredi = response.data;
-
                 this.yukle();
             })
             this.sayfa = 0;

@@ -1,15 +1,15 @@
 .light_mode {
-  --arkaplan: #e5e8e8;
-  --yazirengi: #000000;
-  /*    F0F3F4*/
+    --arkaplan: #e5e8e8;
+    --yazirengi: #000000;
+    /*    F0F3F4*/
 
-  --nav_arkaplan: linear-gradient(
-    180deg,
-    rgba(73, 74, 163, 1) 0%,
-    rgba(70, 77, 138, 1) 25%,
-    rgba(61, 74, 116, 1) 100%
-  );
+    --nav_arkaplan: linear-gradient(
+            180deg,
+            rgba(73, 74, 163, 1) 0%,
+            rgba(70, 77, 138, 1) 25%,
+            rgba(61, 74, 116, 1) 100%
+    );
 
-  --btn_arkaplan: #9f9f9f;
-  --thead_arkaplan: #d2d2d2;
+    --btn_arkaplan: #9f9f9f;
+    --thead_arkaplan: #d2d2d2;
 }

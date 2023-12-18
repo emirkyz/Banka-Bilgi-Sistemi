@@ -1,7 +1,6 @@
 <script setup>
 import {ref} from "vue";
 import Error_component from "@/components/ortak/error_component.vue";
-import {useKrediStore} from "@/stores/kredistore";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useHesapStore} from "@/stores/hesapstore";
 import {useFaturaStore} from "@/stores/faturastore";
@@ -18,7 +17,7 @@ hesapStore.init();
 hesapStore.get_all_hesap();
 
 
-const fatura_turleri=[
+const fatura_turleri = [
   "Elektrik",
   "Su",
   "Doğalgaz",
@@ -32,11 +31,13 @@ const eklenecek_fatura = ref({
   fatura_miktar: "",
   fatura_turu: "",
 });
-function hesaba_ekle(){
+
+function hesaba_ekle() {
   const tutar = eklenecek_fatura.value.kredi_tutar;
   const id = eklenecek_fatura.value.kredi_hesap_id;
-  hesapStore.bakiye_arttir(id,tutar);
+  hesapStore.bakiye_arttir(id, tutar);
 }
+
 function kaydet() {
   // hesaba_ekle();
   // eklenecek_fatura.value.kredi_musteri_id = hesapStore.find_hesap_by_id(eklenecek_fatura.value.kredi_hesap_id);
@@ -48,7 +49,6 @@ function kaydet() {
     fatura_turu: "",
   };
 }
-
 
 
 // const canContinue = (eklenecek_sube.value.sube_adi === '' || eklenecek_sube.value.sube_adresi ==='' || eklenecek_sube.value.sube_tel ==='');
@@ -65,60 +65,65 @@ function kaydet() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Fatura Kesilecek Müşteriyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Fatura Kesilecek Müşteriyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_fatura.fatura_musteri_id">
+            <select v-model="eklenecek_fatura.fatura_musteri_id" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-<!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
-              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>
+              <!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
+              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{ musteri.id }} -
+                {{ musteri.musteri_adi }}
+              </option>
             </select>
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fadi" class="text-xl">Fatura Miktarı</label>
+            <label class="text-xl" for="fadi">Fatura Miktarı</label>
           </div>
           <div class="input-area">
             <input
-                type="number"
+                v-model="eklenecek_fatura.fatura_miktar"
                 placeholder="Fatura Miktarını Giriniz"
-                v-model="eklenecek_fatura.fatura_miktar"/>
+                type="number"/>
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fadi" class="text-xl">Fatura Türü</label>
+            <label class="text-xl" for="fadi">Fatura Türü</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_fatura.fatura_turu">
+            <select v-model="eklenecek_fatura.fatura_turu" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="fatura in fatura_turleri"> {{fatura}} </option>
+              <option v-for="fatura in fatura_turleri"> {{ fatura }}</option>
             </select>
           </div>
         </div>
 
-        <div class="mt-4"
-             v-if="eklenecek_fatura.fatura_turu === '' || eklenecek_fatura.fatura_miktar ==='' || eklenecek_fatura.fatura_musteri_id ===''">
+        <div v-if="eklenecek_fatura.fatura_turu === '' || eklenecek_fatura.fatura_miktar ==='' || eklenecek_fatura.fatura_musteri_id ===''"
+             class="mt-4">
 
-          <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
+          <error_component message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div class="mt-4"
-             v-if="eklenecek_fatura.fatura_turu !== '' && eklenecek_fatura.fatura_miktar !=='' && eklenecek_fatura.fatura_musteri_id !=='' || eklenecek_fatura.net_error===true">
+        <div v-if="eklenecek_fatura.fatura_turu !== '' && eklenecek_fatura.fatura_miktar !=='' && eklenecek_fatura.fatura_musteri_id !=='' || eklenecek_fatura.net_error===true"
+             class="mt-4">
 
-          <error_component v-if="faturaStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
+          <error_component v-if="faturaStore.net_error ===true"
+                           message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-          <button class="btn" v-if="faturaStore.net_error === false" @click="onayKutusu=true">Kaydet</button>
+          <button v-if="faturaStore.net_error === false" class="btn" @click="onayKutusu=true">Kaydet</button>
         </div>
       </div>
 
       <teleport to="body">
-        <div class="modal" v-if="onayKutusu === true" @click="onayKutusu=false">
+        <div v-if="onayKutusu === true" class="modal" @click="onayKutusu=false">
           <div class="modal-content">
             <div class="modal-header">
               <h2>Onay</h2>
@@ -128,7 +133,7 @@ function kaydet() {
               <p>Kaydetmek istediğinizden emin misiniz?.</p>
             </div>
             <div class="modal-footer">
-              <button class="buton olumlu" @click="onayKutusu=false; kaydet();" >Kaydet</button>
+              <button class="buton olumlu" @click="onayKutusu=false; kaydet();">Kaydet</button>
               <button class="buton olumsuz" @click="onayKutusu=false">Kapat</button>
             </div>
           </div>
@@ -154,17 +159,20 @@ function kaydet() {
   display: inline-block;
   text-decoration: none;
 }
+
 .buton.olumlu:hover {
   background-color: forestgreen;
   color: var(--yazirengi);
   scale: 1.1;
 }
+
 .buton.olumsuz:hover {
   background-color: #f65e5e;
   color: var(--yazirengi);
   scale: 1.1;
 }
-.modal{
+
+.modal {
   display: flex; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -173,13 +181,14 @@ function kaydet() {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   padding-top: 60px;
   justify-content: center;
   align-items: center;
 
 }
-.modal-content{
+
+.modal-content {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -187,23 +196,23 @@ function kaydet() {
   min-width: 30vw;
   z-index: 100;
 }
-.modal-header{
+
+.modal-header {
   font-size: 14pt;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .label-area {
   display: block;
   height: 100%;
 
   padding: 10px;
 }
-#k_e{
-  padding:10px !important;
-  margin: 2px !important;
-}
+
+
 input {
   background: var(--menu_arkaplan);
   width: 100%;

@@ -64,13 +64,15 @@ def kredi_skor_update(musteri_id):
         musteri.musteri_total_kredi_tutar = toplam_kredi_tutar
         db.session.commit()
 
+
     # Fatura ile ilgili hesaplamaları yapıyoruz
 
 
-    for i in range(len(faturalar)):
-        print(faturalar[i].fatura_durum)
+    # for i in range(len(faturalar)):
+    #     print(faturalar[i].fatura_durum)
     print("---------------------------------------------------------")
     print(f"toplam fatura inside tools function = {len(faturalar)}")
     print(f"toplam kredi inside tools function = {len(krediler)}")
     print("---------------------------------------------------------")
+    return score
 

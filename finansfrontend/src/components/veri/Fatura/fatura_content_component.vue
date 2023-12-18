@@ -1,8 +1,6 @@
 <script setup>
 import {useLoadingState} from "@/stores/loading_state";
 import Error_component from "@/components/ortak/error_component.vue";
-import {useHesapStore} from "@/stores/hesapstore";
-import Bakiye_update_component from "@/components/veri/Hesap/bakiye_update_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useFaturaStore} from "@/stores/faturastore";
 
@@ -35,7 +33,7 @@ musteri_store.get_all_musteri();
           :store="faturaStore"
           message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-      <div id="error_component" v-if="faturaStore.total_fatura === 0 && faturaStore.net_error===false">
+      <div v-if="faturaStore.total_fatura === 0 && faturaStore.net_error===false" id="error_component">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
              role="alert">
           <strong class="font-bold">Hata!</strong>
@@ -75,12 +73,12 @@ musteri_store.get_all_musteri();
           <th class="w-[200px]">
             <a class="-ml-8">logo</a>
             <button
+                class="btn white right hover:bg-teal-300 hover:text-black"
                 @click="
                   faturaStore.yukle((faturaStore.sayfa = 0));
                   faturaStore.get_all_fatura();
                   faturaStore.at_end = false;
                 "
-                class="btn white right hover:bg-teal-300 hover:text-black"
             >
               Yenile
             </button>
@@ -115,19 +113,19 @@ musteri_store.get_all_musteri();
       <br class="space"/>
       <!--    </div>-->
 
-      <button @click="faturaStore.onceki_sayfa()" class="btn">
+      <button class="btn" @click="faturaStore.onceki_sayfa()">
         <a> Önceki</a>
       </button>
       <button
-          @click="faturaStore.sonraki_sayfa()"
-          v-bind:class="{ 'bg-gray-600': faturaStore.at_end }"
           class="btn bg:var(--menu_arkaplan)"
+          v-bind:class="{ 'bg-gray-600': faturaStore.at_end }"
+          @click="faturaStore.sonraki_sayfa()"
       >
         Sonraki
       </button>
 
       <!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
-<!--      <bakiye_update_component></bakiye_update_component>-->
+      <!--      <bakiye_update_component></bakiye_update_component>-->
 
     </div>
 

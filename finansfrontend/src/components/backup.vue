@@ -4,58 +4,58 @@
   <div class="page">
     <nav>
       <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <a href="/home" class="font-extrabold text-xl cursor-pointer"
-          >KYZ FİNANS</a
+        <a class="font-extrabold text-xl cursor-pointer" href="/home"
+        >KYZ FİNANS</a
         >
       </div>
       <div
-        id="test"
-        class="w-full block flex-grow sm:flex sm:items-center sm:w-auto"
+          id="test"
+          class="w-full block flex-grow sm:flex sm:items-center sm:w-auto"
       >
         <div class="text-sm sm:flex-grow">
           <a
-            href="/subeler"
-            class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+              class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+              href="/subeler"
           >
             Banka Şubeleri
           </a>
           <a
-            href="/musteriler"
-            class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+              class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+              href="/musteriler"
           >
             Müşteri Listesi
           </a>
           <a
-            href="/hesap"
-            class="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white hover:bg-gray-800 hover:bg-transparent"
+              class="block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white hover:bg-gray-800 hover:bg-transparent"
+              href="/hesap"
           >
             Hesaplar
           </a>
         </div>
         <div>
           <a
-            href="/documentation"
-            class="rounded-xl inline-block text-sm px-2 py-1 leading-none text-white border-2 border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0 cursor-pointer"
-            >i</a
+              class="rounded-xl inline-block text-sm px-2 py-1 leading-none text-white border-2 border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0 cursor-pointer"
+              href="/documentation"
+          >i</a
           >
         </div>
       </div>
     </nav>
     <main id="maintable" class="h-screen">
       <div
-        class="font-bold h-100vh pl-4 my-1 bg-gray-400 rounded-2xl py-2 fixedElement"
+          class="font-bold h-100vh pl-4 my-1 bg-gray-400 rounded-2xl py-2 fixedElement"
       >
-        <h1 style="color: #100101" class="text-xl">Kişiler</h1>
+        <h1 class="text-xl" style="color: #100101">Kişiler</h1>
       </div>
-      <hr class="style" />
+      <hr class="style"/>
       <div id="error_component">
         <div
-          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
-          role="alert"
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
+            role="alert"
         >
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
-            >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span
+          >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span
           >
         </div>
       </div>
@@ -205,9 +205,9 @@
             </td>
           </tr>
         </table>
-        <br class="space" />
+        <br class="space"/>
 
-        <br class="space" />
+        <br class="space"/>
       </div>
     </main>
     <div id="sidebar" class="items-center justify-center">S i d e b a r</div>
@@ -216,7 +216,7 @@
     <!--        <div id="section3">Section3</div>-->
     <!--        <div id="section4">Section4</div>-->
     <div class="mb-2 footerdiv rounded-2xl">
-      <a href="/about" class="text-xl">@ copy right</a>
+      <a class="text-xl" href="/about">@ copy right</a>
     </div>
   </div>
 </template>

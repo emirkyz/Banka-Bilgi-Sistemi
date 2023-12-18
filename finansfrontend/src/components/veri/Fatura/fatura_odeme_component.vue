@@ -1,6 +1,5 @@
 <script setup>
 import {ref} from "vue";
-import Api_error from "@/components/ortak/error_component.vue";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useSubeStore} from "@/stores/subestore";
@@ -88,11 +87,11 @@ function fatura_filtre_on_musteri() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Hesabın Bağlı Olduğu Müşteriyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Müşteriyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid"
-                    v-model="odenecek_fatura.fatura_musteri_id" @change="fatura_filtre_on_musteri">
+            <select v-model="odenecek_fatura.fatura_musteri_id" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid" @change="fatura_filtre_on_musteri">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="musteri in musteriStore.all_musteri_list" :value="musteri['id']"> {{ musteri.id }} -
                 {{ musteri.musteri_adi }}
@@ -103,11 +102,11 @@ function fatura_filtre_on_musteri() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fadi" class="text-xl">Müşteriye Ait Faturalar</label>
+            <label class="text-xl" for="fadi">Müşteriye Ait Faturalar</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="ffaturaid"
-                    v-model="odenecek_fatura.fatura">
+            <select v-model="odenecek_fatura.fatura" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="ffaturaid">
               <option selected="selected" value="">Fatura Seçin.</option>
               <option v-for="fatura in faturaStore.all_fatura_list" :value="fatura"> {{ fatura.id }} -
                 {{ fatura.fatura_turu }} - {{ fatura.fatura_miktar }} TL
@@ -118,11 +117,11 @@ function fatura_filtre_on_musteri() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Ücretin Alınacağı Hesabı seçiniz.</label>
+            <label class="text-xl" for="fsubeid">Ücretin Alınacağı Hesabı seçiniz.</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid"
-                    v-model="odenecek_fatura.hesap_id">
+            <select v-model="odenecek_fatura.hesap_id" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="hesap in hesapStore.all_hesap_list" :value="hesap.id">
                 {{ hesap["id"] }} - {{ hesap['hesap_bakiye'] }} {{ hesap.hesap_ParaBirim }}

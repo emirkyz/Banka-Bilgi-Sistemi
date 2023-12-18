@@ -1,7 +1,6 @@
 <script setup>
 import {useSubeStore} from "@/stores/subestore";
 import {ref} from "vue";
-import Api_error from "@/components/ortak/error_component.vue";
 import Error_component from "@/components/ortak/error_component.vue";
 
 const subeStore = useSubeStore();
@@ -34,55 +33,56 @@ function kaydet() {
       <div class="input-area mt-5 w-full">
         <div class="input-row">
           <div class="label-area">
-            <label for="fadi" class="text-xl">Şube Adı</label>
+            <label class="text-xl" for="fadi">Şube Adı</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Şube Adını Giriniz"
                 v-model="eklenecek_sube.sube_adi"
+                placeholder="Şube Adını Giriniz"
+                type="text"
             />
           </div>
         </div>
         <div class="input-row">
           <div class="label-area">
-            <label for="fsoyad" class="text-xl">Şube Adresi</label>
+            <label class="text-xl" for="fsoyad">Şube Adresi</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Şube Adresini Giriniz"
                 v-model="eklenecek_sube.sube_adresi"
+                placeholder="Şube Adresini Giriniz"
+                type="text"
             />
           </div>
         </div>
         <div class="input-row">
           <div class="label-area">
-            <label for="ftelefon" class="text-xl">Şube Telefonu</label>
+            <label class="text-xl" for="ftelefon">Şube Telefonu</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Şube Telefonunu Giriniz"
                 v-model="eklenecek_sube.sube_tel"
+                placeholder="Şube Telefonunu Giriniz"
+                type="text"
             />
           </div>
         </div>
 
-        <div class="mt-4"
-             v-if="eklenecek_sube.sube_adi === '' || eklenecek_sube.sube_adresi ==='' || eklenecek_sube.sube_tel ===''">
+        <div v-if="eklenecek_sube.sube_adi === '' || eklenecek_sube.sube_adresi ==='' || eklenecek_sube.sube_tel ===''"
+             class="mt-4">
 
-          <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
+          <error_component message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div class="mt-4"
-             v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' || subeStore.net_error===true">
+        <div v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' || subeStore.net_error===true"
+             class="mt-4">
 
-          <error_component v-if="subeStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
+          <error_component v-if="subeStore.net_error ===true"
+                           message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-          <button class="btn" v-if="subeStore.net_error === false" @click="kaydet">Kaydet</button>
+          <button v-if="subeStore.net_error === false" class="btn" @click="kaydet">Kaydet</button>
         </div>
       </div>
     </div>

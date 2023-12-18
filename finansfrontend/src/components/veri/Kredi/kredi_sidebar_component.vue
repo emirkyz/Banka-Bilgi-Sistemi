@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
+
 const sidebar_expanded = ref(false);
 
 function expand_sidebar() {
@@ -19,19 +20,19 @@ function expand_sidebar() {
 
 <template>
   <div id="side_" class="sidebar_comp">
-<!--    <button @click="expand_sidebar" class="flex relative plus_sign">+</button>-->
-    <button @click="expand_sidebar" class="flex relative plus_sign"></button>
+    <!--    <button @click="expand_sidebar" class="flex relative plus_sign">+</button>-->
+    <button class="flex relative plus_sign" @click="expand_sidebar"></button>
 
     <div class="flex flex-col">
-      <br />
+      <br/>
       <div id="sidebar_content_1">
         <router-link to="/kredi/ekle">
           <a class="font-medium text-xl">Kredi Ekle</a>
         </router-link>
       </div>
-      <hr class="my-4" />
+      <hr class="my-4"/>
       <div id="sidebar_content_2">
-        <router-link to="/kredi/list" class="font-medium text-2xl">
+        <router-link class="font-medium text-2xl" to="/kredi/list">
           <a class="font-medium text-xl">Kredileri Listele</a>
         </router-link>
       </div>
@@ -49,10 +50,12 @@ function expand_sidebar() {
     min-width: 100vw;
   }
 }
+
 #sidebar_content_1,
 #sidebar_content_2 {
   display: block;
 }
+
 .link-active,
 .link-active a {
   padding: 3px;

@@ -5,8 +5,8 @@ import Main_component from "@/components/ortak/main_component.vue";
 
 <template>
   <main>
-    <sidebar_component class="sidebar_comp" />
-    <main_component class="main_comp" />
+    <sidebar_component class="sidebar_comp"/>
+    <main_component class="main_comp"/>
   </main>
 </template>
 
@@ -24,15 +24,16 @@ main {
 }
 
 
-  .sidebar_comp * {
-    justify-content: center;
-    align-items: center;
-    place-content: center;
-  }
-
-  .plus_sign {
-    justify-content: center;
-    align-items: center;
-  }
+.sidebar_comp * {
+  justify-content: center;
+  align-items: center;
+  place-content: center;
 }
+
+.plus_sign {
+  justify-content: center;
+  align-items: center;
+}
+
+
 </style>

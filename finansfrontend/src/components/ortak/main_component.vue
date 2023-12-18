@@ -7,9 +7,8 @@
 
 <style scoped>
 #main_ {
-  transition:
-    color 300ms ease-out,
-    background-color 300ms ease-out;
+  transition: color 300ms ease-out,
+  background-color 300ms ease-out;
   height: fit-content;
 }
 </style>

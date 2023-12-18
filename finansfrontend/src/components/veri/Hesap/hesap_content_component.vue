@@ -34,7 +34,7 @@ musteri_store.get_all_musteri();
           :store="hesap_store"
           message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-      <div id="error_component" v-if="hesap_store.total_hesap === 0 && hesap_store.net_error===false">
+      <div v-if="hesap_store.total_hesap === 0 && hesap_store.net_error===false" id="error_component">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
              role="alert">
           <strong class="font-bold">Hata!</strong>
@@ -74,12 +74,12 @@ musteri_store.get_all_musteri();
           <th class="w-[200px]">
             <a class="-ml-8">logo</a>
             <button
+                class="btn white right hover:bg-teal-300 hover:text-black"
                 @click="
                   hesap_store.yukle((hesap_store.sayfa = 0));
                   hesap_store.get_all_hesap();
                   hesap_store.at_end = false;
                 "
-                class="btn white right hover:bg-teal-300 hover:text-black"
             >
               Yenile
             </button>
@@ -114,13 +114,13 @@ musteri_store.get_all_musteri();
       <br class="space"/>
       <!--    </div>-->
 
-      <button @click="hesap_store.onceki_sayfa()" class="btn">
+      <button class="btn" @click="hesap_store.onceki_sayfa()">
         <a> Önceki</a>
       </button>
       <button
-          @click="hesap_store.sonraki_sayfa()"
-          v-bind:class="{ 'bg-gray-600': hesap_store.at_end }"
           class="btn bg:var(--menu_arkaplan)"
+          v-bind:class="{ 'bg-gray-600': hesap_store.at_end }"
+          @click="hesap_store.sonraki_sayfa()"
       >
         Sonraki
       </button>
@@ -148,9 +148,7 @@ musteri_store.get_all_musteri();
   border-radius: 4px;
 }
 
-.kredi-content {
-  min-height: 100vh;
-}
+
 
 button {
   transition: all 300ms ease-out;

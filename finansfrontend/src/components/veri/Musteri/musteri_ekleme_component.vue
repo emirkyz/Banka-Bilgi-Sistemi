@@ -1,6 +1,5 @@
 <script setup>
 import {ref} from "vue";
-import Api_error from "@/components/ortak/error_component.vue";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useSubeStore} from "@/stores/subestore";
@@ -44,83 +43,88 @@ function kaydet() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_musteri.musteri_sube_id">
+            <select v-model="eklenecek_musteri.musteri_sube_id" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{sube.id}} - {{ sube.sube_adi }} </option>
+              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{ sube.id }} - {{
+                  sube.sube_adi
+                }}
+              </option>
             </select>
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fadi" class="text-xl">Müşteri Adı</label>
+            <label class="text-xl" for="fadi">Müşteri Adı</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Müşteri Adını Giriniz"
                 v-model="eklenecek_musteri.musteri_adi"
+                placeholder="Müşteri Adını Giriniz"
+                type="text"
             />
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsoyad" class="text-xl">Müşteri Soyad</label>
+            <label class="text-xl" for="fsoyad">Müşteri Soyad</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Müşteri Soyadını Giriniz"
                 v-model="eklenecek_musteri.musteri_soyad"
+                placeholder="Müşteri Soyadını Giriniz"
+                type="text"
             />
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="ftelefon" class="text-xl">Müşteri TC</label>
+            <label class="text-xl" for="ftelefon">Müşteri TC</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Müşteri TC'sini Giriniz"
                 v-model="eklenecek_musteri.musteri_tc"
+                placeholder="Müşteri TC'sini Giriniz"
+                type="text"
             />
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsoyad" class="text-xl">Müşteri İmza</label>
+            <label class="text-xl" for="fsoyad">Müşteri İmza</label>
           </div>
           <div class="input-area">
             <input
-                type="text"
-                placeholder="Müşteri İmzasını Giriniz"
                 v-model="eklenecek_musteri.musteri_imza"
+                placeholder="Müşteri İmzasını Giriniz"
+                type="text"
             />
           </div>
         </div>
 
 
-        <div class="mt-4"
-             v-if="eklenecek_musteri.musteri_adi === '' || eklenecek_musteri.musteri_soyad ==='' || eklenecek_musteri.musteri_tc ==='' || eklenecek_musteri.musteri_imza ==='' || eklenecek_musteri.musteri_sube_id===''">
+        <div v-if="eklenecek_musteri.musteri_adi === '' || eklenecek_musteri.musteri_soyad ==='' || eklenecek_musteri.musteri_tc ==='' || eklenecek_musteri.musteri_imza ==='' || eklenecek_musteri.musteri_sube_id===''"
+             class="mt-4">
 
-          <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
+          <error_component message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div class="mt-4"
-             v-if="eklenecek_musteri.musteri_adi !== '' && eklenecek_musteri.musteri_soyad !=='' && eklenecek_musteri.musteri_tc !==''  && eklenecek_musteri.musteri_imza !=='' || eklenecek_musteri.net_error===true">
+        <div v-if="eklenecek_musteri.musteri_adi !== '' && eklenecek_musteri.musteri_soyad !=='' && eklenecek_musteri.musteri_tc !==''  && eklenecek_musteri.musteri_imza !=='' || eklenecek_musteri.net_error===true"
+             class="mt-4">
 
-          <error_component v-if="musteriStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
+          <error_component v-if="musteriStore.net_error ===true"
+                           message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-          <button class="btn" v-if="musteriStore.net_error === false" @click="kaydet">Kaydet</button>
+          <button v-if="musteriStore.net_error === false" class="btn" @click="kaydet">Kaydet</button>
         </div>
       </div>
     </div>

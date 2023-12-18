@@ -220,7 +220,7 @@ def kredi_skor_guncelle(mapper, connection, target):
     """
     Bu fonksiyon, kredi ekleme ve güncelleme işlemlerinden sonra kredi skorunu günceller.
     """
-    inser_kredi_skoru_guncelle(mapper, connection, target)
+    # inser_kredi_skoru_guncelle(mapper, connection, target)
     # test(mapper, connection, target)
 
 @event.listens_for(KrediModeli, "after_delete")
@@ -228,6 +228,6 @@ def kredi_skor_guncelle(mapper, connection, target):
     """
     Bu fonksiyon, kredi silme işleminden sonra kredi skorunu günceller.
     """
-    delete_kredi_skoru_guncelle(mapper, connection, target)
+    # delete_kredi_skoru_guncelle(mapper, connection, target)
 
 

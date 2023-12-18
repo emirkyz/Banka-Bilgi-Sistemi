@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 
 const sidebar_expanded = ref(false);
 
@@ -11,21 +11,21 @@ const sidebar_expanded = ref(false);
     <button class="flex relative plus_sign"></button>
 
     <div class="flex flex-col">
-      <br />
+      <br/>
       <div id="sidebar_content_1">
         <router-link to="/fatura/ekle">
           <a class="font-medium text-xl">Fatura Ekle</a>
         </router-link>
       </div>
-      <hr class="my-4" />
+      <hr class="my-4"/>
       <div id="sidebar_content_2">
-        <router-link to="/fatura/list" class="font-medium text-2xl">
+        <router-link class="font-medium text-2xl" to="/fatura/list">
           <a class="font-medium text-xl">Faturaları Listele</a>
         </router-link>
       </div>
-      <hr class="my-4" />
+      <hr class="my-4"/>
       <div id="sidebar_content_2">
-        <router-link to="/fatura/odeme" class="font-medium text-2xl">
+        <router-link class="font-medium text-2xl" to="/fatura/odeme">
           <a class="font-medium text-xl">Fatura Ödeme</a>
         </router-link>
       </div>
@@ -43,10 +43,12 @@ const sidebar_expanded = ref(false);
     min-width: 100vw;
   }
 }
+
 #sidebar_content_1,
 #sidebar_content_2 {
   display: block;
 }
+
 .link-active a {
   padding: 3px;
   border-radius: 4px;

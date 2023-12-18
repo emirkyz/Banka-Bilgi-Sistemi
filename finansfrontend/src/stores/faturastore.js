@@ -1,7 +1,6 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
-import {useHesapStore} from "@/stores/hesapstore";
 
 export const useFaturaStore = defineStore("fatura", {
     state: () => ({
@@ -111,7 +110,7 @@ export const useFaturaStore = defineStore("fatura", {
                 this.yukle();
 
             })
-            this.get_all_fatura();
+
             this.sayfa = 0;
             this.total_fatura -= 1;
         },

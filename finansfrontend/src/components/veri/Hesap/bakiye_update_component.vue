@@ -10,7 +10,7 @@ const eklenecek_bakiye = ref(0);
 
 <template>
   <div class="flex flex-row">
-    <div class="edit p-16 mx-2" v-if="hesapStore.bakiye_update !== null">
+    <div v-if="hesapStore.bakiye_update !== null" class="edit p-16 mx-2">
       <a class="mr-2 font-bold">{{ hesapStore.selectedHesap['id'] }}</a>
       <a>Numaralı Hesap </a>
       <a>için Düzenleme Ekranı</a>
@@ -19,7 +19,7 @@ const eklenecek_bakiye = ref(0);
       <a class="mr-2 font-bold">Tutar: </a>
 
 
-      <input class="input-arae" v-model="eklenecek_bakiye">
+      <input v-model="eklenecek_bakiye" class="input-arae">
 
       <button
           class="btn exit my-4 p-2"
@@ -36,7 +36,8 @@ const eklenecek_bakiye = ref(0);
       <button class="btn exit my-4 p-2" @click="hesapStore.bakiye_update=null">
         İptal
       </button>
-      <error_component v-if="hesapStore.not_enough===true" message='Hesabınızda Yeterli Bakiye Yok. Farklı miktar deneyiniz.'></error_component>
+      <error_component v-if="hesapStore.not_enough===true"
+                       message='Hesabınızda Yeterli Bakiye Yok. Farklı miktar deneyiniz.'></error_component>
 
     </div>
   </div>

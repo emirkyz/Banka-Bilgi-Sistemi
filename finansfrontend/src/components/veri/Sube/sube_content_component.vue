@@ -28,7 +28,7 @@ sube_store.get_all_sube();
           :store="sube_store"
           message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-      <div id="error_component" v-if="sube_store.total_sube === 0 && sube_store.net_error===false">
+      <div v-if="sube_store.total_sube === 0 && sube_store.net_error===false" id="error_component">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
              role="alert">
           <strong class="font-bold">Hata!</strong>
@@ -68,12 +68,12 @@ sube_store.get_all_sube();
           <th>
             <a class="-ml-8">logo</a>
             <button
+                class="btn white right hover:bg-teal-300 hover:text-black"
                 @click="
                   sube_store.yukle((sube_store.sayfa = 0));
                   sube_store.get_all_sube();
                   sube_store.at_end = false;
                 "
-                class="btn white right hover:bg-teal-300 hover:text-black"
             >
               Yenile
             </button>
@@ -104,13 +104,13 @@ sube_store.get_all_sube();
       <br class="space"/>
       <!--    </div>-->
 
-      <button @click="sube_store.onceki_sayfa()" class="btn">
+      <button class="btn" @click="sube_store.onceki_sayfa()">
         <a> Önceki</a>
       </button>
       <button
-          @click="sube_store.sonraki_sayfa()"
-          v-bind:class="{ 'bg-gray-600': sube_store.at_end }"
           class="btn bg:var(--menu_arkaplan)"
+          v-bind:class="{ 'bg-gray-600': sube_store.at_end }"
+          @click="sube_store.sonraki_sayfa()"
       >
         Sonraki
       </button>
@@ -124,9 +124,7 @@ sube_store.get_all_sube();
 </template>
 
 <style scoped>
-.kredi-content {
-  min-height: 100vh;
-}
+
 
 button {
   transition: all 300ms ease-out;

@@ -4,29 +4,29 @@
   <div class="home_comp flex flex-row content-between outline outline-blue-950">
     <div id="baslik" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
       <h1 class="text-4xl">KYZ Finans'a Hoş Geldiniz.</h1>
-      <br />
+      <br/>
       <a class="font-medium text-xl transition-all"
-        >Bu uygulama "Web-Programlama" dersi kapsamında bir banka bilgi sistemi
+      >Bu uygulama "Web-Programlama" dersi kapsamında bir banka bilgi sistemi
         olmak için tasarlanmıştır.
       </a>
-      <br />
-      <br />
+      <br/>
+      <br/>
       <a class="text-xl transition-all"
-        >Bu uygulama ile banka şubeleri, banka müşterileri, müşterilerin
+      >Bu uygulama ile banka şubeleri, banka müşterileri, müşterilerin
         hesapları ve banka kredileri hakkında bilgi edinebilirsiniz.</a
       >
-      <br />
-      <br />
+      <br/>
+      <br/>
       <a class="text-xl transition-all"
-        >Sayfanın en üstünde yer alan navigasyon çubuğu ile çeşitli sayfalar
+      >Sayfanın en üstünde yer alan navigasyon çubuğu ile çeşitli sayfalar
         arasında gezinebilirsiniz.</a
       >
-      <img src="/src/assets/nav_bar_.png" alt="nav_bar" class="w-full" />
+      <img alt="nav_bar" class="w-full" src="/src/assets/nav_bar_.png"/>
     </div>
 
-    <hr />
+    <hr/>
     <div class="links bg-gray-400 rounded-2xl p-4 outline outline-blue-950">
-      <a href="https://github.com/emirkyz" class="text-2xl">GitHub</a>
+      <a class="text-2xl" href="https://github.com/emirkyz">GitHub</a>
     </div>
   </div>
 </template>

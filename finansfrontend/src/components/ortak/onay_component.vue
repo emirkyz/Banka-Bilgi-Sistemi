@@ -6,7 +6,7 @@ const onayKutusu = ref(true);
 
 <template>
   <teleport to="body">
-    <div class="modal" v-if="onayKutusu === true" @click="onayKutusu=false">
+    <div v-if="onayKutusu === true" class="modal" @click="onayKutusu=false">
       <div class="modal-content">
         <div class="modal-header">
           <h2>Onay</h2>
@@ -38,17 +38,20 @@ const onayKutusu = ref(true);
   display: inline-block;
   text-decoration: none;
 }
+
 .buton.olumlu:hover {
   background-color: forestgreen;
   color: var(--yazirengi);
   scale: 1.1;
 }
+
 .buton.olumsuz:hover {
   background-color: #f65e5e;
   color: var(--yazirengi);
   scale: 1.1;
 }
-.modal{
+
+.modal {
   display: flex; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -57,13 +60,14 @@ const onayKutusu = ref(true);
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   padding-top: 60px;
   justify-content: center;
   align-items: center;
 
 }
-.modal-content{
+
+.modal-content {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -71,7 +75,8 @@ const onayKutusu = ref(true);
   min-width: 30vw;
   z-index: 100;
 }
-.modal-header{
+
+.modal-header {
   font-size: 14pt;
   font-weight: bold;
   display: flex;

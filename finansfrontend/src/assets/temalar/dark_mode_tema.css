@@ -1,15 +1,15 @@
 .dark_mode {
-  --arkaplan: #3b3535;
-  --yazirengi: #e5e8e8;
-  /*    F0F3F4*/
+    --arkaplan: #3b3535;
+    --yazirengi: #e5e8e8;
+    /*    F0F3F4*/
 
-  --nav_arkaplan: linear-gradient(
-    180deg,
-    rgba(73, 74, 163, 1) 0%,
-    rgba(70, 77, 138, 1) 25%,
-    rgba(61, 74, 116, 1) 100%
-  );
-  --menu_arkaplan: #444444;
-  --btn_arkaplan: #707070;
-  --thead_arkaplan: #5b5b5b;
+    --nav_arkaplan: linear-gradient(
+            180deg,
+            rgba(73, 74, 163, 1) 0%,
+            rgba(70, 77, 138, 1) 25%,
+            rgba(61, 74, 116, 1) 100%
+    );
+    --menu_arkaplan: #444444;
+    --btn_arkaplan: #707070;
+    --thead_arkaplan: #5b5b5b;
 }

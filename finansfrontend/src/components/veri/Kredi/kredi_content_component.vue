@@ -63,12 +63,12 @@ kredi_store.get_all_kredi();
           <th>
             <a class="-ml-8">logo</a>
             <button
+                class="btn white right hover:bg-teal-300 hover:text-black"
                 @click="
                   kredi_store.yukle(kredi_store.sayfa = 0);
                   kredi_store.get_all_kredi();
                   kredi_store.at_end = false;
                 "
-                class="btn white right hover:bg-teal-300 hover:text-black"
             >
               Yenile
             </button>
@@ -92,7 +92,7 @@ kredi_store.get_all_kredi();
             Pasif
           </td>
 
-          <td> test </td>
+          <td> test</td>
           <td>{{ kredi["kredi_hesap_id"] }}</td>
 
           <td>{{ kredi["kredi_tutar"].toLocaleString() + " TL" }}</td>
@@ -110,13 +110,13 @@ kredi_store.get_all_kredi();
       <br class="space"/>
       <!--    </div>-->
 
-      <button @click="kredi_store.onceki_sayfa()" class="btn">
+      <button class="btn" @click="kredi_store.onceki_sayfa()">
         <a> Önceki</a>
       </button>
       <button
-          @click="kredi_store.sonraki_sayfa()"
-          v-bind:class="{ 'bg-gray-600': kredi_store.at_end }"
           class="btn bg:var(--menu_arkaplan)"
+          v-bind:class="{ 'bg-gray-600': kredi_store.at_end }"
+          @click="kredi_store.sonraki_sayfa()"
       >
         Sonraki
       </button>

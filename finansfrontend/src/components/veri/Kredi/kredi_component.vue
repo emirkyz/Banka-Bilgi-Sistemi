@@ -6,7 +6,7 @@ import kredi_sidebar_component from "@/components/veri/Kredi/kredi_sidebar_compo
   <main>
     <kredi_sidebar_component></kredi_sidebar_component>
     <!--    <kredi_content_component class="main_comp"></kredi_content_component>-->
-    <router-view id="router" class="middle"> </router-view>
+    <router-view id="router" class="middle"></router-view>
   </main>
 </template>
 

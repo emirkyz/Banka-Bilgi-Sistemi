@@ -6,37 +6,37 @@
   <nav class="nav-all ">
     <div id="title" class="flex text-white mr-6">
       <!--        TODO: Change this to a router-link-->
-      <a href="/" class="font-bold text-xl cursor-pointer">KYZ FİNANS </a>
+      <a class="font-bold text-xl cursor-pointer" href="/">KYZ FİNANS </a>
     </div>
     <div class="routes w-full block flex-grow sm:flex sm:items-center sm:w-auto">
       <div id="test" class="text-sm w-full">
         <router-link
-            to="/sube"
             class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+            to="/sube"
         >
           Banka Şubeleri
         </router-link>
         <router-link
-            to="/musteri"
             class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+            to="/musteri"
         >
           Müşteri
         </router-link>
         <router-link
-            to="/hesap"
             class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+            to="/hesap"
         >
           Hesaplar
         </router-link>
         <router-link
-            to="/kredi"
             class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+            to="/kredi"
         >
           Krediler
         </router-link>
         <router-link
-            to="/fatura"
-            class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent">
+            class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+            to="/fatura">
           Fatura Ödeme
         </router-link>
 
@@ -74,8 +74,8 @@
 
         <div>
           <router-link id="i"
-                       to="/doc"
                        class="right-0 rounded-xl inline-block text-sm px-2 py-1 leading-none text-white border-2 border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0 cursor-pointer"
+                       to="/doc"
           >i
           </router-link
           >
@@ -157,7 +157,7 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 

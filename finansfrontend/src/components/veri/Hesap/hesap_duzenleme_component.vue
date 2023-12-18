@@ -37,7 +37,7 @@ function duzenle() {
 
 <template>
   <div class="flex flex-row">
-    <div class="edit p-16 mx-2" v-if="musteriStore.selectedMusteri !== null">
+    <div v-if="musteriStore.selectedMusteri !== null" class="edit p-16 mx-2">
       <a class="mr-2 font-bold">{{ musteriStore.selectedMusteri['musteri_adi'] }}</a>
       <a>Müşterisi </a>
       <a>için Düzenleme Ekranı</a>
@@ -47,12 +47,12 @@ function duzenle() {
 
         <div class="input-row">
           <div class="label-area w-1/3">
-            <label for="fsubeid" class="text-xl">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
           </div>
 
           <div class="input-area">
-            <select class="input-area  bg-transparent w-2/4 border border-black" name="fsubeid"
-                    v-model="duzenlenecek_musteri.musteri_sube_id">
+            <select v-model="duzenlenecek_musteri.musteri_sube_id" class="input-area  bg-transparent w-2/4 border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{ sube.id }} - {{
                   sube.sube_adi
@@ -69,7 +69,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_adi'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Müşteri Adını Giriniz" v-model="duzenlenecek_musteri.musteri_adi">
+            <input v-model="duzenlenecek_musteri.musteri_adi" placeholder="Yeni Müşteri Adını Giriniz" type="text">
           </div>
         </div>
 
@@ -79,7 +79,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_soyad'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Müşteri Soyadını Giriniz" v-model="duzenlenecek_musteri.musteri_soyad">
+            <input v-model="duzenlenecek_musteri.musteri_soyad" placeholder="Yeni Müşteri Soyadını Giriniz" type="text">
           </div>
         </div>
 
@@ -89,7 +89,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_tc'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Müşteri TC'sini Giriniz" v-model="duzenlenecek_musteri.musteri_tc">
+            <input v-model="duzenlenecek_musteri.musteri_tc" placeholder="Yeni Müşteri TC'sini Giriniz" type="text">
           </div>
         </div>
 
@@ -99,7 +99,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_imza'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Müşteri İmzasını Giriniz" v-model="duzenlenecek_musteri.musteri_imza">
+            <input v-model="duzenlenecek_musteri.musteri_imza" placeholder="Yeni Müşteri İmzasını Giriniz" type="text">
           </div>
         </div>
 
@@ -113,8 +113,8 @@ function duzenle() {
             İptal
           </button>
         </div>
-        <div class="mt-4"
-             v-else>
+        <div v-else
+             class="mt-4">
           <error_component class="w-2/3" message="Lütfen Tüm Kutucukları Doldurun."></error_component>
         </div>
       </div>
@@ -158,7 +158,7 @@ input:focus {
 }
 
 .edit-input-row {
-  margin: 0px 10px;
+  margin: 0 10px;
 }
 
 .exit {

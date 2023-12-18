@@ -61,6 +61,7 @@ hr {
     /*background: #bdbdbd;*/
     color: var(--yazirengi);
 }
+
 button {
     transition: all 300ms ease-out;
 }
@@ -171,7 +172,7 @@ tr {
 }
 
 .home_comp {
-    margin:5px !important;
+    margin: 5px !important;
     border-radius: 23px;
     display: flex;
     flex-direction: row;
@@ -270,6 +271,7 @@ main {
     background: var(--menu_arkaplan);
     color: var(--yazirengi);
 }
+
 .middle-custom {
 
     margin: auto !important;

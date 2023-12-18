@@ -1,8 +1,8 @@
-import { ref } from "vue";
-import { defineStore } from "pinia";
+import {ref} from "vue";
+import {defineStore} from "pinia";
 
 export const useThemeStore = defineStore("tema", () => {
-  const secili_tema = ref("light_mode");
+    const secili_tema = ref("light_mode");
 
-  return { secili_tema };
+    return {secili_tema};
 });

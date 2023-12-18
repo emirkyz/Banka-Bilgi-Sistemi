@@ -22,7 +22,7 @@ function duzenle() {
 
 <template>
   <div class="flex flex-row">
-    <div class="edit p-16 mx-2" v-if="subeStore.selectedSube !== null">
+    <div v-if="subeStore.selectedSube !== null" class="edit p-16 mx-2">
       <a class="mr-2 font-bold">{{ subeStore.selectedSube['sube_adi'] }}</a>
       <a>Şubesi </a>
       <a>için Düzenleme Ekranı</a>
@@ -35,7 +35,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ subeStore.selectedSube['sube_adi'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Şube Adını Giriniz" v-model="duzenlenecek_sube.sube_adi">
+            <input v-model="duzenlenecek_sube.sube_adi" placeholder="Yeni Şube Adını Giriniz" type="text">
           </div>
         </div>
 
@@ -45,7 +45,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ subeStore.selectedSube['sube_adresi'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Şube Adresini Giriniz" v-model="duzenlenecek_sube.sube_adresi">
+            <input v-model="duzenlenecek_sube.sube_adresi" placeholder="Yeni Şube Adresini Giriniz" type="text">
           </div>
         </div>
 
@@ -55,7 +55,7 @@ function duzenle() {
             <a class=" mx-2 font-light">({{ subeStore.selectedSube['sube_tel'] }})</a>
           </div>
           <div class="edit-input-area">
-            <input type="text" placeholder="Yeni Şube Telefonunu Giriniz" v-model="duzenlenecek_sube.sube_tel">
+            <input v-model="duzenlenecek_sube.sube_tel" placeholder="Yeni Şube Telefonunu Giriniz" type="text">
           </div>
         </div>
 
@@ -114,7 +114,7 @@ input:focus {
 }
 
 .edit-input-row {
-  margin: 0px 10px;
+  margin: 0 10px;
 }
 
 .exit {

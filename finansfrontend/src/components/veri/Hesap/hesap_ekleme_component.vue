@@ -1,6 +1,5 @@
 <script setup>
 import {ref} from "vue";
-import Api_error from "@/components/ortak/error_component.vue";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useSubeStore} from "@/stores/subestore";
@@ -12,10 +11,10 @@ const musteriStore = useMusteriStore();
 hesapStore.init();
 subeStore.yukle();
 musteriStore.get_all_musteri()
-const para_birimleri=[
-    "Dolar",
-    "Euro",
-    "TL",
+const para_birimleri = [
+  "Dolar",
+  "Euro",
+  "TL",
 ]
 
 
@@ -40,7 +39,7 @@ function kaydet() {
 function hesap_filtre_on_musteri() {
   console.log(eklenecek_hesap.value.hesap_AcanSube)
   const sube_id = eklenecek_hesap.value.hesap_AcanSube
-  musteriStore.yukle(0,`?filtre=musteri_sube_id=${sube_id}`)
+  musteriStore.yukle(0, `?filtre=musteri_sube_id=${sube_id}`)
 
 }
 
@@ -58,70 +57,76 @@ function hesap_filtre_on_musteri() {
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black"  name="fsubeid" v-model="eklenecek_hesap.hesap_AcanSube" @change="hesap_filtre_on_musteri">
+            <select v-model="eklenecek_hesap.hesap_AcanSube" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid" @change="hesap_filtre_on_musteri">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{sube.id}} - {{ sube.sube_adi }} </option>
+              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{ sube.id }} - {{
+                  sube.sube_adi
+                }}
+              </option>
             </select>
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fadi" class="text-xl">Hesap Para Birimi</label>
+            <label class="text-xl" for="fadi">Hesap Para Birimi</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_hesap.hesap_ParaBirim">
+            <select v-model="eklenecek_hesap.hesap_ParaBirim" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="para in para_birimleri"> {{para}} </option>
+              <option v-for="para in para_birimleri"> {{ para }}</option>
             </select>
           </div>
         </div>
 
         <div class="input-row">
           <div class="label-area">
-            <label for="fsubeid" class="text-xl">Hesabın Bağlı Olduğu Müşteriyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Müşteriyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select class="input-area py-4 bg-transparent w-full border border-black" name="fsubeid" v-model="eklenecek_hesap.hesap_musteri_id">
+            <select v-model="eklenecek_hesap.hesap_musteri_id" class="input-area py-4 bg-transparent w-full border border-black"
+                    name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="musteri in musteriStore.musteriler"  :value="musteri['id']">
-                {{musteri["musteri_adi"]}} </option>
+              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']">
+                {{ musteri["musteri_adi"] }}
+              </option>
             </select>
           </div>
         </div>
-<!--        <div class="input-row">-->
-<!--          <div class="label-area">-->
-<!--            <label for="fsoyad" class="text-xl">Hesap Bakiye</label>-->
-<!--          </div>-->
-<!--          <div class="input-area">-->
-<!--            <input-->
-<!--                type="text"-->
-<!--                placeholder="Müşteri Soyadını Giriniz"-->
-<!--                v-model="eklenecek_musteri.musteri_soyad"-->
-<!--            />-->
-<!--          </div>-->
-<!--        </div>-->
+        <!--        <div class="input-row">-->
+        <!--          <div class="label-area">-->
+        <!--            <label for="fsoyad" class="text-xl">Hesap Bakiye</label>-->
+        <!--          </div>-->
+        <!--          <div class="input-area">-->
+        <!--            <input-->
+        <!--                type="text"-->
+        <!--                placeholder="Müşteri Soyadını Giriniz"-->
+        <!--                v-model="eklenecek_musteri.musteri_soyad"-->
+        <!--            />-->
+        <!--          </div>-->
+        <!--        </div>-->
 
 
+        <div v-if="eklenecek_hesap.hesap_ParaBirim === '' || eklenecek_hesap.hesap_AcanSube ==='' || eklenecek_hesap.hesap_musteri_id ===''"
+             class="mt-4">
 
-
-        <div class="mt-4"
-             v-if="eklenecek_hesap.hesap_ParaBirim === '' || eklenecek_hesap.hesap_AcanSube ==='' || eklenecek_hesap.hesap_musteri_id ===''">
-
-          <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
+          <error_component message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div class="mt-4"
-             v-if="eklenecek_hesap.hesap_ParaBirim !== '' && eklenecek_hesap.hesap_AcanSube !=='' && eklenecek_hesap.hesap_musteri_id !==''|| hesapStore.net_error===true">
+        <div v-if="eklenecek_hesap.hesap_ParaBirim !== '' && eklenecek_hesap.hesap_AcanSube !=='' && eklenecek_hesap.hesap_musteri_id !==''|| hesapStore.net_error===true"
+             class="mt-4">
 
-          <error_component v-if="hesapStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
+          <error_component v-if="hesapStore.net_error ===true"
+                           message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-          <button class="btn" v-if="hesapStore.net_error === false" @click="kaydet">Kaydet</button>
+          <button v-if="hesapStore.net_error === false" class="btn" @click="kaydet">Kaydet</button>
         </div>
       </div>
     </div>
