@@ -73,7 +73,7 @@ function kaydet() {
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
               <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{ musteri.id }} -
-                {{ musteri.musteri_adi }}
+                {{ musteri.musteri_adi }} {{ musteri.musteri_soyad }}
               </option>
             </select>
           </div>

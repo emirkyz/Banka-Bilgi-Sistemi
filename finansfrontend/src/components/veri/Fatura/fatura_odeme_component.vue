@@ -32,7 +32,7 @@ const odenecek_fatura = ref({
 });
 
 
-async function fatura_ode() {
+async function fatura_ode() { // TODO: Hesap para türüne göre kur dönüşümü yapılacak.
   const hesap_id = odenecek_fatura.value.hesap_id.valueOf();
   const miktar = odenecek_fatura.value.fatura.fatura_miktar;
 
@@ -94,7 +94,7 @@ function fatura_filtre_on_musteri() {
                     name="fsubeid" @change="fatura_filtre_on_musteri">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="musteri in musteriStore.all_musteri_list" :value="musteri['id']"> {{ musteri.id }} -
-                {{ musteri.musteri_adi }}
+                {{ musteri.musteri_adi }} {{ musteri.musteri_soyad }}
               </option>
             </select>
           </div>
