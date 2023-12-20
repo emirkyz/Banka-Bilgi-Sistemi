@@ -23,8 +23,6 @@ const para_birimleri = [
   "TL",
 ]
 
-const bakiye_error = ref(false);
-
 const odenecek_fatura = ref({
   fatura_musteri_id: "",
   hesap_id: "",
