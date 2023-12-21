@@ -1,7 +1,67 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
+import {ref} from "vue";
 
+// export const useSubeStore = defineStore("sube", () => {
+//     const sube = ref({
+//         id: 0,
+//         sube_adi: "",
+//         sube_adresi: "",
+//         sube_tel: "",
+//         olusturulma_tarihi: "",
+//         guncellenme_tarihi: "",
+//     });
+//
+//     const yeniSube = ref({
+//         sube_adi: "",
+//         sube_adresi: "",
+//         sube_tel: "",
+//     });
+//
+//     const subeler = ref([]);
+//     const id_order = ref("?sırala=ar_id");
+//     const total_sube = ref(0);
+//     const sayfa = ref(0);
+//     const adet = ref(10);
+//     const at_end = ref(false);
+//     const net_error = ref(false);
+//
+//     function yukle(sayfa = 0, siralama = id_order.value) {
+//         const loading = useLoadingState();
+//         loading.yuklemeyeBasla();
+//         axios.get(
+//             `http://127.0.0.1:5000/api/v1/sube/s/${sayfa.value}/k/${adet.value}${siralama.value}`,
+//         )
+//             .then((response) => {
+//                 if (response.status === 200) {
+//                     this.net_error = false;
+//                 }
+//                 at_end.value = false;
+//                 subeler.value = response.data;
+//                 loading.yuklemeyiBitir();
+//             })
+//             .catch(error => {
+//                 if (!error.response) {
+//                     // network error
+//                     net_error.value = true;
+//                     total_sube.value = 0;
+//                     console.log("Network Error");
+//                 } else {
+//                     net_error.value = false;
+//                 }
+//
+//             });
+//
+//     }
+//     function init() {
+//         sayfa.value = 0;
+//         adet.value = 10;
+//         at_end.value = false;
+//         yukle();
+//     }
+//
+// });
 
 export const useSubeStore = defineStore("sube", {
     state: () => ({

@@ -9,7 +9,7 @@ const temalar = [
 
 const secili_tema = storeToRefs(useThemeStore()).secili_tema;
 
-console.log(secili_tema);
+// console.log(secili_tema);
 </script>
 
 <template>

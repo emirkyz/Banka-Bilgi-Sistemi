@@ -8,7 +8,7 @@ const secili_tema = storeToRefs(useThemeStore()).secili_tema;
 
 // const secili_tema = ref("light_mode");
 
-console.log(secili_tema);
+// console.log(secili_tema);
 </script>
 
 <template>
