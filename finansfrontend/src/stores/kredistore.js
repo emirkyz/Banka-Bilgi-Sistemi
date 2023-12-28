@@ -96,10 +96,14 @@ export const useKrediStore = defineStore("kredi", {
             }
             axios.delete('http://127.0.0.1:5000/api/v1/kredi/' + kredi["id"]).then((response) => {
                 const kredi = response.data;
+                const musteri = useMusteriStore();
+                // console.log(kredi.silinen.kredi_musteri_id)
+                musteri.kredi_skor_guncelle(kredi.silinen.kredi_musteri_id)
                 this.yukle();
             })
             this.sayfa = 0;
-            console.log(this.total_credits)
+
+            // console.log(this.total_credits)
             this.total_credits -= 1;
         },
         sonraki_sayfa() {

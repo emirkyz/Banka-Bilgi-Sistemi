@@ -2,10 +2,11 @@
 import {useKrediStore} from "@/stores/kredistore";
 import {useLoadingState} from "@/stores/loading_state";
 import Error_component from "@/components/ortak/error_component.vue";
+import {useMusteriStore} from "@/stores/musteristore";
 
 const kredi_store = useKrediStore();
 const loading = useLoadingState();
-
+const musteri_store = useMusteriStore();
 kredi_store.init();
 kredi_store.get_all_kredi();
 </script>
@@ -54,7 +55,7 @@ kredi_store.get_all_kredi();
             <a class="font-bold text-red-500">(desc)</a>
           </th>
           <th class="w-[70px]">Kredi Durum</th>
-          <th>TEST</th>
+          <th>Müşteri</th>
           <th>Hesap ID</th>
           <th>Kredi Miktarı</th>
           <th>Kredi Son Tarih</th>
@@ -92,7 +93,7 @@ kredi_store.get_all_kredi();
             Pasif
           </td>
 
-          <td> test</td>
+          <td> {{ musteri_store.find_musteri(kredi.kredi_musteri_id) }}</td>
           <td>{{ kredi["kredi_hesap_id"] }}</td>
 
           <td>{{ kredi["kredi_tutar"].toLocaleString() + " TL" }}</td>
