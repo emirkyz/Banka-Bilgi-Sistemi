@@ -22,7 +22,7 @@ const para_birimleri = [
   "Euro",
   "TL",
 ]
-
+const onayKutusu = ref(false);
 const odenecek_fatura = ref({
   fatura_musteri_id: "",
   hesap_id: "",
@@ -40,7 +40,7 @@ async function fatura_ode() { // TODO: Hesap para türüne göre kur dönüşüm
   if (hesapStore.not_enough.valueOf() === true) {
     console.log("Yeterli Bakiye Yok");
   } else if (hesapStore.not_enough.valueOf() === false) {
-    await faturaStore.faturaOdeme(odenecek_fatura.value.fatura.id);
+    await faturaStore.faturaOdeme(odenecek_fatura.value.fatura);
     console.log("Yeterli Bakiye Var. Fatura ödendi");
     odenecek_fatura.value = {
       fatura_musteri_id: "",
@@ -130,8 +130,24 @@ function fatura_filtre_on_musteri() {
         <error_component v-if="hesapStore.not_enough===true"
                          message='Hesabınızda Yeterli Bakiye Yok. Farklı Hesap deneyiniz.'></error_component>
 
-        <button class="btn" @click="fatura_ode">Fatura Öde</button>
-
+        <button class="btn" @click="onayKutusu=true">Fatura Öde</button>
+        <teleport to="body">
+          <div v-if="onayKutusu === true" class="modal" @click="onayKutusu=false">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Onay</h2>
+                <div class="cursor-pointer" @click="onayKutusu=false">X</div>
+              </div>
+              <div class="modal-body">
+                <p>Faturayı ödemek istediğinizden emin misiniz?.</p>
+              </div>
+              <div class="modal-footer">
+                <button class="buton olumlu" @click="onayKutusu=false; fatura_ode();">Öde</button>
+                <button class="buton olumsuz" @click="onayKutusu=false">Kapat</button>
+              </div>
+            </div>
+          </div>
+        </teleport>
 
         <!--        <div class="input-row">-->
         <!--          <div class="label-area">-->
@@ -194,4 +210,95 @@ input:focus {
 button {
   transition: all 0.2s ease-in-out;
 }
+.buton {
+  color: var(--yazirengi);
+  border: #161612 1px solid;
+  background-color: var(--menu_arkaplan);
+  padding: 7px 14px;
+  margin: 7px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.buton.olumlu:hover {
+  background-color: forestgreen;
+  color: var(--yazirengi);
+  scale: 1.1;
+}
+
+.buton.olumsuz:hover {
+  background-color: #f65e5e;
+  color: var(--yazirengi);
+  scale: 1.1;
+}
+
+.modal {
+  display: flex; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  min-width: 30vw;
+  z-index: 100;
+}
+
+.modal-header {
+  font-size: 14pt;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-area {
+  display: block;
+  height: 100%;
+
+  padding: 10px;
+}
+
+
+input {
+  background: var(--menu_arkaplan);
+  width: 100%;
+  padding: 10px;
+  font-size: 24px;
+  outline: grey solid thin;
+}
+
+input:focus {
+  outline: black solid medium;
+}
+
+.input-row {
+  margin-top: 20px;
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+option {
+  background: var(--menu_arkaplan);
+}
+
 </style>

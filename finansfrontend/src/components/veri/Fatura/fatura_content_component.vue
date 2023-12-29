@@ -102,9 +102,9 @@ musteri_store.get_all_musteri();
             <!--            <button @click="console.log(musteri)">a</button>-->
             <button class="btn-sil  content-center" @click="faturaStore.faturaSil(fatura)">Sil</button>
             <br>
-            <button class="btn-kredi-ekle content-center"
-                    @click="faturaStore.bakiye_update=fatura ; faturaStore.selectedHesap=fatura;">Bakiye ekle
-            </button>
+<!--            <button class="btn-kredi-ekle content-center"-->
+<!--                    @click="faturaStore.bakiye_update=fatura ; faturaStore.selectedHesap=fatura;">Bakiye ekle-->
+<!--            </button>-->
           </td>
         </tr>
       </table>

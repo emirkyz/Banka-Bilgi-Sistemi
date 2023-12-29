@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
+import {useHareketStore} from "@/stores/hareketsotre";
 
 export const useFaturaStore = defineStore("fatura", {
     state: () => ({
@@ -36,7 +37,6 @@ export const useFaturaStore = defineStore("fatura", {
                     if (response.status === 200) {
                         this.net_error = false;
                     }
-
                     this.at_end = false;
                     this.faturalar = response.data;
                     loading.yuklemeyiBitir();
@@ -56,7 +56,7 @@ export const useFaturaStore = defineStore("fatura", {
         },
         get_all_fatura() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/fatura/k/100000000000`)
+                .get(`http://127.0.0.1:5000/api/v1/fatura/k/0`)
                 .then((response) => {
                     this.all_hesap_list = response.data;
                     this.total_fatura = response.data.length;
@@ -64,7 +64,7 @@ export const useFaturaStore = defineStore("fatura", {
         },
         get_all_fatura_by_musteri(siralama) {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/fatura/k/100000000000${siralama}`)
+                .get(`http://127.0.0.1:5000/api/v1/fatura/k/0${siralama}`)
                 .then((response) => {
                     this.all_fatura_list = response.data;
                     this.total_fatura = response.data.length;
@@ -93,8 +93,8 @@ export const useFaturaStore = defineStore("fatura", {
                 } else {
                     this.net_error = false;
                 }
-
             });
+
         },
         faturaDuzenle(fatura, fatura_id) {
             axios.put('http://127.0.0.1:5000/api/v1/fatura/' + fatura_id, fatura).then((response) => {
@@ -114,11 +114,14 @@ export const useFaturaStore = defineStore("fatura", {
             this.sayfa = 0;
             this.total_fatura -= 1;
         },
-        faturaOdeme(fatura_id) {
-            axios.get('http://127.0.0.1:5000/api/v1/fatura/odeme/' + fatura_id).then((response) => {
+        faturaOdeme(fatura) {
+            axios.get('http://127.0.0.1:5000/api/v1/fatura/odeme/' + fatura.id).then((response) => {
                 const fatura = response.data;
                 this.yukle(this.sayfa = 0);
             })
+            const hareket = useHareketStore()
+            const {hareketEkle} = hareket;
+            hareketEkle("Fatura Ödemesi", fatura.fatura_miktar, fatura.fatura_musteri_id)
         },
         find_fatura_by_id(id) {
             for (let i = 0; i < this.all_hesap_list.length; i++) {

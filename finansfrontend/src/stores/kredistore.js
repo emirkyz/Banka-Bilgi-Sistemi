@@ -2,6 +2,7 @@ import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
 import {useMusteriStore} from "@/stores/musteristore";
+import {useHareketStore} from "@/stores/hareketsotre";
 
 export const useKrediStore = defineStore("kredi", {
     state: () => ({
@@ -64,6 +65,11 @@ export const useKrediStore = defineStore("kredi", {
                 });
         },
         krediEkle(kredi) {
+
+            if (kredi.kredi_son_tarih < new Date().toISOString().slice(0, 10)) {
+                alert("Kredi son tarihi bugünden küçük olamaz.");
+                return;
+            }
             axios
                 .post("http://127.0.0.1:5000/api/v1/kredi/", kredi)
                 .then((response) => {
@@ -82,6 +88,10 @@ export const useKrediStore = defineStore("kredi", {
                 }
 
             });
+            const hareket = useHareketStore()
+            const {hareketEkle} = hareket;
+
+            hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_hesap_id)
         },
         krediDuzenle(kredi, kredi_id) {
             axios.put('http://127.0.0.1:5000/api/v1/sube/' + kredi_id, kredi).then((response) => {
@@ -91,6 +101,7 @@ export const useKrediStore = defineStore("kredi", {
             })
         },
         krediSil(kredi) {
+
             if (confirm("Krediyi silmek istediğinize emin misiniz?")) {
                 console.log(kredi["id"]);
             }
@@ -102,7 +113,9 @@ export const useKrediStore = defineStore("kredi", {
                 this.yukle();
             })
             this.sayfa = 0;
-
+            const hareket = useHareketStore()
+            const {hareketEkle} = hareket;
+            hareketEkle("Kredi Ödenmesi", kredi.kredi_tutar, kredi.kredi_hesap_id)
             // console.log(this.total_credits)
             this.total_credits -= 1;
         },
