@@ -38,8 +38,11 @@ def sorgulama(sorgu: Select, veri_sinifi: type, sayfa_no: int = 0, kayit_sayisi:
         iii) Filtreyi çalıştırırız.
     """
 
-    sorgu = sorgu.limit(kayit_sayisi)
-    sorgu = sorgu.offset(sayfa_no * kayit_sayisi)
+    if sayfa_no >= 0 and kayit_sayisi > 0:
+        sorgu = sorgu.limit(kayit_sayisi)
+        sorgu = sorgu.offset(sayfa_no * kayit_sayisi)
+
+
 
     siralama_alanlari = request.args.getlist('sırala')
     sutunlar = [col.key for col in inspect(veri_sinifi).mapper.column_attrs]

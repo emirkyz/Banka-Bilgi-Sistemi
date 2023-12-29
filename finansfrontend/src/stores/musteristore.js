@@ -216,7 +216,7 @@ export const useMusteriStore = defineStore("musteri", {
         },
         get_all_musteri() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/musteri/k/100000000000${this.id_order}`)
+                .get(`http://127.0.0.1:5000/api/v1/musteri/k/0${this.id_order}`)
                 .then((response) => {
                     this.all_musteri_list = response.data;
                     this.total_musteri = response.data.length;

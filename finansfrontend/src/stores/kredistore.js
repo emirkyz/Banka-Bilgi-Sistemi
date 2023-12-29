@@ -58,7 +58,7 @@ export const useKrediStore = defineStore("kredi", {
         },
         get_all_kredi() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/kredi/k/100000000000`)
+                .get(`http://127.0.0.1:5000/api/v1/kredi/k/0`)
                 .then((response) => {
                     this.total_credits = response.data.length;
                 });

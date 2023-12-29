@@ -5,7 +5,7 @@ Genel bir blueprint oluşturarak kolay bir şekilde yazılma yeni blueprintler e
 """
 
 from flask import Blueprint, abort, request
-from sqlalchemy import select, inspect
+from sqlalchemy import select, inspect, func
 
 from blueprintler.VeriSorgulama import sorgulama
 from veri import db
@@ -32,7 +32,7 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         :param kayit_sayisi: Sayfada kaç kayıt olacak
         :return: Verileri döndürür.
         """
-
+        sayfa = max(0,sayfa_no)
         sorgu = select(veri_sinifi)
         sorgu = sorgulama(sorgu, veri_sinifi, sayfa_no, kayit_sayisi)
         veriler = db.session.scalars(sorgu).all()
@@ -46,10 +46,29 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         :param id: Verinin id'si
         :return: Veriyi döndürür.
         """
+
         sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
         veri = db.session.scalars(sorgu).one()
 
         return veri.to_dict()
+
+    @bp.route('/sayfa_sayisi', methods=['GET'])
+    @bp.route('/sayfa_sayisi/<int:kayit_sayisi>', methods=['GET'])
+    def sayfa_sayisi(kayit_sayisi: int = 10):
+        """
+        Veri tabanındaki verilerin sayfa sayısını döndürür.
+        :param kayit_sayisi: Sayfada kaç kayıt olacak
+        :return: Sayfa sayısını döndürür.
+        """
+        sorgu = select(func.count("*")).select_from(veri_sinifi)
+        sorgu = sorgulama(sorgu, veri_sinifi, -1, kayit_sayisi)
+        cevap = db.session.scalars(sorgu).all()
+
+        kalan = cevap[0] % kayit_sayisi
+        sayfa_sayisi = cevap[0] // kayit_sayisi
+        if kalan > 0:
+            sayfa_sayisi += 1
+        return {"sayfa_sayisi": sayfa_sayisi}
 
     @bp.route('/', methods=['POST'])
     @bp.route('', methods=['POST'])

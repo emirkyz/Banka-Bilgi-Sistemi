@@ -7,6 +7,8 @@ import {useMusteriStore} from "@/stores/musteristore";
 const kredi_store = useKrediStore();
 const loading = useLoadingState();
 const musteri_store = useMusteriStore();
+
+musteri_store.get_all_musteri();
 kredi_store.init();
 kredi_store.get_all_kredi();
 </script>
