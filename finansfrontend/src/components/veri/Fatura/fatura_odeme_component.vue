@@ -131,7 +131,7 @@ function fatura_filtre_on_musteri() {
         <error_component v-if="hesapStore.not_enough===true"
                          message='Hesabınızda Yeterli Bakiye Yok. Farklı Hesap deneyiniz.'></error_component>
 
-        <button class="btn" @click="onayKutusu=true">Fatura Öde</button>
+<!--        <button class="btn" @click="onayKutusu=true">Fatura Öde</button>-->
         <teleport to="body">
           <div v-if="onayKutusu === true" class="modal" @click="onayKutusu=false">
             <div class="modal-content">
@@ -164,21 +164,21 @@ function fatura_filtre_on_musteri() {
         <!--        </div>-->
 
 
-        <!--        <div class="mt-4"-->
-        <!--             v-if="eklenecek_hesap.hesap_ParaBirim === '' || eklenecek_hesap.hesap_AcanSube ==='' || eklenecek_hesap.hesap_musteri_id ===''">-->
+                <div class="mt-4"
+                     v-if="odenecek_fatura.fatura === '' || odenecek_fatura.fatura_musteri_id ==='' || odenecek_fatura.hesap_id ===''">
 
-        <!--          <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>-->
+                  <error_component  message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
-        <!--          &lt;!&ndash;          <button class="btn cursor-default">Kaydet</button>&ndash;&gt;-->
+                  <!--          <button class="btn cursor-default">Kaydet</button>-->
 
-        <!--        </div>-->
-        <!--        <div class="mt-4"-->
-        <!--             v-if="eklenecek_hesap.hesap_ParaBirim !== '' && eklenecek_hesap.hesap_AcanSube !=='' && eklenecek_hesap.hesap_musteri_id !==''|| hesapStore.net_error===true">-->
+                </div>
+                <div class="mt-4"
+                     v-if="odenecek_fatura.fatura !== '' && odenecek_fatura.fatura_musteri_id !=='' && odenecek_fatura.hesap_id !==''|| hesapStore.net_error===true">
 
-        <!--          <error_component v-if="hesapStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>-->
+                  <error_component v-if="hesapStore.net_error ===true"  message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-        <!--          <button class="btn" v-if="hesapStore.net_error === false" @click="kaydet">Kaydet</button>-->
-        <!--        </div>-->
+                  <button class="btn" v-if="hesapStore.net_error === false" @click="onayKutusu=true">Kaydet</button>
+                </div>
       </div>
     </div>
   </main>

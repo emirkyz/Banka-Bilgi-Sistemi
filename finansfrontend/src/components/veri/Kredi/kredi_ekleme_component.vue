@@ -68,8 +68,8 @@ function kaydet() {
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
-              <option v-for="hesap in hesapStore.hesaplar" :value="hesap['id']"> {{ hesap.id }} -
-                {{ musteriStore.find_musteri(hesap['hesap_musteri_id']) }}
+              <option v-for="hesap in hesapStore.hesaplar" :value="hesap['id']"> Hesap ID : {{ hesap.id }} /
+                Müşteri : {{ musteriStore.find_musteri(hesap['hesap_musteri_id']) }}
               </option>
             </select>
           </div>

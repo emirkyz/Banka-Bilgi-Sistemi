@@ -76,7 +76,7 @@ musteri_store.get_all_musteri();
           </th>
           <th>Hareket Türü</th>
           <th>Hareket Tarihi</th>
-          <th>Hareket Müşteri ID</th>
+          <th>İşlemi Gerçekleştiren Müşteri</th>
           <th>Hareket Miktarı</th>
           <th class="w-[200px]">
             <a class="-ml-8">logo</a>
@@ -101,7 +101,7 @@ musteri_store.get_all_musteri();
           <td>{{ hareket['id'] }}</td>
           <td>{{ hareket['hareket_turu'] }}</td>
           <td>{{ new Date(hareket['olusturulma_tarihi']).toLocaleDateString("tr-tr") }}</td>
-          <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id']) }}</td>
+          <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id'])   }}</td>
           <td>{{ hareket["hareketMiktar"] }} TL</td>
 
           <td class="right">
