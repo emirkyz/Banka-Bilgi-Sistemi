@@ -98,17 +98,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="tools.kredi_skor_updater.kredi_skor_update">
 <span class="sig-prename descclassname"><span class="pre">tools.kredi_skor_updater.</span></span><span class="sig-name descname"><span class="pre">kredi_skor_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">musteri_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tools/kredi_skor_updater.html#kredi_skor_update"><span class="viewcode-link"><span class="pre">[kaynak]</span></span></a><a class="headerlink" href="#tools.kredi_skor_updater.kredi_skor_update" title="Link to this definition"></a></dt>
-<dd><p>Kredi skorunu güncelleyen fonksiyon</p>
-<p>3 ayrı ağırlık değeri kullanılarak kredi skoru hesaplanır.</p>
-<p>Formül: (w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı) + (w3 * fatura_skor)</p>
-<p>Burada w1, w2 ve w3 ağırlık değerleridir.</p>
-<p>w1 = 0.4</p>
-<p>w2 = 0.4</p>
-<p>w3 = 0.2</p>
-<p>kredi_kullanımı = (aktif kredilerin toplam tutarı / toplam kredilerin toplam tutarı)</p>
-<p>aktif_kredi_oranı = (aktif kredi sayısı / toplam kredi sayısı)</p>
-<p>fatura_skor = (ödenen fatura sayısı / toplam fatura sayısı)</p>
-<p>Şeklinde hesaplanır.</p>
+<dd><p>Kredi skorunu güncelleyen fonksiyon
+3 ayrı ağırlık değeri kullanılarak kredi skoru hesaplanır.
+Formül: (w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı) + (w3 * fatura_skor)
+Burada w1, w2 ve w3 ağırlık değerleridir.
+w1 = 0.4
+w2 = 0.4
+w3 = 0.2</p>
+<p>kredi_kullanımı = (aktif kredilerin toplam tutarı / toplam kredilerin toplam tutarı)
+aktif_kredi_oranı = (aktif kredi sayısı / toplam kredi sayısı)
+fatura_skor = (ödenen fatura sayısı / toplam fatura sayısı)
+Şeklinde hesaplanır.
 :return: None</p>
 </dd></dl>
 

@@ -35,6 +35,11 @@ v1_bp.register_blueprint(score_bp, url_prefix='/score')
 
 @v1_bp.route('/score/<int:musteri_id>', methods=['GET'])
 def score(musteri_id):
+    """
+        Kredi skoru hesaplaması için kullanılır.
+        Parameters:
+            musteri_id: Müşterinin id'si
+    """
     sonuc = kredi_skor_update(musteri_id)
     return {'score': sonuc}
 

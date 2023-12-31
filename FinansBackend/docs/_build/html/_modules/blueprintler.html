@@ -112,6 +112,11 @@
 <a class="viewcode-back" href="../blueprintler.html#blueprintler.score">[belgeler]</a>
 <span class="nd">@v1_bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/score/&lt;int:musteri_id&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">musteri_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Kredi skoru hesaplaması için kullanılır.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            musteri_id: Müşterinin id&#39;si</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sonuc</span> <span class="o">=</span> <span class="n">kredi_skor_update</span><span class="p">(</span><span class="n">musteri_id</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="n">sonuc</span><span class="p">}</span></div>
 
