@@ -4,6 +4,7 @@ import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useHareketStore} from "@/stores/hareketsotre";
 import {storeToRefs} from "pinia";
+import {onMounted} from "vue";
 
 
 const loading = useLoadingState();
@@ -11,7 +12,9 @@ const musteri_store = useMusteriStore();
 
 const hareketStore = useHareketStore()
 const {init, yukle, order_by_id, hareketSil, sonraki_sayfa, onceki_sayfa} = hareketStore;
-init();
+onMounted(() => {
+  init();
+})
 const {
   selected_hareket,
   sayfa,
@@ -95,13 +98,15 @@ musteri_store.get_all_musteri();
         </thead>
         <tr
             v-for="hareket in hareketler"
-            :key="hesap"
+            :key="hareketStore"
             v-bind:class="{ 'opacity-0': loading.loading }"
         >
           <td>{{ hareket['id'] }}</td>
-          <td>{{ hareket['hareket_turu'] }}</td>
+          <td class="font-medium"
+              :class="hareket['hareket_turu'] === 'Fatura Ödemesi' ? 'text-green-500' : hareket['hareket_turu'] === 'Kredi Ödenmesi' ? 'text-green-500' : 'text-red-500'"
+          >{{ hareket['hareket_turu'] }}</td>
           <td>{{ new Date(hareket['olusturulma_tarihi']).toLocaleDateString("tr-tr") }}</td>
-          <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id'])   }}</td>
+          <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id']) }}</td>
           <td>{{ hareket["hareketMiktar"] }} TL</td>
 
           <td class="right">
@@ -131,20 +136,9 @@ musteri_store.get_all_musteri();
 </template>
 
 <style scoped>
-.btn-kredi-ekle {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  margin: 2px 2px;
-  cursor: pointer;
-  border-radius: 4px;
+td {
+  padding: 15px;
 }
-
 
 button {
   transition: all 300ms ease-out;

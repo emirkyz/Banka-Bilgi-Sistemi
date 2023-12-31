@@ -3,14 +3,18 @@ import {useKrediStore} from "@/stores/kredistore";
 import {useLoadingState} from "@/stores/loading_state";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
+import {onMounted} from "vue";
 
 const kredi_store = useKrediStore();
 const loading = useLoadingState();
 const musteri_store = useMusteriStore();
 
-musteri_store.get_all_musteri();
-kredi_store.init();
-kredi_store.get_all_kredi();
+onMounted(() => {
+  musteri_store.get_all_musteri();
+  kredi_store.init();
+  kredi_store.get_all_kredi();
+});
+
 </script>
 
 <template>
@@ -85,15 +89,16 @@ kredi_store.get_all_kredi();
         >
           <td>{{ kredi["id"] }}</td>
           <td
-              v-if="new Date(kredi['kredi_son_tarih']) > new Date()"
+              :class="kredi['kredi_durum'] === 'Aktif' ? 'text-green-500 font-bold' : kredi['kredi_durum'] === 'Pasif' ? 'text-red-500' : 'text-yellow-500'"
               class="text-green-500 font-bold"
           >
-            Aktif
+            {{ kredi["kredi_durum"] }}
           </td>
-          <td v-if="new Date(kredi['kredi_son_tarih']) < new Date()"
-              class="text-red-500">
-            Pasif
-          </td>
+
+<!--          <td v-if="new Date(kredi['kredi_son_tarih']) < new Date()"-->
+<!--              class="text-red-500">-->
+<!--            Pasif-->
+<!--          </td>-->
 
           <td> {{ musteri_store.find_musteri(kredi.kredi_musteri_id) }}</td>
           <td>{{ kredi["kredi_hesap_id"] }}</td>
@@ -102,9 +107,10 @@ kredi_store.get_all_kredi();
           <td>{{ new Date(kredi["kredi_son_tarih"]).toLocaleDateString("tr-tr") }}</td>
           <td>{{ kredi["kredi_faiz_orani"] }}</td>
 
-          <td class="right">
+          <td class="butonlar right">
             <button class="btn content-center">Düzenle</button>
             <button class="btn-sil  content-center" @click="kredi_store.krediSil(kredi)">Sil</button>
+            <button class="btn-öde content-center" @click="kredi_store.kredi_ode(kredi)">Kredi Öde</button>
           </td>
         </tr>
       </table>
@@ -128,10 +134,33 @@ kredi_store.get_all_kredi();
 </template>
 
 <style scoped>
+.butonlar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
 button {
   transition: all 300ms ease-out;
 }
-
+.btn-öde{
+  font-size: 10pt;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 2px 5px;
+  margin: 0 2px;
+  cursor: pointer;
+  transition: all 300ms ease-out;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.btn-öde:hover{
+  background-color: #000;
+  color: #fff;
+}
 .loader {
   position: relative;
   bottom: 0;

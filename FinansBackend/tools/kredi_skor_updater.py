@@ -1,4 +1,5 @@
 import copy
+from datetime import datetime
 
 from sqlalchemy import select
 
@@ -25,9 +26,9 @@ def kredi_skor_update(musteri_id):
     # print(f"musteri id: {musteri.id}")
     # Önce kredi bilgilerini çekiyoruz
 
-    sorgu = select(KrediModeli).where(KrediModeli.kredi_musteri_id == musteri_id)
+    sorgu2 = select(KrediModeli).where(KrediModeli.kredi_musteri_id == musteri_id)
 
-    krediler = copy.deepcopy(db.session.scalars(sorgu).all())
+    krediler = copy.deepcopy(db.session.scalars(sorgu2).all())
 
     #sonra fatura bilgilerini çekiyoruz
     sorgu = select(FaturaModeli).where(FaturaModeli.fatura_musteri_id == musteri_id)
@@ -37,9 +38,9 @@ def kredi_skor_update(musteri_id):
 
     #Kredi ile ilgili hesaplamaları yapıyoruz
     active = 0
-    passive = 0
+    odenen = 0
     aktif_total = 0
-    passive_total = 0
+    odenen_total = 0
     total = len(krediler)
     if total < 5:
         musteri.musteri_total_kredi = total
@@ -49,14 +50,25 @@ def kredi_skor_update(musteri_id):
         return
     else:
         for kredi in krediler:
-            if kredi.kredi_durum == "Aktif":
-                active += 1
-                aktif_total += kredi.kredi_tutar
+            if kredi.kredi_son_tarih.date() < datetime.now().date() and kredi.kredi_durum == "Aktif":
+                sorgu4 = select(KrediModeli).where(KrediModeli.id == kredi.id)
+                kredi2 = db.session.scalars(sorgu4).first()
+                kredi2.kredi_durum = "Pasif"
+                db.session.commit()
+                continue
 
             else:
-                passive += 1
-                passive_total += kredi.kredi_tutar
-        toplam_kredi_tutar = aktif_total + passive_total
+                if kredi.kredi_durum == "Aktif":
+                    active += 1
+                    aktif_total += kredi.kredi_tutar
+
+                elif kredi.kredi_durum == "Ödendi":
+                    odenen += 1
+                    odenen_total += kredi.kredi_tutar
+                else:
+                    pass
+
+        toplam_kredi_tutar = aktif_total + odenen_total
         kredi_kullanımı = ((aktif_total / toplam_kredi_tutar))
         aktif_kredi_oranı = (active / total)
 

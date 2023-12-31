@@ -94,30 +94,40 @@ export const useKrediStore = defineStore("kredi", {
             hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_musteri_id)
         },
         krediDuzenle(kredi, kredi_id) {
-            axios.put('http://127.0.0.1:5000/api/v1/sube/' + kredi_id, kredi).then((response) => {
+            axios.put('http://127.0.0.1:5000/api/v1/kredi/' + kredi_id, kredi).then((response) => {
                 const kredi = response.data;
-
                 this.yukle(this.sayfa = 0);
             })
         },
         krediSil(kredi) {
-
             if (confirm("Krediyi silmek istediğinize emin misiniz?")) {
                 console.log(kredi["id"]);
+                axios.delete('http://127.0.0.1:5000/api/v1/kredi/' + kredi["id"]).then((response) => {
+                    const kredi = response.data;
+                    const musteri = useMusteriStore();
+                    // console.log(kredi.silinen.kredi_musteri_id)
+                    musteri.kredi_skor_guncelle(kredi.silinen.kredi_musteri_id)
+                    this.yukle(this.sayfa=0);
+                })
+                const hareket = useHareketStore()
+                const {hareketEkle} = hareket;
+                hareketEkle("Kredi Ödenmesi", kredi.kredi_tutar, kredi.kredi_hesap_id)
+                // console.log(this.total_credits)
+                this.total_credits -= 1;
             }
-            axios.delete('http://127.0.0.1:5000/api/v1/kredi/' + kredi["id"]).then((response) => {
-                const kredi = response.data;
-                const musteri = useMusteriStore();
-                // console.log(kredi.silinen.kredi_musteri_id)
-                musteri.kredi_skor_guncelle(kredi.silinen.kredi_musteri_id)
-                this.yukle();
-            })
-            this.sayfa = 0;
-            const hareket = useHareketStore()
-            const {hareketEkle} = hareket;
-            hareketEkle("Kredi Ödenmesi", kredi.kredi_tutar, kredi.kredi_hesap_id)
-            // console.log(this.total_credits)
-            this.total_credits -= 1;
+        },
+        kredi_ode(kredi) {
+            if (kredi.kredi_durum === "Ödendi") {
+                alert("Kredi zaten ödenmiş.");
+                return;
+            }
+            if (kredi.kredi_durum === "Pasif") {
+                alert("Kredi pasif durumda.");
+                return;
+            }
+            kredi.kredi_durum = "Ödendi";
+            this.krediDuzenle(kredi, kredi.id);
+
         },
         sonraki_sayfa() {
             if ((this.sayfa + 1) * this.adet >= this.total_credits) {

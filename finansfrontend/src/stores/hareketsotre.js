@@ -23,9 +23,9 @@ export const useHareketStore = defineStore("hareket", () => {
 
 
     function init() {
-        this.sayfa = 0;
-        this.adet = 10;
-        this.at_end = false;
+        sayfa.value = 0;
+        adet.value= 10;
+        at_end.value = false;
         get_all_hareket();
         yukle();
     }
@@ -39,6 +39,7 @@ export const useHareketStore = defineStore("hareket", () => {
                 }
                 at_end.value = false;
                 hareketler.value = response.data;
+                console.log(hareketler.value);
                 loading.yuklemeyiBitir();
             })
     }
@@ -47,7 +48,7 @@ export const useHareketStore = defineStore("hareket", () => {
         axios
             .get(`http://127.0.0.1:5000/api/v1/hesaphareket/k/0`)
             .then((response) => {
-                hareketler.value = response.data;
+                // hareketler.value = response.data;
                 total_hareket.value = response.data.length;
             });
     }
@@ -81,7 +82,7 @@ export const useHareketStore = defineStore("hareket", () => {
     }
 
     function order_by_id() {
-        if (this.id_order === "?sırala=ar_id") {
+        if (id_order.value === "?sırala=ar_id") {
             sayfa.value = 0;
             id_order.value = "?sırala=az_id";
             yukle();
@@ -92,8 +93,8 @@ export const useHareketStore = defineStore("hareket", () => {
         }
     }
 
-    function onceki_sayfa() {
-        if ((sayfa + 1) * adet >= total_hareket) {
+    function sonraki_sayfa() {
+        if ((sayfa.value + 1) * adet.value >= total_hareket.value) {
 
             at_end.value = true;
             return;
@@ -111,7 +112,7 @@ export const useHareketStore = defineStore("hareket", () => {
         yukle(sayfa.value);
     }
 
-    function sonraki_sayfa() {
+    function onceki_sayfa() {
         if (hareketler.value.length === 0) {
             return;
         }
