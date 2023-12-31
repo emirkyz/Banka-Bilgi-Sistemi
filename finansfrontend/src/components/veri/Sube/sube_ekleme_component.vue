@@ -76,8 +76,9 @@ function kaydet() {
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' || subeStore.net_error===true"
-             class="mt-4">
+        <div
+            v-if="eklenecek_sube.sube_adi !== '' && eklenecek_sube.sube_adresi !=='' && eklenecek_sube.sube_tel !=='' || subeStore.net_error===true"
+            class="mt-4">
 
           <error_component v-if="subeStore.net_error ===true"
                            message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>

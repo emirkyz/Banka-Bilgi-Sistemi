@@ -63,7 +63,8 @@ function kaydet() {
             <label class="text-xl" for="fsubeid">Kredi Verilecek Hesabı Seçiniz</label>
           </div>
           <div class="input-area">
-            <select v-model="eklenecek_kredi.kredi_hesap_id" class="input-area py-4 bg-transparent w-full border border-black"
+            <select v-model="eklenecek_kredi.kredi_hesap_id"
+                    class="input-area py-4 bg-transparent w-full border border-black"
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
@@ -111,16 +112,18 @@ function kaydet() {
             />
           </div>
         </div>
-        <div v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.kredi_hesap_id ==='' || eklenecek_kredi.kredi_tutar ===''"
-             class="mt-4">
+        <div
+            v-if="eklenecek_kredi.kredi_faiz_orani === '' || eklenecek_kredi.kredi_son_tarih ==='' || eklenecek_kredi.kredi_hesap_id ==='' || eklenecek_kredi.kredi_tutar ===''"
+            class="mt-4">
 
           <error_component message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div v-if="eklenecek_kredi.kredi_faiz_orani !== '' && eklenecek_kredi.kredi_son_tarih !=='' && eklenecek_kredi.kredi_tutar !=='' && eklenecek_kredi.kredi_hesap_id !==''|| eklenecek_kredi.net_error===true"
-             class="mt-4">
+        <div
+            v-if="eklenecek_kredi.kredi_faiz_orani !== '' && eklenecek_kredi.kredi_son_tarih !=='' && eklenecek_kredi.kredi_tutar !=='' && eklenecek_kredi.kredi_hesap_id !==''|| eklenecek_kredi.net_error===true"
+            class="mt-4">
 
           <error_component v-if="krediStore.net_error ===true"
                            message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>

@@ -93,7 +93,7 @@ musteri_store.get_all_musteri();
           <td>{{ musteri["musteri_soyad"] }}</td>
           <td>{{ musteri["musteri_tc"] }}</td>
           <td>{{ musteri["musteri_sube_id"] }}</td>
-          <td id="score"> {{musteri["musteri_kredi_durum"]}} <br><span
+          <td id="score"> {{ musteri["musteri_kredi_durum"] }} <br><span
               class="extra">{{ musteri['musteri_kredi_skor'].toFixed(6) }}</span></td>
           <td>{{ musteri["musteri_total_kredi"] }}</td>
 

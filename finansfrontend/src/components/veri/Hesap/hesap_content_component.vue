@@ -149,7 +149,6 @@ musteri_store.get_all_musteri();
 }
 
 
-
 button {
   transition: all 300ms ease-out;
 }

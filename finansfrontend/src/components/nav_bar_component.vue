@@ -40,7 +40,7 @@
           Fatura Ödeme
         </router-link>
         <router-link to="/hareket"
-          class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+                     class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
         >
           Hesap Hareketleri
         </router-link>
@@ -98,7 +98,7 @@
 </template>
 
 <style scoped>
-.link-active{
+.link-active {
   padding: 10px 10px;
   align-items: center;
   justify-content: center;
@@ -143,13 +143,13 @@
     margin-left: 0;
   }
 }
+
 #test .info {
   margin-left: auto;
   @media (max-width: 768px) {
     margin-left: 0;
   }
 }
-
 
 
 .dropdown {
@@ -172,7 +172,7 @@
 
 .dropdown-content a {
   color: black;
-  padding: 12px ;
+  padding: 12px;
   text-decoration: none;
   display: block;
 }
@@ -185,10 +185,10 @@
   display: block;
 }
 
-.dropdown .dropbtn{
+.dropdown .dropbtn {
   border-radius: 7px;
   background-color: gray;
-  outline: dimgray  1px solid;
+  outline: dimgray 1px solid;
   border: #1a202c 1px solid;
   color: white;
   padding: 12px;

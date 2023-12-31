@@ -68,7 +68,8 @@ function kaydet() {
             <label class="text-xl" for="fsubeid">Fatura Kesilecek Müşteriyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select v-model="eklenecek_fatura.fatura_musteri_id" class="input-area py-4 bg-transparent w-full border border-black"
+            <select v-model="eklenecek_fatura.fatura_musteri_id"
+                    class="input-area py-4 bg-transparent w-full border border-black"
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
@@ -96,7 +97,8 @@ function kaydet() {
             <label class="text-xl" for="fadi">Fatura Türü</label>
           </div>
           <div class="input-area">
-            <select v-model="eklenecek_fatura.fatura_turu" class="input-area py-4 bg-transparent w-full border border-black"
+            <select v-model="eklenecek_fatura.fatura_turu"
+                    class="input-area py-4 bg-transparent w-full border border-black"
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="fatura in fatura_turleri"> {{ fatura }}</option>
@@ -104,16 +106,18 @@ function kaydet() {
           </div>
         </div>
 
-        <div v-if="eklenecek_fatura.fatura_turu === '' || eklenecek_fatura.fatura_miktar ==='' || eklenecek_fatura.fatura_musteri_id ===''"
-             class="mt-4">
+        <div
+            v-if="eklenecek_fatura.fatura_turu === '' || eklenecek_fatura.fatura_miktar ==='' || eklenecek_fatura.fatura_musteri_id ===''"
+            class="mt-4">
 
           <error_component message="Lütfen Tüm Kutucukları Doldurun."></error_component>
 
           <!--          <button class="btn cursor-default">Kaydet</button>-->
 
         </div>
-        <div v-if="eklenecek_fatura.fatura_turu !== '' && eklenecek_fatura.fatura_miktar !=='' && eklenecek_fatura.fatura_musteri_id !=='' || eklenecek_fatura.net_error===true"
-             class="mt-4">
+        <div
+            v-if="eklenecek_fatura.fatura_turu !== '' && eklenecek_fatura.fatura_miktar !=='' && eklenecek_fatura.fatura_musteri_id !=='' || eklenecek_fatura.net_error===true"
+            class="mt-4">
 
           <error_component v-if="faturaStore.net_error ===true"
                            message="API Bağlantısı sağlanamadı. Kaydetme İşlemi Çalışmayabilir. Sayfayı Yenilemeyi Deneyin."></error_component>

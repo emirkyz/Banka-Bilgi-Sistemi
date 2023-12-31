@@ -29,6 +29,7 @@ export const useHareketStore = defineStore("hareket", () => {
         get_all_hareket();
         yukle();
     }
+
     function yukle(sayfa = 0, siralama = id_order.value) {
         axios.get(
             `http://127.0.0.1:5000/api/v1/hesaphareket/s/${sayfa}/k/${adet.value}${siralama}`)
@@ -41,6 +42,7 @@ export const useHareketStore = defineStore("hareket", () => {
                 loading.yuklemeyiBitir();
             })
     }
+
     function get_all_hareket() {
         axios
             .get(`http://127.0.0.1:5000/api/v1/hesaphareket/k/0`)
@@ -49,6 +51,7 @@ export const useHareketStore = defineStore("hareket", () => {
                 total_hareket.value = response.data.length;
             });
     }
+
     function hareketEkle(tur, miktar, hesap_id) {
         hareket.value.hareket_turu = tur;
         hareket.value.hareketMiktar = miktar;
@@ -64,6 +67,7 @@ export const useHareketStore = defineStore("hareket", () => {
                 yukle();
             })
     }
+
     function hareketSil(hareket) {
         axios.delete(
             `http://127.0.0.1:5000/api/v1/hesaphareket/` + hareket.id)
@@ -75,7 +79,8 @@ export const useHareketStore = defineStore("hareket", () => {
                 yukle();
             })
     }
-    function order_by_id(){
+
+    function order_by_id() {
         if (this.id_order === "?sırala=ar_id") {
             sayfa.value = 0;
             id_order.value = "?sırala=az_id";
@@ -90,7 +95,7 @@ export const useHareketStore = defineStore("hareket", () => {
     function onceki_sayfa() {
         if ((sayfa + 1) * adet >= total_hareket) {
 
-            at_end.value= true;
+            at_end.value = true;
             return;
         }
         if (hareketler.value.length === 0) {
@@ -105,6 +110,7 @@ export const useHareketStore = defineStore("hareket", () => {
         sayfa.value += 1;
         yukle(sayfa.value);
     }
+
     function sonraki_sayfa() {
         if (hareketler.value.length === 0) {
             return;
@@ -116,6 +122,7 @@ export const useHareketStore = defineStore("hareket", () => {
         sayfa.value -= 1;
         yukle(sayfa.value);
     }
+
     return {
         init,
         selected_hareket,

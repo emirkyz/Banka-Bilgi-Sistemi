@@ -10,9 +10,18 @@ const loading = useLoadingState();
 const musteri_store = useMusteriStore();
 
 const hareketStore = useHareketStore()
-const {init,yukle, order_by_id, hareketSil,sonraki_sayfa,onceki_sayfa} = hareketStore;
+const {init, yukle, order_by_id, hareketSil, sonraki_sayfa, onceki_sayfa} = hareketStore;
 init();
-const {selected_hareket,sayfa, adet, hareketler, total_hareket, net_error, at_end, id_order} = storeToRefs(hareketStore);
+const {
+  selected_hareket,
+  sayfa,
+  adet,
+  hareketler,
+  total_hareket,
+  net_error,
+  at_end,
+  id_order
+} = storeToRefs(hareketStore);
 musteri_store.get_all_musteri();
 
 
@@ -26,7 +35,7 @@ musteri_store.get_all_musteri();
         <a class="text-xl transition-all"
         >{{ sayfa + 1 }}. sayfada
           {{ hareketler.length }} Tane kayıt gösteriliyor. Toplam
-          {{ total_hareket.valueOf()}} tane kayıt mevcut.</a>
+          {{ total_hareket.valueOf() }} tane kayıt mevcut.</a>
       </div>
       <hr class="style"/>
 
@@ -93,7 +102,7 @@ musteri_store.get_all_musteri();
           <td>{{ hareket['hareket_turu'] }}</td>
           <td>{{ new Date(hareket['olusturulma_tarihi']).toLocaleDateString("tr-tr") }}</td>
           <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id']) }}</td>
-          <td>{{ hareket["hareketMiktar"]  }} TL</td>
+          <td>{{ hareket["hareketMiktar"] }} TL</td>
 
           <td class="right">
             <button class="btn-sil  content-center" @click="hareketSil(hareket);">Sil</button>
@@ -135,7 +144,6 @@ musteri_store.get_all_musteri();
   cursor: pointer;
   border-radius: 4px;
 }
-
 
 
 button {

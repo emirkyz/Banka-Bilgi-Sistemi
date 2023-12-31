@@ -155,9 +155,6 @@ import {ref, toRaw} from "vue";
 // });
 
 
-
-
-
 export const useMusteriStore = defineStore("musteri", {
     state: () => {
         return {
@@ -185,7 +182,7 @@ export const useMusteriStore = defineStore("musteri", {
             this.at_end = false;
             this.yukle();
         },
-        async yukle(sayfa = 0, siralama = this.id_order,adet=this.adet) {
+        async yukle(sayfa = 0, siralama = this.id_order, adet = this.adet) {
             const loading = useLoadingState();
             loading.yuklemeyeBasla();
             this.selectedMusteri = null;

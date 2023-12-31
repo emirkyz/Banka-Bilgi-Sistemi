@@ -88,7 +88,8 @@ function fatura_filtre_on_musteri() {
             <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Müşteriyi Seçiniz</label>
           </div>
           <div class="input-area">
-            <select v-model="odenecek_fatura.fatura_musteri_id" class="input-area py-4 bg-transparent w-full border border-black"
+            <select v-model="odenecek_fatura.fatura_musteri_id"
+                    class="input-area py-4 bg-transparent w-full border border-black"
                     name="fsubeid" @change="fatura_filtre_on_musteri">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="musteri in musteriStore.all_musteri_list" :value="musteri['id']"> {{ musteri.id }} -
@@ -210,6 +211,7 @@ input:focus {
 button {
   transition: all 0.2s ease-in-out;
 }
+
 .buton {
   color: var(--yazirengi);
   border: #161612 1px solid;

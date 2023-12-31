@@ -51,7 +51,8 @@ function duzenle() {
           </div>
 
           <div class="input-area">
-            <select v-model="duzenlenecek_musteri.musteri_sube_id" class="input-area  bg-transparent w-2/4 border border-black"
+            <select v-model="duzenlenecek_musteri.musteri_sube_id"
+                    class="input-area  bg-transparent w-2/4 border border-black"
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{ sube.id }} - {{

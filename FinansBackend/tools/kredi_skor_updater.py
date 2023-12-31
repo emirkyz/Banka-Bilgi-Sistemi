@@ -69,7 +69,7 @@ def kredi_skor_update(musteri_id):
             musteri.musteri_kredi_durum = "Kredi Alabilir (Orta Riskli)"
         elif 0.5 <= score < 0.7:
             musteri.musteri_kredi_durum = "Kredi Alamaz (Yüksek Riskli)"
-        elif 0.7 <= score < 1.0:
+        elif 0.7 <= score <= 1.0:
             musteri.musteri_kredi_durum = "Kredi Alamaz (Çok Yüksek Riskli)"
 
         print(f"score = {score}")
