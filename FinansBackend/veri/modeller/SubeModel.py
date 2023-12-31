@@ -15,11 +15,12 @@ class SubeModeli(TemelVeriSinifi):
     """
         Bu sınıf, veritabanındaki "sube" tablosunun kolonlarını temsil ediyor.
 
-        Attributes:
+        Parameters:
             sube_adi: Şube adı
             sube_adresi: Şube adresi
             sube_tel: Şube telefonu
             sube_musterileri: Şubeye kayıtlı müşteriler
+            sube_hesaplar: Şubeye kayıtlı hesaplar
 
     """
     __tablename__ = 'sube'

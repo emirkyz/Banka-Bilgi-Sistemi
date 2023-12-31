@@ -3,7 +3,6 @@ Blueprintlerin tanımlandığı yer
 """
 from flask import Blueprint
 
-# from blueprintler.manav_blueprint import manav_bp
 from blueprintler.GenelBP import GenelBP
 from tools.kredi_skor_updater import kredi_skor_update
 from veri import *

@@ -11,15 +11,13 @@ class HesapHaraketModeli(TemelVeriSinifi):
     """
         Bu sınıf, veritabanındaki "hesapHaraket" tablosunun kolonlarını temsil ediyor.
 
-        Attributes:
-            hareket_hesap_id: Hareketin ait olduğu hesap id'si
+        Parameters:
+            hareket_musteri_id: Hareketin ait olduğu müşteri id'si
             hareketMiktar: Hareket miktarı
-            haraketTarih: Hareket tarihi
             hareketAciklama: Hareket açıklaması
     """
     __tablename__ = 'hesapHaraket'
 
-
-    hareket_musteri_id : Mapped[int] = mapped_column(ForeignKey('musteri.id'))
+    hareket_musteri_id: Mapped[int] = mapped_column(ForeignKey('musteri.id'))
     hareketMiktar: Mapped[str] = mapped_column(nullable=False)
     hareket_turu: Mapped[str] = mapped_column(nullable=False)

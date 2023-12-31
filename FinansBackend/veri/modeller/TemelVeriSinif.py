@@ -10,7 +10,7 @@ class TemelVeriSinifi(DeclarativeBase):
     """
     Bu sınıf, veritabanı modellerinin ortak özelliklerini içerir.
 
-    Attributes:
+    Parameters:
         id: Oluşturulan verinin id'si.
         olusturulma_tarihi: Oluşturulan verinin oluşturulma tarihi.
         guncellenme_tarihi: Oluşturulan verinin güncellenme tarihi.

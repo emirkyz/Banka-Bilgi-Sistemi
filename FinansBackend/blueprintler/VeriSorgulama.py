@@ -42,8 +42,6 @@ def sorgulama(sorgu: Select, veri_sinifi: type, sayfa_no: int = 0, kayit_sayisi:
         sorgu = sorgu.limit(kayit_sayisi)
         sorgu = sorgu.offset(sayfa_no * kayit_sayisi)
 
-
-
     siralama_alanlari = request.args.getlist('sırala')
     sutunlar = [col.key for col in inspect(veri_sinifi).mapper.column_attrs]
     for alan_adi in siralama_alanlari:

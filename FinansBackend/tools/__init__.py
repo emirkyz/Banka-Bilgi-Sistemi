@@ -1,0 +1,1 @@
+from tools.kredi_skor_updater import kredi_skor_update

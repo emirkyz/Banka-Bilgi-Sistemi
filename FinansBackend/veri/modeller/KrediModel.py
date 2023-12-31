@@ -5,8 +5,7 @@ KrediModel.py dosyası, kredi tablosunun modelini içerir.
 
 from datetime import datetime
 
-from flask_sqlalchemy.session import Session
-from sqlalchemy import ForeignKey, event, select
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
 from veri.modeller.TemelVeriSinif import TemelVeriSinifi
@@ -16,7 +15,7 @@ class KrediModeli(TemelVeriSinifi):
     """
     KrediModeli, kredi tablosunun modelini içerir.
 
-    Attributes:
+    Parameters:
         kredi_durum: KrediModeli nesnesinin durumunu belirtir.
         kredi_musteri_id: KrediModeli nesnesinin ilişkili olduğu müşterinin id'si.
         kredi_faiz_orani: KrediModeli nesnesinin faiz oranını belirtir.
@@ -79,6 +78,5 @@ class KrediModeli(TemelVeriSinifi):
     kredi_faiz_orani: Mapped[float] = mapped_column()
     kredi_son_tarih: Mapped[datetime] = mapped_column()
     kredi_tutar: Mapped[float] = mapped_column()
-
     kredi_ay: Mapped[int] = mapped_column(nullable=True)
     kredi_geri_odeme: Mapped[float] = mapped_column(nullable=True)

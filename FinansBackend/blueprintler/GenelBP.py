@@ -32,7 +32,7 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         :param kayit_sayisi: Sayfada kaç kayıt olacak
         :return: Verileri döndürür.
         """
-        sayfa = max(0,sayfa_no)
+        sayfa = max(0, sayfa_no)
         sorgu = select(veri_sinifi)
         sorgu = sorgulama(sorgu, veri_sinifi, sayfa_no, kayit_sayisi)
         veriler = db.session.scalars(sorgu).all()
