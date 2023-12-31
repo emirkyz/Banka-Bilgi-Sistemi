@@ -43,6 +43,7 @@ def kredi_skor_update(musteri_id):
     total = len(krediler)
     if total < 5:
         musteri.musteri_total_kredi = total
+        musteri.musteri_kredi_durum = "Yeterli Kredi Yok"
         db.session.commit()
         print("total kredi sayısı 5 ten küçük")
         return
@@ -51,6 +52,7 @@ def kredi_skor_update(musteri_id):
             if kredi.kredi_durum == "Aktif":
                 active += 1
                 aktif_total += kredi.kredi_tutar
+
             else:
                 passive += 1
                 passive_total += kredi.kredi_tutar
@@ -61,10 +63,14 @@ def kredi_skor_update(musteri_id):
         score = ((w1 * kredi_kullanımı) + (w2 * aktif_kredi_oranı))
 
         # kredi alınabilirlik durumu belirleme #TODO: kredi alınabilirlik durumu belirlemeyi aktif et
-        # if score < 0.5:
-        #     musteri.musteri_kredi_alabilirlik_durumu = "Kredi Alabilir"
-        # else:
-        #     musteri.musteri_kredi_alabilirlik_durumu = "Kredi Alamaz"
+        if score < 0.3:
+            musteri.musteri_kredi_durum = "Kredi Alabilir (Az Riskli)"
+        elif 0.3 <= score < 0.5:
+            musteri.musteri_kredi_durum = "Kredi Alabilir (Orta Riskli)"
+        elif 0.5 <= score < 0.7:
+            musteri.musteri_kredi_durum = "Kredi Alamaz (Yüksek Riskli)"
+        elif 0.7 <= score < 1.0:
+            musteri.musteri_kredi_durum = "Kredi Alamaz (Çok Yüksek Riskli)"
 
         print(f"score = {score}")
         musteri.musteri_kredi_skor = score

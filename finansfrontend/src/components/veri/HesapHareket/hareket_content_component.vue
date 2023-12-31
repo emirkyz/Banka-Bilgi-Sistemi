@@ -2,41 +2,45 @@
 import {useLoadingState} from "@/stores/loading_state";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
-import musteri_duzenleme_component from "@/components/veri/Musteri/musteri_duzenleme_component.vue";
+import {useHareketStore} from "@/stores/hareketsotre";
+import {storeToRefs} from "pinia";
 
-const musteri_store = useMusteriStore();
+
 const loading = useLoadingState();
+const musteri_store = useMusteriStore();
 
-musteri_store.init();
+const hareketStore = useHareketStore()
+const {init,yukle, order_by_id, hareketSil,sonraki_sayfa,onceki_sayfa} = hareketStore;
+init();
+const {selected_hareket,sayfa, adet, hareketler, total_hareket, net_error, at_end, id_order} = storeToRefs(hareketStore);
 musteri_store.get_all_musteri();
+
+
 </script>
 
 <template>
   <main>
     <div class="sube-content main_comp">
       <div id="sube" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
-        <h1 class="text-xl">Müşteriler</h1>
+        <h1 class="text-xl">Hesap Hareketleri</h1>
         <a class="text-xl transition-all"
-        >{{ musteri_store.sayfa + 1 }}. sayfada
-          {{ musteri_store.musteriler.length }} Tane kayıt gösteriliyor. Toplam
-          {{ musteri_store.total_musteri }} tane kayıt mevcut.</a>
+        >{{ sayfa + 1 }}. sayfada
+          {{ hareketler.length }} Tane kayıt gösteriliyor. Toplam
+          {{ total_hareket.valueOf()}} tane kayıt mevcut.</a>
       </div>
       <hr class="style"/>
 
       <error_component
-          v-if="musteri_store.net_error === true && musteri_store.total_musteri ===0"
-          :store="musteri_store"
+          v-if="net_error === true && total_hareket ===0"
+          :store="hareketStore"
           message="API Bağlantısı sağlanamadı. Sayfayı Yenilemeyi Deneyin."></error_component>
 
-      <div v-if="musteri_store.total_musteri === 0 && musteri_store.net_error===false" id="error_component">
+      <div v-if="hareketler.length === 0 && net_error===false" id="error_component">
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mx-4 rounded relative my-5"
              role="alert">
           <strong class="font-bold">Hata!</strong>
           <span class="mx-2 block sm:inline"
           >Kayıt Bulunamadı. Kayıt eklenmesi gerekiyor.</span>
-          <router-link to="/musteri/ekle">
-            <a class="font-medium ">Müşteri Eklemek için Tıklayınız</a>
-          </router-link>
         </div>
       </div>
 
@@ -46,35 +50,32 @@ musteri_store.get_all_musteri();
         <thead>
         <tr>
           <th
-              v-if="musteri_store.id_order === '?sırala=ar_id'"
+              v-if="id_order === '?sırala=ar_id'"
               class="cursor-pointer w-[90px]"
-              @click="musteri_store.order_by_id()"
+              @click="order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-green-500">(asc)</a>
           </th>
           <th
-              v-if="musteri_store.id_order === '?sırala=az_id'"
+              v-if="id_order === '?sırala=az_id'"
               class="cursor-pointer w-[90px]"
-              @click="musteri_store.order_by_id()"
+              @click="order_by_id()"
           >
             <a>ID</a>
             <a class="font-bold text-red-500">(desc)</a>
           </th>
-          <th>Müşteri Adı</th>
-          <th>Müşteri Soyad</th>
-          <th>Müşteri TC</th>
-          <th>Müşteri Şube ID</th>
-          <th>Müşteri Kredi Skor</th>
-          <th>Müşteri Toplam Kredi Sayısı</th>
+          <th>Hareket Türü</th>
+          <th>Hareket Tarihi</th>
+          <th>Hareket Müşteri ID</th>
+          <th>Hareket Miktarı</th>
           <th class="w-[200px]">
             <a class="-ml-8">logo</a>
             <button
                 class="btn white right hover:bg-teal-300 hover:text-black"
                 @click="
-                  musteri_store.yukle((musteri_store.sayfa = 0));
-                  musteri_store.get_all_musteri();
-                  musteri_store.at_end = false;
+                  init();
+                  at_end = false;
                 "
             >
               Yenile
@@ -84,26 +85,19 @@ musteri_store.get_all_musteri();
 
         </thead>
         <tr
-            v-for="musteri in musteri_store.musteriler"
-
+            v-for="hareket in hareketler"
+            :key="hesap"
             v-bind:class="{ 'opacity-0': loading.loading }"
         >
-          <td>{{ musteri["id"] }}</td>
-          <td>{{ musteri["musteri_adi"] }}</td>
-          <td>{{ musteri["musteri_soyad"] }}</td>
-          <td>{{ musteri["musteri_tc"] }}</td>
-          <td>{{ musteri["musteri_sube_id"] }}</td>
-          <td id="score"> {{musteri["musteri_kredi_durum"]}} <br><span
-              class="extra">{{ musteri['musteri_kredi_skor'].toFixed(6) }}</span></td>
-          <td>{{ musteri["musteri_total_kredi"] }}</td>
-
+          <td>{{ hareket['id'] }}</td>
+          <td>{{ hareket['hareket_turu'] }}</td>
+          <td>{{ new Date(hareket['olusturulma_tarihi']).toLocaleDateString("tr-tr") }}</td>
+          <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id']) }}</td>
+          <td>{{ hareket["hareketMiktar"]  }} TL</td>
 
           <td class="right">
-            <button class="btn content-center" @click="musteri_store.selectedMusteri=musteri">Düzenle</button>
-            <!--            <button @click="console.log(musteri)">a</button>-->
-            <button class="btn-sil  content-center" @click="musteri_store.musteriSil(musteri)">Sil</button>
+            <button class="btn-sil  content-center" @click="hareketSil(hareket);">Sil</button>
             <br>
-            <router-link class="btn-kredi-ekle content-center" to="/kredi/ekle">Kredi Ekle</router-link>
           </td>
         </tr>
       </table>
@@ -112,20 +106,16 @@ musteri_store.get_all_musteri();
       <br class="space"/>
       <!--    </div>-->
 
-      <button class="btn" @click="musteri_store.onceki_sayfa()">
+      <button class="btn" @click="onceki_sayfa()">
         <a> Önceki</a>
       </button>
       <button
           class="btn bg:var(--menu_arkaplan)"
-          v-bind:class="{ 'bg-gray-600': musteri_store.at_end }"
-          @click="musteri_store.sonraki_sayfa()"
+          v-bind:class="{ 'bg-gray-600': at_end }"
+          @click="sonraki_sayfa()"
       >
         Sonraki
       </button>
-
-      <musteri_duzenleme_component></musteri_duzenleme_component>
-
-
     </div>
 
   </main>
@@ -145,6 +135,7 @@ musteri_store.get_all_musteri();
   cursor: pointer;
   border-radius: 4px;
 }
+
 
 
 button {

@@ -91,7 +91,7 @@ export const useKrediStore = defineStore("kredi", {
             const hareket = useHareketStore()
             const {hareketEkle} = hareket;
 
-            hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_hesap_id)
+            hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_musteri_id)
         },
         krediDuzenle(kredi, kredi_id) {
             axios.put('http://127.0.0.1:5000/api/v1/sube/' + kredi_id, kredi).then((response) => {

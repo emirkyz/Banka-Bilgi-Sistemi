@@ -35,6 +35,7 @@ export const useHesapStore = defineStore("hesap", {
             this.not_enough = false;
             this.yukle();
         },
+
         yukle(sayfa = 0, siralama = this.id_order) {
             const loading = useLoadingState();
             loading.yuklemeyeBasla();

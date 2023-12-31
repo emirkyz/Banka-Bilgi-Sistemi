@@ -25,6 +25,8 @@ import fatura_component from "@/components/veri/Fatura/fatura_component.vue";
 import fatura_ekleme_component from "@/components/veri/Fatura/fatura_ekleme_component.vue";
 import fatura_content_component from "@/components/veri/Fatura/fatura_content_component.vue";
 import fatura_odeme_component from "@/components/veri/Fatura/fatura_odeme_component.vue";
+import hareket_component from "@/components/veri/HesapHareket/hareket_component.vue";
+import hareket_content_component from "@/components/veri/HesapHareket/hareket_content_component.vue";
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -77,6 +79,12 @@ const routes = [
             {path: "/fatura/list", component: fatura_content_component},
             {path: "/fatura/ekle", component: fatura_ekleme_component},
             {path: "/fatura/odeme", component: fatura_odeme_component}
+        ]
+    },
+    {
+        path: "/hareket", component: hareket_component,
+        children: [
+            {path: "/hareket/list", component: hareket_content_component},
         ]
     }
 ];

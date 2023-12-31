@@ -39,7 +39,11 @@
             to="/fatura">
           Fatura Ödeme
         </router-link>
-
+        <router-link to="/hareket"
+          class="hover:bg-gray-800 block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4 hover:bg-transparent"
+        >
+          Hesap Hareketleri
+        </router-link>
         <div class="dropdown ">
           <button class="dropbtn">Menü</button>
           <div class="dropdown-content">
@@ -73,7 +77,9 @@
             >
               Fatura Ödeme
             </router-link>
-
+            <router-link to="/hareket">
+              Hesap Hareketleri
+            </router-link>
           </div>
         </div>
 

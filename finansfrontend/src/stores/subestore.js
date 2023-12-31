@@ -120,7 +120,7 @@ export const useSubeStore = defineStore("sube", {
         },
         get_all_sube() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/sube/k/100000000000`)
+                .get(`http://127.0.0.1:5000/api/v1/sube/k/0`)
                 .then((response) => {
                     this.total_sube = response.data.length;
                 });
