@@ -55,7 +55,9 @@ function expand_sidebar() {
 #sidebar_content_2 {
   display: block;
 }
-
+a{
+  display: block;
+}
 .link-active,
 .link-active a {
   padding: 3px;

@@ -47,7 +47,9 @@ function expand_sidebar() {
     min-width: 100vw;
   }
 }
-
+a{
+  display: block;
+}
 #sidebar_content_1,
 #sidebar_content_2 {
   display: block;

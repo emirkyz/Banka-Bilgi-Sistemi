@@ -37,7 +37,9 @@ const sidebar_expanded = ref(false);
 #side_ {
   transition: width 300ms;
 }
-
+a{
+  display: block;
+}
 @media (max-width: 768px) {
   #side_ {
     min-width: 100vw;

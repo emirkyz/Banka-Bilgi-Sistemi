@@ -14,13 +14,13 @@ const sidebar_expanded = ref(false);
       <br/>
       <div id="sidebar_content_1">
         <router-link to="/hesap/ekle">
-          <a class="font-medium text-xl">Hesap Ekle</a>
+          <a class="font-medium text-xl ">Hesap Ekle</a>
         </router-link>
       </div>
       <hr class="my-4"/>
       <div id="sidebar_content_2">
         <router-link class="font-medium text-2xl" to="/hesap/list">
-          <a class="font-medium text-xl">Hesapları Listele</a>
+          <a class="font-medium text-xl  ">Hesapları Listele</a>
         </router-link>
       </div>
     </div>
@@ -28,6 +28,10 @@ const sidebar_expanded = ref(false);
 </template>
 
 <style scoped>
+
+a{
+  display: block;
+}
 #side_ {
   transition: width 300ms;
 }

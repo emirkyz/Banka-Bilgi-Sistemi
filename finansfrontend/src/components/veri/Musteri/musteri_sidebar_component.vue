@@ -52,7 +52,9 @@ function expand_sidebar() {
 #sidebar_content_2 {
   display: block;
 }
-
+a{
+  display: block;
+}
 .link-active a {
   padding: 3px;
   border-radius: 4px;
