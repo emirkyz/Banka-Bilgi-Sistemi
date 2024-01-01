@@ -3,8 +3,25 @@ import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
 import {ref} from "vue";
 
-
+/**
+ * @module HareketStore
+ * @description Hesap Hareketleri ile ilgili işlemlerin yapıldığı store
+ *
+ * @description Hesap Hareketleri ile ilgili store'da kullanılan değişkenler
+ * @property {Hareket} hareket
+ * @property {Hareket} selected_hareket
+ * @property {Hareket} hareketler
+ * @property {string} id_order
+ * @property {number} total_hareket
+ * @property {number} sayfa
+ * @property {number} adet
+ * @property {boolean} at_end
+ * @property {boolean} net_error
+ * @returns {{hareket, hareketler, id_order: string, sayfa: number, net_error: boolean, selected_hareket: null, total_hareket: number, at_end: boolean, adet: number}}
+ *
+ */
 export const useHareketStore = defineStore("hareket", () => {
+
     const hareket = ref({
         hareket_musteri_id: 0,
         hareketMiktar: 0,
@@ -21,7 +38,10 @@ export const useHareketStore = defineStore("hareket", () => {
     const loading = useLoadingState();
     loading.yuklemeyeBasla();
 
-
+    /**
+     * @function init
+     * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
+     */
     function init() {
         sayfa.value = 0;
         adet.value= 10;
@@ -30,6 +50,12 @@ export const useHareketStore = defineStore("hareket", () => {
         yukle();
     }
 
+    /**
+     * @function yukle
+     * @description Hesap Hareketleri listesini yükler
+     * @param sayfa
+     * @param siralama
+     */
     function yukle(sayfa = 0, siralama = id_order.value) {
         axios.get(
             `http://127.0.0.1:5000/api/v1/hesaphareket/s/${sayfa}/k/${adet.value}${siralama}`)
@@ -44,6 +70,10 @@ export const useHareketStore = defineStore("hareket", () => {
             })
     }
 
+    /**
+     * @function get_all_hareket
+     * @description Tüm hesap hareketlerini yükler
+     */
     function get_all_hareket() {
         axios
             .get(`http://127.0.0.1:5000/api/v1/hesaphareket/k/0`)
@@ -53,6 +83,13 @@ export const useHareketStore = defineStore("hareket", () => {
             });
     }
 
+    /**
+     * @function hareketEkle
+     * @description Müşteriye ID'sine göre Hesap Hareketi ekler.
+     * @param tur
+     * @param miktar
+     * @param hesap_id
+     */
     function hareketEkle(tur, miktar, hesap_id) {
         hareket.value.hareket_turu = tur;
         hareket.value.hareketMiktar = miktar;
@@ -69,6 +106,11 @@ export const useHareketStore = defineStore("hareket", () => {
             })
     }
 
+    /**
+     * @function hareketSil
+     * @description Hesap Hareketi siler
+     * @param hareket
+     */
     function hareketSil(hareket) {
         axios.delete(
             `http://127.0.0.1:5000/api/v1/hesaphareket/` + hareket.id)
@@ -81,6 +123,10 @@ export const useHareketStore = defineStore("hareket", () => {
             })
     }
 
+    /**
+     * @function order_by_id
+     * @description Hesap Hareketlerini ID'ye göre sıralar
+     */
     function order_by_id() {
         if (id_order.value === "?sırala=ar_id") {
             sayfa.value = 0;
@@ -93,6 +139,10 @@ export const useHareketStore = defineStore("hareket", () => {
         }
     }
 
+    /**
+     * @function sonraki_sayfa
+     * @description Sonraki sayfaya geçer
+     */
     function sonraki_sayfa() {
         if ((sayfa.value + 1) * adet.value >= total_hareket.value) {
 
@@ -112,6 +162,10 @@ export const useHareketStore = defineStore("hareket", () => {
         yukle(sayfa.value);
     }
 
+    /**
+     * @function onceki_sayfa
+     * @description Önceki sayfaya geçer
+     */
     function onceki_sayfa() {
         if (hareketler.value.length === 0) {
             return;

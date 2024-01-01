@@ -4,7 +4,35 @@ import {useLoadingState} from "@/stores/loading_state";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useHareketStore} from "@/stores/hareketsotre";
 
+/**
+ * @module KrediStore
+ * @description Kredi ile ilgili işlemlerin yapıldığı store
+ *
+ *
+ * @property {Kredi} krediler
+ * @property {Kredi} selectedCredit
+ * @property {string} id_order
+ * @property {number} total_credits
+ * @property {number} sayfa
+ * @property {number} adet
+ * @property {boolean} at_end
+ * @property {boolean} net_error
+ * @returns {{id_order: string, sayfa: number, net_error: boolean, krediler, total_credits: number, at_end: boolean, selectedCredit: null, adet: number}}
+ *
+ */
 export const useKrediStore = defineStore("kredi", {
+    /**
+     * Bu store'da kullanılan değişkenler
+     * @property {Kredi} krediler
+     * @property {Kredi} selectedCredit
+     * @property {string} id_order
+     * @property {number} total_credits
+     * @property {number} sayfa
+     * @property {number} adet
+     * @property {boolean} at_end
+     * @property {boolean} net_error
+     * @returns {{id_order: string, sayfa: number, net_error: boolean, krediler, total_credits: number, at_end: boolean, selectedCredit: null, adet: number}}
+     */
     state: () => ({
         krediler: [],
         selectedCredit: null,
@@ -16,12 +44,22 @@ export const useKrediStore = defineStore("kredi", {
         net_error: false,
     }),
     actions: {
+        /**
+         * @function init
+         * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
+         */
         init() {
             this.sayfa = 0;
             this.adet = 10;
             this.at_end = false;
             this.yukle();
         },
+        /**
+         * @function yukle
+         * @description Kredi listesini yükler
+         * @param sayfa
+         * @param siralama
+         */
         yukle(sayfa = 0, siralama = this.id_order) {
             const loading = useLoadingState();
             loading.yuklemeyeBasla();
@@ -31,13 +69,6 @@ export const useKrediStore = defineStore("kredi", {
                     `http://127.0.0.1:5000/api/v1/kredi/s/${sayfa}/k/${this.adet}${siralama}`,
                 )
                 .then((response) => {
-                    // if(response.data.length === 0){
-                    //     this.at_end = true;
-                    //     this.sayfa -= 1;
-                    //     this.krediler = this.cached_kredi;
-                    //     loading.yuklemeyiBitir();
-                    //     return;
-                    // }
                     if (response.status === 200) {
                         this.net_error = false;
                     }
@@ -57,6 +88,10 @@ export const useKrediStore = defineStore("kredi", {
 
                 });
         },
+        /**
+         * @function get_all_kredi
+         * @description Tüm kredileri yükler
+         */
         get_all_kredi() {
             axios
                 .get(`http://127.0.0.1:5000/api/v1/kredi/k/0`)
@@ -64,6 +99,11 @@ export const useKrediStore = defineStore("kredi", {
                     this.total_credits = response.data.length;
                 });
         },
+        /**
+         * @function krediEkle
+         * @description Kredi ekler
+         * @param kredi
+         */
         krediEkle(kredi) {
 
             if (kredi.kredi_son_tarih < new Date().toISOString().slice(0, 10)) {
@@ -93,12 +133,23 @@ export const useKrediStore = defineStore("kredi", {
 
             hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_musteri_id)
         },
+        /**
+         * @function krediDuzenle
+         * @description Kredi düzenler
+         * @param kredi
+         * @param kredi_id
+         */
         krediDuzenle(kredi, kredi_id) {
             axios.put('http://127.0.0.1:5000/api/v1/kredi/' + kredi_id, kredi).then((response) => {
                 const kredi = response.data;
                 this.yukle(this.sayfa = 0);
             })
         },
+        /**
+         * @function krediSil
+         * @description Kredi siler
+         * @param kredi
+         */
         krediSil(kredi) {
             if (confirm("Krediyi silmek istediğinize emin misiniz?")) {
                 console.log(kredi["id"]);
@@ -116,6 +167,11 @@ export const useKrediStore = defineStore("kredi", {
                 this.total_credits -= 1;
             }
         },
+        /**
+         * @function kredi_ode
+         * @description Kredi ödemesi yapar
+         * @param kredi
+         */
         kredi_ode(kredi) {
             if (kredi.kredi_durum === "Ödendi") {
                 alert("Kredi zaten ödenmiş.");
@@ -129,6 +185,10 @@ export const useKrediStore = defineStore("kredi", {
             this.krediDuzenle(kredi, kredi.id);
 
         },
+        /**
+         * @function sonraki_sayfa
+         * @description Sonraki sayfaya geçer
+         */
         sonraki_sayfa() {
             if ((this.sayfa + 1) * this.adet >= this.total_credits) {
                 this.at_end = true;
@@ -145,6 +205,10 @@ export const useKrediStore = defineStore("kredi", {
             this.sayfa += 1;
             this.yukle(this.sayfa);
         },
+        /**
+         * @function onceki_sayfa
+         * @description Önceki sayfaya geçer
+         */
         onceki_sayfa() {
             if (this.krediler.length === 0) {
                 return;
@@ -156,6 +220,10 @@ export const useKrediStore = defineStore("kredi", {
             this.sayfa -= 1;
             this.yukle(this.sayfa);
         },
+        /**
+         * @function order_by_id
+         * @description Kredileri ID'ye göre sıralar
+         */
         order_by_id() {
             if (this.id_order === "?sırala=ar_id") {
                 this.sayfa = 0;

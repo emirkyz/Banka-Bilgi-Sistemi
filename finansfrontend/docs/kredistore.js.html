@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>kredistore.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-FaturaStore.html">FaturaStore</a><ul class='methods'><li data-type='method'><a href="module-FaturaStore.html#~faturaDuzenle">faturaDuzenle</a></li><li data-type='method'><a href="module-FaturaStore.html#~faturaEkle">faturaEkle</a></li><li data-type='method'><a href="module-FaturaStore.html#~faturaOdeme">faturaOdeme</a></li><li data-type='method'><a href="module-FaturaStore.html#~faturaSil">faturaSil</a></li><li data-type='method'><a href="module-FaturaStore.html#~find_fatura_by_id">find_fatura_by_id</a></li><li data-type='method'><a href="module-FaturaStore.html#~get_all_fatura">get_all_fatura</a></li><li data-type='method'><a href="module-FaturaStore.html#~get_all_fatura_by_musteri">get_all_fatura_by_musteri</a></li><li data-type='method'><a href="module-FaturaStore.html#~init">init</a></li><li data-type='method'><a href="module-FaturaStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-FaturaStore.html#~order_by_id">order_by_id</a></li><li data-type='method'><a href="module-FaturaStore.html#~sonraki_sayfa">sonraki_sayfa</a></li><li data-type='method'><a href="module-FaturaStore.html#~yukle">yukle</a></li></ul></li><li><a href="module-HareketStore.html">HareketStore</a><ul class='methods'><li data-type='method'><a href="module-HareketStore.html#~get_all_hareket">get_all_hareket</a></li><li data-type='method'><a href="module-HareketStore.html#~hareketEkle">hareketEkle</a></li><li data-type='method'><a href="module-HareketStore.html#~hareketSil">hareketSil</a></li><li data-type='method'><a href="module-HareketStore.html#~init">init</a></li><li data-type='method'><a href="module-HareketStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-HareketStore.html#~order_by_id">order_by_id</a></li><li data-type='method'><a href="module-HareketStore.html#~sonraki_sayfa">sonraki_sayfa</a></li><li data-type='method'><a href="module-HareketStore.html#~yukle">yukle</a></li></ul></li><li><a href="module-HesapStore.html">HesapStore</a><ul class='methods'><li data-type='method'><a href="module-HesapStore.html#~bakiye_arttir">bakiye_arttir</a></li><li data-type='method'><a href="module-HesapStore.html#~bakiye_azalt">bakiye_azalt</a></li><li data-type='method'><a href="module-HesapStore.html#~find_hesap_by_id">find_hesap_by_id</a></li><li data-type='method'><a href="module-HesapStore.html#~get_all_hesap">get_all_hesap</a></li><li data-type='method'><a href="module-HesapStore.html#~get_all_hesap_by_musteri">get_all_hesap_by_musteri</a></li><li data-type='method'><a href="module-HesapStore.html#~hesapDuzenle">hesapDuzenle</a></li><li data-type='method'><a href="module-HesapStore.html#~hesapEkle">hesapEkle</a></li><li data-type='method'><a href="module-HesapStore.html#~hesapSil">hesapSil</a></li><li data-type='method'><a href="module-HesapStore.html#~init">init</a></li><li data-type='method'><a href="module-HesapStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-HesapStore.html#~order_by_id">order_by_id</a></li><li data-type='method'><a href="module-HesapStore.html#~sonraki_sayfa">sonraki_sayfa</a></li><li data-type='method'><a href="module-HesapStore.html#~yukle">yukle</a></li></ul></li><li><a href="module-KrediStore.html">KrediStore</a><ul class='methods'><li data-type='method'><a href="module-KrediStore.html#~get_all_kredi">get_all_kredi</a></li><li data-type='method'><a href="module-KrediStore.html#~init">init</a></li><li data-type='method'><a href="module-KrediStore.html#~krediDuzenle">krediDuzenle</a></li><li data-type='method'><a href="module-KrediStore.html#~krediEkle">krediEkle</a></li><li data-type='method'><a href="module-KrediStore.html#~krediSil">krediSil</a></li><li data-type='method'><a href="module-KrediStore.html#~kredi_ode">kredi_ode</a></li><li data-type='method'><a href="module-KrediStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-KrediStore.html#~order_by_id">order_by_id</a></li><li data-type='method'><a href="module-KrediStore.html#~sonraki_sayfa">sonraki_sayfa</a></li><li data-type='method'><a href="module-KrediStore.html#~state">state</a></li><li data-type='method'><a href="module-KrediStore.html#~yukle">yukle</a></li></ul></li><li><a href="module-LoadingState.html">LoadingState</a><ul class='methods'><li data-type='method'><a href="module-LoadingState.html#~yuklemeyeBasla">yuklemeyeBasla</a></li><li data-type='method'><a href="module-LoadingState.html#~yuklemeyiBitir">yuklemeyiBitir</a></li></ul></li><li><a href="module-MusteriStore.html">MusteriStore</a><ul class='methods'><li data-type='method'><a href="module-MusteriStore.html#~find_musteri">find_musteri</a></li><li data-type='method'><a href="module-MusteriStore.html#~get_all_musteri">get_all_musteri</a></li><li data-type='method'><a href="module-MusteriStore.html#~init">init</a></li><li data-type='method'><a href="module-MusteriStore.html#~kredi_skor_guncelle">kredi_skor_guncelle</a></li><li data-type='method'><a href="module-MusteriStore.html#~musteriDuzenle">musteriDuzenle</a></li><li data-type='method'><a href="module-MusteriStore.html#~musteriEkle">musteriEkle</a></li><li data-type='method'><a href="module-MusteriStore.html#~musteriSil">musteriSil</a></li><li data-type='method'><a href="module-MusteriStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-MusteriStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-MusteriStore.html#~order_by_id">order_by_id</a></li><li data-type='method'><a href="module-MusteriStore.html#~yukle">yukle</a></li></ul></li><li><a href="module-SubeStore.html">SubeStore</a><ul class='methods'><li data-type='method'><a href="module-SubeStore.html#~get_all_sube">get_all_sube</a></li><li data-type='method'><a href="module-SubeStore.html#~init">init</a></li><li data-type='method'><a href="module-SubeStore.html#~onceki_sayfa">onceki_sayfa</a></li><li data-type='method'><a href="module-SubeStore.html#~order_by_id">order_by_id</a></li><li data-type='method'><a href="module-SubeStore.html#~subeDuzenle">subeDuzenle</a></li><li data-type='method'><a href="module-SubeStore.html#~subeEkle">subeEkle</a></li><li data-type='method'><a href="module-SubeStore.html#~subeSec">subeSec</a></li><li data-type='method'><a href="module-SubeStore.html#~subeSil">subeSil</a></li><li data-type='method'><a href="module-SubeStore.html#~yukle">yukle</a></li></ul></li><li><a href="module-ThemeStore.html">ThemeStore</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">kredistore.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {defineStore} from "pinia";
+import axios from "axios";
+import {useLoadingState} from "@/stores/loading_state";
+import {useMusteriStore} from "@/stores/musteristore";
+import {useHareketStore} from "@/stores/hareketsotre";
+
+/**
+ * @module KrediStore
+ * @description Kredi ile ilgili işlemlerin yapıldığı store
+ *
+ *
+ * @property {Kredi} krediler
+ * @property {Kredi} selectedCredit
+ * @property {string} id_order
+ * @property {number} total_credits
+ * @property {number} sayfa
+ * @property {number} adet
+ * @property {boolean} at_end
+ * @property {boolean} net_error
+ * @returns {{id_order: string, sayfa: number, net_error: boolean, krediler, total_credits: number, at_end: boolean, selectedCredit: null, adet: number}}
+ *
+ */
+export const useKrediStore = defineStore("kredi", {
+    /**
+     * Bu store'da kullanılan değişkenler
+     * @property {Kredi} krediler
+     * @property {Kredi} selectedCredit
+     * @property {string} id_order
+     * @property {number} total_credits
+     * @property {number} sayfa
+     * @property {number} adet
+     * @property {boolean} at_end
+     * @property {boolean} net_error
+     * @returns {{id_order: string, sayfa: number, net_error: boolean, krediler, total_credits: number, at_end: boolean, selectedCredit: null, adet: number}}
+     */
+    state: () => ({
+        krediler: [],
+        selectedCredit: null,
+        id_order: "?sırala=ar_id",
+        total_credits: 0,
+        sayfa: 0,
+        adet: 10,
+        at_end: false,
+        net_error: false,
+    }),
+    actions: {
+        /**
+         * @function init
+         * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
+         */
+        init() {
+            this.sayfa = 0;
+            this.adet = 10;
+            this.at_end = false;
+            this.yukle();
+        },
+        /**
+         * @function yukle
+         * @description Kredi listesini yükler
+         * @param sayfa
+         * @param siralama
+         */
+        yukle(sayfa = 0, siralama = this.id_order) {
+            const loading = useLoadingState();
+            loading.yuklemeyeBasla();
+            this.selectedCredit = null;
+            axios
+                .get(
+                    `http://127.0.0.1:5000/api/v1/kredi/s/${sayfa}/k/${this.adet}${siralama}`,
+                )
+                .then((response) => {
+                    if (response.status === 200) {
+                        this.net_error = false;
+                    }
+                    this.at_end = false;
+                    this.krediler = response.data;
+                    loading.yuklemeyiBitir();
+                })
+                .catch(error => {
+                    if (!error.response) {
+                        // network error
+                        this.net_error = true;
+                        this.total_credits = 0;
+                        console.log("Network Error");
+                    } else {
+                        this.net_error = false;
+                    }
+
+                });
+        },
+        /**
+         * @function get_all_kredi
+         * @description Tüm kredileri yükler
+         */
+        get_all_kredi() {
+            axios
+                .get(`http://127.0.0.1:5000/api/v1/kredi/k/0`)
+                .then((response) => {
+                    this.total_credits = response.data.length;
+                });
+        },
+        /**
+         * @function krediEkle
+         * @description Kredi ekler
+         * @param kredi
+         */
+        krediEkle(kredi) {
+
+            if (kredi.kredi_son_tarih &lt; new Date().toISOString().slice(0, 10)) {
+                alert("Kredi son tarihi bugünden küçük olamaz.");
+                return;
+            }
+            axios
+                .post("http://127.0.0.1:5000/api/v1/kredi/", kredi)
+                .then((response) => {
+                    const kredi = response.data;
+                    const musteri = useMusteriStore();
+                    musteri.kredi_skor_guncelle(kredi["kredi_musteri_id"])
+                    this.krediler.push(kredi);
+                }).catch(error => {
+                if (!error.response) {
+                    // network error
+                    this.net_error = true;
+                    this.total_credits = 0;
+                    console.log("Network Error");
+                } else {
+                    this.net_error = false;
+                }
+
+            });
+            const hareket = useHareketStore()
+            const {hareketEkle} = hareket;
+
+            hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_musteri_id)
+        },
+        /**
+         * @function krediDuzenle
+         * @description Kredi düzenler
+         * @param kredi
+         * @param kredi_id
+         */
+        krediDuzenle(kredi, kredi_id) {
+            axios.put('http://127.0.0.1:5000/api/v1/kredi/' + kredi_id, kredi).then((response) => {
+                const kredi = response.data;
+                this.yukle(this.sayfa = 0);
+            })
+        },
+        /**
+         * @function krediSil
+         * @description Kredi siler
+         * @param kredi
+         */
+        krediSil(kredi) {
+            if (confirm("Krediyi silmek istediğinize emin misiniz?")) {
+                console.log(kredi["id"]);
+                axios.delete('http://127.0.0.1:5000/api/v1/kredi/' + kredi["id"]).then((response) => {
+                    const kredi = response.data;
+                    const musteri = useMusteriStore();
+                    // console.log(kredi.silinen.kredi_musteri_id)
+                    musteri.kredi_skor_guncelle(kredi.silinen.kredi_musteri_id)
+                    this.yukle(this.sayfa=0);
+                })
+                const hareket = useHareketStore()
+                const {hareketEkle} = hareket;
+                hareketEkle("Kredi Ödenmesi", kredi.kredi_tutar, kredi.kredi_hesap_id)
+                // console.log(this.total_credits)
+                this.total_credits -= 1;
+            }
+        },
+        /**
+         * @function kredi_ode
+         * @description Kredi ödemesi yapar
+         * @param kredi
+         */
+        kredi_ode(kredi) {
+            if (kredi.kredi_durum === "Ödendi") {
+                alert("Kredi zaten ödenmiş.");
+                return;
+            }
+            if (kredi.kredi_durum === "Pasif") {
+                alert("Kredi pasif durumda.");
+                return;
+            }
+            kredi.kredi_durum = "Ödendi";
+            this.krediDuzenle(kredi, kredi.id);
+
+        },
+        /**
+         * @function sonraki_sayfa
+         * @description Sonraki sayfaya geçer
+         */
+        sonraki_sayfa() {
+            if ((this.sayfa + 1) * this.adet >= this.total_credits) {
+                this.at_end = true;
+                return;
+            }
+            if (this.krediler.length === 0) {
+                this.at_end = true;
+                return;
+            }
+            if (this.krediler.length &lt; 10) {
+                this.at_end = true;
+                return;
+            }
+            this.sayfa += 1;
+            this.yukle(this.sayfa);
+        },
+        /**
+         * @function onceki_sayfa
+         * @description Önceki sayfaya geçer
+         */
+        onceki_sayfa() {
+            if (this.krediler.length === 0) {
+                return;
+            }
+            if (this.sayfa === 0) {
+                return;
+            }
+            this.at_end = false;
+            this.sayfa -= 1;
+            this.yukle(this.sayfa);
+        },
+        /**
+         * @function order_by_id
+         * @description Kredileri ID'ye göre sıralar
+         */
+        order_by_id() {
+            if (this.id_order === "?sırala=ar_id") {
+                this.sayfa = 0;
+                this.id_order = "?sırala=az_id";
+                this.yukle();
+            } else {
+                this.sayfa = 0;
+                this.id_order = "?sırala=ar_id";
+                this.yukle();
+            }
+        },
+    },
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jan 01 2024 11:21:59 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
