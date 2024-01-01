@@ -26,21 +26,27 @@ function expand_sidebar() {
       </div>
 
       <br/>
-      <div id="sidebar_content_1">
+      <div id="sidebar_content_1" class="">
         <router-link to="/doc/sube">
-          <a class="font-medium text-xl">Şube Ekranı</a>
+          <a class="block font-medium text-xl">Şube Ekranı</a>
         </router-link>
       </div>
       <hr class="my-4"/>
       <div id="sidebar_content_2">
         <router-link class="font-medium text-2xl" to="/doc/musteri">
-          <a class="font-medium text-xl">Müşteri Ekranı</a>
+          <a class="block font-medium text-xl">Müşteri Ekranı</a>
+        </router-link>
+      </div>
+      <hr class="my-4"/>
+      <div id="sidebar_content_2">
+        <router-link class="font-medium text-2xl" to="/doc/hesap">
+          <a class="block font-medium text-xl">Hesap Ekranı</a>
         </router-link>
       </div>
       <hr class="my-4"/>
       <div id="sidebar_content_2">
         <router-link class="font-medium text-2xl" to="/doc/kredi">
-          <a class="font-medium text-xl">Kredi Ekranı</a>
+          <a class="block font-medium text-xl">Kredi Ekranı</a>
         </router-link>
       </div>
     </div>
