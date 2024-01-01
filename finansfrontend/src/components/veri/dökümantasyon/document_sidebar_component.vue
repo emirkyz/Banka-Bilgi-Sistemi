@@ -17,7 +17,7 @@ function expand_sidebar() {
 </script>
 
 <template>
-  <div id="side_" class="sidebar_comp">
+  <div id="side_" class="sidebar_comp ">
     <button class="flex relative plus_sign" @click="expand_sidebar"></button>
 
     <div class="flex flex-col">
@@ -61,6 +61,9 @@ function expand_sidebar() {
 @media (max-width: 768px) {
   #side_ {
     min-width: 100vw;
+  }
+  .sidebar_comp{
+    overflow-y: scroll;
   }
 }
 

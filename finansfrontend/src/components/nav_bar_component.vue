@@ -45,8 +45,8 @@
           Hesap Hareketleri
         </router-link>
 
-        <div class="dropdown ">
-          <button class="dropbtn">Menü</button>
+        <div class="dropdown ml-auto right-0 ">
+          <button class="dropbtn inline-bloc">Menü</button>
           <div class="dropdown-content">
             <router-link
                 to="/sube"
@@ -188,14 +188,12 @@
 
 .dropdown .dropbtn {
   border-radius: 7px;
-  background-color: gray;
+  background-color: rgba(178, 178, 178, 0.5);
   outline: dimgray 1px solid;
-  border: #1a202c 1px solid;
   color: white;
   padding: 12px;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition-duration: 0.4s;
 }
 
