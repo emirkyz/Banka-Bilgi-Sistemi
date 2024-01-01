@@ -2,7 +2,7 @@ Home - Documentation
 
 [Home](index.html)
 ------------------
-> **_NOTE:_**  The note content.
+> **_NOT:_**  En İyi dökümantasyon deneyimi için lütfen Repository'i clone edip ana proje klasöründe bulunan index.html'i tarayıcınızda açınız.
 ### Dikkat
 ### Modules
 
