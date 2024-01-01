@@ -34,8 +34,6 @@ export const routes = [
             {path: "/kredi/ekle", component: kredi_ekleme_component},
         ],
     },
-    // {path: "/kredi/list", component: kredi_component},
-    // {path: "/kredi/ekle", component: kredi_ekleme_component},
     {
         path: "/sube",
         component: sube_component,
