@@ -4,7 +4,7 @@ import Error_component from "@/components/ortak/error_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useHareketStore} from "@/stores/hareketsotre";
 import {storeToRefs} from "pinia";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
 
 
 const loading = useLoadingState();
@@ -14,6 +14,8 @@ const hareketStore = useHareketStore()
 const {init, yukle, order_by_id, hareketSil, sonraki_sayfa, onceki_sayfa} = hareketStore;
 onMounted(() => {
   init();
+  musteri_store.yukle();
+  musteri_store.get_all_musteri();
 })
 const {
   selected_hareket,
@@ -25,8 +27,19 @@ const {
   at_end,
   id_order
 } = storeToRefs(hareketStore);
-musteri_store.get_all_musteri();
 
+const secili = ref({
+  value: '',
+});
+
+function refresh(t){
+  if (t === ""){
+    hareketStore.yukle()
+    return
+  }
+  id_order.value = '?sırala=ar_id'
+  hareketStore.yukle(0,`?filtre=hareket_musteri_id=${t}`)
+}
 
 </script>
 
@@ -34,6 +47,8 @@ musteri_store.get_all_musteri();
   <main>
     <div class="sube-content main_comp">
       <div id="sube" class="font-bold h-100vh pl-4 my-1 rounded-2xl py-2">
+
+
         <h1 class="text-xl">Hesap Hareketleri</h1>
         <a class="text-xl transition-all"
         >{{ sayfa + 1 }}. sayfada
@@ -41,6 +56,17 @@ musteri_store.get_all_musteri();
           {{ total_hareket.valueOf() }} tane kayıt mevcut.</a>
       </div>
       <hr class="style"/>
+
+      <div class="input-area-2 mb-2">
+        <select v-model="secili.value"
+                class="input-area py-4 bg-transparent w-full border border-black"
+                name="fsubeid"
+                @change="refresh(secili.value)">
+          <option selected="selected" value=''>Sadece Bir Müşterinin Hareketlerini İncelemek için Seçim Yapın</option>
+          <option v-for="musteri in musteri_store.musteriler" :value="musteri['id']"> {{ musteri.musteri_adi }} - ID: {{ musteri.id }}
+          </option>
+        </select>
+      </div>
 
       <error_component
           v-if="net_error === true && total_hareket ===0"
@@ -57,7 +83,6 @@ musteri_store.get_all_musteri();
       </div>
 
       <div v-if="loading.loading" class="font-bold loader"></div>
-      <!--    <div id="table-limiter" class=" h-[10px]">-->
       <table class="h-[2px] table-fixed">
         <thead>
         <tr>
@@ -96,24 +121,26 @@ musteri_store.get_all_musteri();
         </tr>
 
         </thead>
-        <tr
-            v-for="hareket in hareketler"
-            :key="hareketStore"
-            v-bind:class="{ 'opacity-0': loading.loading }"
-        >
-          <td>{{ hareket['id'] }}</td>
-          <td class="font-medium"
-              :class="hareket['hareket_turu'] === 'Fatura Ödemesi' ? 'text-green-500' : hareket['hareket_turu'] === 'Kredi Ödenmesi' ? 'text-green-500' : 'text-red-500'"
-          >{{ hareket['hareket_turu'] }}</td>
-          <td>{{ new Date(hareket['olusturulma_tarihi']).toLocaleDateString("tr-tr") }}</td>
-          <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id']) }}</td>
-          <td>{{ hareket["hareketMiktar"] }} TL</td>
+        <template v-for="hareket in hareketler">
+          <tr
+              v-bind:class="{ 'opacity-0': loading.loading }"
+          >
 
-          <td class="right">
-            <button class="btn-sil  content-center" @click="hareketSil(hareket);">Sil</button>
-            <br>
-          </td>
-        </tr>
+            <td>{{ hareket['id'] }}</td>
+            <td class="font-medium"
+                :class="hareket['hareket_turu'] === 'Fatura Ödemesi' ? 'text-green-500' : hareket['hareket_turu'] === 'Kredi Ödenmesi' ? 'text-green-500' : 'text-red-500'"
+            >{{ hareket['hareket_turu'] }}
+            </td>
+            <td>{{ new Date(hareket['olusturulma_tarihi']).toLocaleDateString("tr-tr") }}</td>
+            <td>{{ musteri_store.find_musteri(hareket['hareket_musteri_id']) }}</td>
+            <td>{{ hareket["hareketMiktar"] }} TL</td>
+
+            <td class="right">
+              <button class="btn-sil  content-center" @click="hareketSil(hareket);">Sil</button>
+              <br>
+            </td>
+          </tr>
+        </template>
       </table>
       <br class="space"/>
 

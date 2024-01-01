@@ -63,7 +63,7 @@ export const useHareketStore = defineStore("hareket", () => {
                 }
                 at_end.value = false;
                 hareketler.value = response.data;
-                console.log(hareketler.value);
+                // console.log(hareketler.value);
                 loading.yuklemeyiBitir();
             })
     }
@@ -117,6 +117,7 @@ export const useHareketStore = defineStore("hareket", () => {
                     net_error.value = false;
                 }
                 at_end.value = false;
+                total_hareket.value -= 1;
                 yukle();
             })
     }

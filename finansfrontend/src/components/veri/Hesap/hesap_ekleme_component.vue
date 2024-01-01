@@ -114,19 +114,6 @@ async function hesap_filtre_on_musteri() {
         <div v-if="musteriStore.musteriler.length === 0">
           <error_component message="Bu şubeye kayıtlı müşteri bulunmamaktadır."></error_component>
         </div>
-        <!--        <div class="input-row">-->
-        <!--          <div class="label-area">-->
-        <!--            <label for="fsoyad" class="text-xl">Hesap Bakiye</label>-->
-        <!--          </div>-->
-        <!--          <div class="input-area">-->
-        <!--            <input-->
-        <!--                type="text"-->
-        <!--                placeholder="Müşteri Soyadını Giriniz"-->
-        <!--                v-model="eklenecek_musteri.musteri_soyad"-->
-        <!--            />-->
-        <!--          </div>-->
-        <!--        </div>-->
-
         <div v-if="musteriStore.musteriler.length !== 0">
           <div>
             <div

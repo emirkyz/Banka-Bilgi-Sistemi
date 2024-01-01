@@ -166,7 +166,7 @@ export const useMusteriStore = defineStore("musteri", {
         find_musteri(id) {
             for (let i = 0; i < this.all_musteri_list.length; i++) {
                 if (this.all_musteri_list[i]['id'] === id) {
-                    return (this.all_musteri_list[i]['musteri_adi'] + " " + this.all_musteri_list[i]['musteri_soyad'] + " ID : " + this.all_musteri_list[i]['musteri_tc'])
+                    return (this.all_musteri_list[i]['musteri_adi'] + " " + this.all_musteri_list[i]['musteri_soyad'] + " ID : " + this.all_musteri_list[i]['id'])
                 }
             }
         },

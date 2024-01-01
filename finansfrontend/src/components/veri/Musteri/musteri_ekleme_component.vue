@@ -43,7 +43,7 @@ function kaydet() {
 
         <div class="input-row">
           <div class="label-area">
-            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
+            <label class="text-xl" for="fsubeid">Müşterinin Bağlı Olduğu Şubeyi Seçiniz</label>
           </div>
           <div class="input-area">
             <select v-model="eklenecek_musteri.musteri_sube_id"
