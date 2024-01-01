@@ -44,6 +44,7 @@
         >
           Hesap Hareketleri
         </router-link>
+
         <div class="dropdown ">
           <button class="dropbtn">Menü</button>
           <div class="dropdown-content">
@@ -87,7 +88,7 @@
           <router-link id="i"
                        class="right-0 rounded-xl inline-block text-sm px-2 py-1 leading-none text-white border-2 border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0 cursor-pointer"
                        to="/doc"
-          >i
+          >Nasıl Kullanılır?
           </router-link
           >
         </div>

@@ -22,7 +22,7 @@ function expand_sidebar() {
 
     <div class="flex flex-col">
       <div class="mb-2 font-medium border-b-8 px-2 p-1.5 rounded">
-        Dökümantasyon Paneli
+        Nasıl Kullanılır?
       </div>
 
       <br/>
