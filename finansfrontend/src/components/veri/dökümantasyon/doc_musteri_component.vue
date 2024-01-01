@@ -5,7 +5,7 @@
 <template>
   <div class="flex flex-col m-2">
     <div class="font-medium">
-      Müşteri Ekranı Dökümantasyonu
+      Müşteri Ekranı Nasıl Kullanılır?
 
     </div>
 
