@@ -2,8 +2,9 @@ Home - Documentation
 
 [Home](index.html)
 ------------------
-> **_NOT:_**  En İyi dökümantasyon deneyimi için lütfen Repository'i clone edip ana proje klasöründe bulunan index.html'i tarayıcınızda açınız.
 ### Dikkat
+> **_NOT:_**  En İyi dökümantasyon deneyimi için lütfen Repository'i clone edip ana proje klasöründe bulunan index.html'i tarayıcınızda açınız.
+
 ### Modules
 
 *   [KYZ FINANS - Backend](./FinansBackend/docs/_build/html/index.html)
