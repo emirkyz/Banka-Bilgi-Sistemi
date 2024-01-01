@@ -6,8 +6,6 @@ import {ref, toRaw} from "vue";
 /**
  * @module MusteriStore
  * @description Müşteriler ile ilgili işlemlerin yapıldığı store
- *
- * @description Bu store'da kullanılan değişkenler
  * @property {Musteri} musteriler
  * @property {Musteri} selectedMusteri
  * @property {string} id_order

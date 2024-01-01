@@ -7,8 +7,6 @@ import {useHareketStore} from "@/stores/hareketsotre";
 /**
  * @module KrediStore
  * @description Kredi ile ilgili işlemlerin yapıldığı store
- *
- *
  * @property {Kredi} krediler
  * @property {Kredi} selectedCredit
  * @property {string} id_order

@@ -6,8 +6,6 @@ import {ref} from "vue";
 /**
  * @module HesapStore
  * @description Hesaplar ile ilgili işlemlerin yapıldığı store
- *
- * @description Bu store'da kullanılan değişkenler
  * @property {Hesap} hesaplar
  * @property {Hesap} selectedHesap
  * @property {string} id_order

@@ -6,8 +6,6 @@ import {ref} from "vue";
 /**
  * @module HareketStore
  * @description Hesap Hareketleri ile ilgili işlemlerin yapıldığı store
- *
- * @description Hesap Hareketleri ile ilgili store'da kullanılan değişkenler
  * @property {Hareket} hareket
  * @property {Hareket} selected_hareket
  * @property {Hareket} hareketler

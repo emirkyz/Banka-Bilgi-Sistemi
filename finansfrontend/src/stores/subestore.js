@@ -5,8 +5,6 @@ import {useLoadingState} from "@/stores/loading_state";
 /**
  * @module SubeStore
  * @description Şubeler ile ilgili işlemlerin yapıldığı store
- *
- * @description Bu store'da kullanılan değişkenler
  * @property {Sube} subeler
  * @property {Sube} selectedSube
  * @property {string} id_order

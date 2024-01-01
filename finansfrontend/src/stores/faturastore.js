@@ -6,7 +6,6 @@ import {useHareketStore} from "@/stores/hareketsotre";
 /**
  * @module FaturaStore
  * @description Fatura ile ilgili işlemlerin yapıldığı store
- * @description Bu store'da kullanılan değişkenler
  * @property {Fatura[]} faturalar
  * @property {Fatura} selectedFatura
  * @property {string} id_order
