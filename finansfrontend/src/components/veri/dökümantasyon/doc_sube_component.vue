@@ -10,15 +10,14 @@
     </div>
 
     <div>
-      İçerik Kısmı burada gözükecek
-      <div class="my-2 border-black ">
+      <div class="my-2 border-black border-2 p-2">
         <img alt="nav_bar" class="" src="./şube_resimler/şube_sidebar.png"/>
       </div>
     </div>
     <br>
     <div>
       Şube Ekleme Ekranı
-      <div class="my-2 block border-black ">
+      <div class="my-2 border-black border-2 p-2">
         <img alt="nav_bar" class="w-full" src="./şube_resimler/şube_ekleme.png"/>
       </div>
       <p class="text-xl">
@@ -29,7 +28,7 @@
     <br>
     <div>
       Şube Listelenme Ekranı
-      <div class="my-2 block border-black ">
+      <div class="my-2 border-black border-2 p-2">
         <img alt="nav_bar" class="w-full" src="./şube_resimler/şube_listeleme.png"/>
       </div>
       <p class="text-xl">

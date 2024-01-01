@@ -10,8 +10,7 @@
     </div>
 
     <div>
-
-      <div class="my-2 border-black ">
+      <div class="my-2 border-black border-2 p-2">
         <img alt="nav_bar" class="" src="./hesap_resimler/hesap_sidebar.png"/>
         <p class="text-xl">
           Burada Hesaplar ekranının sidebar'ı gözükmektedir. <br>
@@ -22,7 +21,7 @@
       <br>
       <div>
         Hesap Ekleme Ekranı
-        <div class="my-2 block border-black ">
+        <div class="my-2 border-black border-2 p-2">
           <img alt="nav_bar" class="w-full" src="./hesap_resimler/hesap_ekleme.png"/>
         </div>
         <p class="text-xl">
@@ -35,7 +34,7 @@
       <br>
       <div>
         Hesap Listelenme Ekranı
-        <div class="my-2 block border-black ">
+        <div class="my-2 border-black border-2 p-2">
           <img alt="nav_bar" class="w-full" src="./hesap_resimler/hesap_listeleme.png"/>
         </div>
         <p class="text-xl">

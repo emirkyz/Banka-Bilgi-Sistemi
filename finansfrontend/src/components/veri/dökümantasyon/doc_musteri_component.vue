@@ -10,8 +10,7 @@
     </div>
 
     <div>
-      İçerik Kısmı burada gözükecek
-      <div class="my-2 border-black ">
+      <div class="my-2 border-black border-2 p-2">
         <img alt="nav_bar" class="" src="./müşteri_resimler/müşteri_sidebar.png"/>
         <p class="text-xl">
           Burada müşteri ekranının sidebar'ı gözükmektedir. <br>
@@ -22,7 +21,7 @@
       <br>
       <div>
         Müşteri Ekleme Ekranı
-        <div class="my-2 block border-black ">
+        <div class="my-2 border-black border-2 p-2">
           <img alt="nav_bar" class="w-full" src="./müşteri_resimler/müşteri_ekleme.png"/>
         </div>
         <p class="text-xl">
@@ -34,7 +33,7 @@
       <br>
       <div>
         Şube Listelenme Ekranı
-        <div class="my-2 block border-black ">
+        <div class="my-2 border-black border-2 p-2">
           <img alt="nav_bar" class="w-full" src="./müşteri_resimler/müşteri_listeleme.png"/>
         </div>
         <p class="text-xl">
