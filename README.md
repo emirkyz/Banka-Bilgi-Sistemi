@@ -2,7 +2,7 @@ Home - Documentation
 
 [Home](index.html)
 ------------------
-[!CAUTION]
+> **_NOTE:_**  The note content.
 ### Dikkat
 ### Modules
 
