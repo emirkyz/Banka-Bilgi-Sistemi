@@ -34,7 +34,7 @@
       >
       <br>
       <div class="mt-7">
-        <a class="text-xl">Bu buton ile vueJS ve javascript ile yazılan modülleri inceleyebilirsiniz.</a>
+        <a class="text-xl">Bu buton ile VueJS ve javascript ile yazılan modülleri inceleyebilirsiniz.</a>
       </div>
 
       <div class="my-5 btn">
