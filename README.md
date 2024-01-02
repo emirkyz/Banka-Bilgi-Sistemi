@@ -6,7 +6,7 @@ Home - Documentation
 |-------------------------------------|
 
 
-> **_NOT:_**  En İyi dökümantasyon deneyimi için lütfen Repository'i clone edip ana proje klasöründe bulunan index.html'i tarayıcınızda açınız.
+> **_NOT:_**  En İyi dökümantasyon deneyimi için lütfen Repository'i clone edip ana proje klasöründe bulunan HomePage.html'i tarayıcınızda açınız.
 
 ### Modules
 
