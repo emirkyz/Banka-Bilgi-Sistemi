@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>faturastore.js - Documentation</title>
+    <title>hesapstore.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">faturastore.js</h1>
+    <h1 class="page-title">hesapstore.js</h1>
     
 
     
@@ -50,75 +50,80 @@
             <pre class="prettyprint source linenums"><code>import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
-import {useHareketStore} from "@/stores/hareketsotre";
+import {ref} from "vue";
 
 /**
- * @module FaturaStore
- * @description Fatura ile ilgili işlemlerin yapıldığı store
- * @property {Fatura[]} faturalar
- * @property {Fatura} selectedFatura
+ * @module HesapStore
+ * @description Hesaplar ile ilgili işlemlerin yapıldığı store
+ * @property {Hesap} hesaplar
+ * @property {Hesap} selectedHesap
  * @property {string} id_order
- * @property {number} total_fatura
+ * @property {number} total_hesap
  * @property {number} sayfa
  * @property {number} adet
  * @property {boolean} at_end
  * @property {boolean} net_error
  * @property {null} bakiye_update
  * @property {boolean} not_enough
- * @property {Fatura} all_fatura_list
- * @property {Fatura} all_hesap_list
- * @returns {{id_order: string, bakiye_update: null, not_enough: boolean, sayfa: number, net_error: boolean, all_fatura_list, faturalar, selectedFatura: null, at_end: boolean, total_fatura: number, adet: number}}
- * */
-export const useFaturaStore = defineStore("fatura", {
+ * @property {Hesap} all_hesap_list
+ * @returns {{hesaplar, id_order: string, bakiye_update: null, not_enough, all_hesap_list, sayfa: number, net_error: boolean, total_hesap: number, at_end: boolean, selectedHesap: null, adet: number}}
+ *
+ */
+export const useHesapStore = defineStore("hesap", {
+
     state: () => ({
-        faturalar: [],
-        selectedFatura: null,
+        hesaplar: [],
+        selectedHesap: null,
         id_order: "?sırala=ar_id",
-        total_fatura: 0,
+        total_hesap: 0,
         sayfa: 0,
         adet: 10,
         at_end: false,
         net_error: false,
         bakiye_update: null,
-        not_enough: false,
-        all_fatura_list: [],
+        not_enough: ref(false),
+        all_hesap_list: [],
+        // cached_sube : []
+
     }),
     actions: {
-        /** @function init
-         *  @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
+        /**
+         * @function init
+         * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
          */
         init() {
             this.sayfa = 0;
             this.adet = 10;
             this.at_end = false;
+            this.not_enough = false;
             this.yukle();
         },
         /**
          * @function yukle
-         * @description Fatura listesini yükler
+         * @description Hesap listesini yükler
          * @param sayfa
          * @param siralama
          */
         yukle(sayfa = 0, siralama = this.id_order) {
             const loading = useLoadingState();
             loading.yuklemeyeBasla();
-            this.selectedFatura = null;
+            this.selectedHesap = null;
             axios.get(
-                `http://127.0.0.1:5000/api/v1/fatura/s/${sayfa}/k/${this.adet}${siralama}`,
+                `http://127.0.0.1:5000/api/v1/hesap/s/${sayfa}/k/${this.adet}${siralama}`,
             )
                 .then((response) => {
                     if (response.status === 200) {
                         this.net_error = false;
                     }
                     this.at_end = false;
-                    this.faturalar = response.data;
+                    this.hesaplar = response.data;
                     loading.yuklemeyiBitir();
                 })
                 .catch(error => {
                     if (!error.response) {
                         // network error
                         this.net_error = true;
-                        this.total_fatura = 0;
+                        this.total_hesap = 0;
                         console.log("Network Error");
                     } else {
                         this.net_error = false;
@@ -127,49 +132,30 @@ export const useFaturaStore = defineStore("fatura", {
                 });
 
         },
-        /** @function get_all_fatura
-         *  @description Tüm faturaları yükler, toplam fatura sayısını kaydeder.
+        /**
+         * @function get_all_hesap
+         * @description Tüm hesapları yükler
          */
-        get_all_fatura() {
+        get_all_hesap() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/fatura/k/0`)
+                .get(`http://127.0.0.1:5000/api/v1/hesap/k/0`)
                 .then((response) => {
                     this.all_hesap_list = response.data;
-                    this.total_fatura = response.data.length;
+                    this.total_hesap = response.data.length;
                 });
         },
         /**
-         * @function get_all_fatura_by_musteri
-         * @description Müşteriye ID'sine özel faturaları yükler, toplam fatura sayısını kaydeder.
-         * @param siralama
+         * @function hesapEkle
+         * @description Hesap ekler
+         * @param hesap
          */
-        get_all_fatura_by_musteri(siralama) {
+        hesapEkle(hesap) {
+            console.log(hesap);
             axios
-                .get(`http://127.0.0.1:5000/api/v1/fatura/k/0${siralama}`)
+                .post("http://127.0.0.1:5000/api/v1/hesap/", hesap)
                 .then((response) => {
-                    this.all_fatura_list = response.data;
-                    this.total_fatura = response.data.length;
-                    for (let i = 0; i &lt; this.all_fatura_list.length; i++) {
-                        // console.log(this.all_fatura_list[i]['fatura_durum'])
-                        if (this.all_fatura_list[i]['fatura_durum'] === "Ödendi") {
-                            this.all_fatura_list.splice(i, 1);
-                            i--;
-                        }
-                    }
-                });
-        },
-        /**
-         * @function faturaEkle
-         * @description Fatura ekler
-         * @param fatura
-         */
-        faturaEkle(fatura) {
-            console.log(fatura);
-            axios
-                .post("http://127.0.0.1:5000/api/v1/fatura/", fatura)
-                .then((response) => {
-                    const fatura = response.data;
-                    this.faturalar.push(fatura);
+                    const hesap = response.data;
+                    this.hesaplar.push(hesap);
                 }).catch(error => {
                 if (!error.response) {
                     // network error
@@ -179,84 +165,120 @@ export const useFaturaStore = defineStore("fatura", {
                 } else {
                     this.net_error = false;
                 }
+
             });
-
         },
         /**
-         * @function faturaDuzenle
-         * @description Fatura düzenler
-         * @param fatura
-         * @param fatura_id
+         * @function hesapDuzenle
+         * @description Hesap düzenler
+         * @param hesap
+         * @param hesap_id
          */
-        faturaDuzenle(fatura, fatura_id) {
-            axios.put('http://127.0.0.1:5000/api/v1/fatura/' + fatura_id, fatura).then((response) => {
-                const fatura = response.data;
-                console.log(fatura);
+        hesapDuzenle(hesap, hesap_id) {
+            axios.put('http://127.0.0.1:5000/api/v1/hesap/' + hesap_id, hesap).then((response) => {
+                const hesap = response.data;
+                console.log(hesap);
                 this.yukle(this.sayfa = 0);
             })
         },
         /**
-         * @function faturaSil
-         * @description Fatura siler
-         * @param fatura
+         * @function hesapSil
+         * @description Hesap siler
+         * @param hesap
          */
-        faturaSil(fatura) {
-            axios.delete('http://127.0.0.1:5000/api/v1/fatura/' + fatura["id"]).then((response) => {
-                const fatura = response.data;
-                console.log(fatura);
+        hesapSil(hesap) {
+            axios.delete('http://127.0.0.1:5000/api/v1/hesap/' + hesap["id"]).then((response) => {
+                const hesap = response.data;
+                console.log(hesap);
                 this.yukle();
-
             })
-
+            this.get_all_hesap();
             this.sayfa = 0;
-            this.total_fatura -= 1;
+            this.total_hesap -= 1;
         },
         /**
-         * @function faturaOdeme
-         * @description Fatura ödemesi yapar
-         * @param fatura
+         * @function bakiye_arttir
+         * @description Hesap bakiyesini arttırır
+         * @param hesap
+         * @param miktar
+         * @returns {Promise&lt;void>}
          */
-        faturaOdeme(fatura) {
-            axios.get('http://127.0.0.1:5000/api/v1/fatura/odeme/' + fatura.id).then((response) => {
-                const fatura = response.data;
-                this.yukle(this.sayfa = 0);
+        async bakiye_arttir(hesap, miktar) {
+            axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/e/${hesap}/${miktar}`).then((response) => {
+                const hesap = response.data;
+                this.bakiye_update = null;
+                console.log(hesap);
+                this.yukle()
             })
-            const hareket = useHareketStore()
-            const {hareketEkle} = hareket;
-            hareketEkle("Fatura Ödemesi", fatura.fatura_miktar, fatura.fatura_musteri_id)
         },
         /**
-         * @function find_fatura_by_id
-         * @description Fatura ID'sine göre faturayı bulur
-         * @param id
-         * @returns {string|undefined}
+         * @function bakiye_azalt
+         * @description Hesap bakiyesini azaltır
+         * @param hesap
+         * @param miktar
+         * @returns {Promise&lt;void>}
          */
-        find_fatura_by_id(id) {
+        async bakiye_azalt(hesap, miktar) {
+            await axios.get(`http://127.0.0.1:5000/api/v1/hesap/bakiye/c/${hesap}/${miktar}`)
+                .then((response) => {
+                    const hesap = response.data;
+                    if (hesap['hata']) {
+                        // console.log("if içinde");
+                        console.log(hesap['hata'])
+                        this.not_enough = true;
+                        this.yukle()
+                        return this.not_enough
+
+                    } else {
+                        // console.log("else içinde");
+                        this.not_enough = false;
+                        this.yukle()
+                        return this.not_enough
+                    }
+                })
+        },
+        /**
+         * @function find_hesap_by_id
+         * @description ID'ye göre hesabı bulur
+         * @param id
+         * @returns {string}
+         */
+        find_hesap_by_id(id) {
+
             for (let i = 0; i &lt; this.all_hesap_list.length; i++) {
                 if (this.all_hesap_list[i]['id'] === id) {
                     return (this.all_hesap_list[i]['hesap_musteri_id'])
                 }
             }
-
-
+        },
+        /**
+         * @function get_all_hesap_by_musteri
+         * @description Müşteriye göre hesapları bulur
+         * @param siralama
+         */
+        get_all_hesap_by_musteri(siralama) {
+            axios
+                .get(`http://127.0.0.1:5000/api/v1/hesap/k/0${siralama}`)
+                .then((response) => {
+                    this.all_hesap_list = response.data;
+                    this.total_hesap = response.data.length;
+                });
         },
         /**
          * @function sonraki_sayfa
          * @description Sonraki sayfayı yükler
          */
         sonraki_sayfa() {
-            // console.log((this.sayfa+1) * this.adet)
-            // console.log(this.total_sube.length)
-            if ((this.sayfa + 1) * this.adet >= this.total_fatura) {
+            if ((this.sayfa + 1) * this.adet >= this.total_hesap) {
 
                 this.at_end = true;
                 return;
             }
-            if (this.faturalar.length === 0) {
+            if (this.hesaplar.length === 0) {
                 this.at_end = true
                 return;
             }
-            if (this.faturalar.length &lt; 10) {
+            if (this.hesaplar.length &lt; 10) {
                 this.at_end = true;
                 return;
             }
@@ -269,7 +291,7 @@ export const useFaturaStore = defineStore("fatura", {
          * @description Önceki sayfayı yükler
          */
         onceki_sayfa() {
-            if (this.faturalar.length === 0) {
+            if (this.hesaplar.length === 0) {
                 return;
             }
             if (this.sayfa === 0) {
@@ -281,7 +303,7 @@ export const useFaturaStore = defineStore("fatura", {
         },
         /**
          * @function order_by_id
-         * @description Faturaları ID'ye göre sıralar
+         * @description ID'ye göre sıralama yapar
          */
         order_by_id() {
             if (this.id_order === "?sırala=ar_id") {
@@ -311,7 +333,7 @@ export const useFaturaStore = defineStore("fatura", {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jan 01 2024 14:24:16 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 02 2024 19:34:13 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

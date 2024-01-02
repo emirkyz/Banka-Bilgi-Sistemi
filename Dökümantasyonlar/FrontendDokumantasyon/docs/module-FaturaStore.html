@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>MusteriStore - Documentation</title>
+    <title>FaturaStore - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">MusteriStore</h1>
+    <h1 class="page-title">FaturaStore</h1>
     
 
     
@@ -60,13 +60,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteriler ile ilgili işlemlerin yapıldığı store</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura ile ilgili işlemlerin yapıldığı store</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line6">line 6</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -129,13 +129,13 @@
 
         <tr>
             
-                <td class="name"><code>musteriler</code></td>
+                <td class="name"><code>faturalar</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Musteri</span>
+<span class="param-type">Array.&lt;Fatura></span>
 
 
 
@@ -153,13 +153,13 @@
 
         <tr>
             
-                <td class="name"><code>selectedMusteri</code></td>
+                <td class="name"><code>selectedFatura</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Musteri</span>
+<span class="param-type">Fatura</span>
 
 
 
@@ -201,7 +201,7 @@
 
         <tr>
             
-                <td class="name"><code>total_musteri</code></td>
+                <td class="name"><code>total_fatura</code></td>
             
 
             <td class="type">
@@ -321,13 +321,85 @@
 
         <tr>
             
-                <td class="name"><code>all_musteri_list</code></td>
+                <td class="name"><code>bakiye_update</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Musteri</span>
+<span class="param-type">null</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>not_enough</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>all_fatura_list</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Fatura</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>all_hesap_list</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Fatura</span>
 
 
 
@@ -350,7 +422,7 @@
 
 
             
-                <div class="description usertext"><p>Müşteriler ile ilgili işlemlerin yapıldığı store</p></div>
+                <div class="description usertext"><p>Fatura ile ilgili işlemlerin yapıldığı store</p></div>
             
 
             
@@ -380,7 +452,7 @@
 
     
 
-    <h4 class="name" id="~find_musteri"><span class="type-signature type-signature-inner">(inner) </span>find_musteri<span class="signature">(id)</span><span class="type-signature"> &rarr; {string|undefined}</span></h4>
+    <h4 class="name" id="~faturaDuzenle"><span class="type-signature type-signature-inner">(inner) </span>faturaDuzenle<span class="signature">(fatura, fatura_id)</span><span class="type-signature"></span></h4>
 
     
 
@@ -390,13 +462,547 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteri bulur</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura düzenler</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line160">line 160</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line139">line 139</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fatura</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fatura_id</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~faturaEkle"><span class="type-signature type-signature-inner">(inner) </span>faturaEkle<span class="signature">(fatura)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura ekler</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line113">line 113</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fatura</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~faturaOdeme"><span class="type-signature type-signature-inner">(inner) </span>faturaOdeme<span class="signature">(fatura)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura ödemesi yapar</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line169">line 169</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fatura</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~faturaSil"><span class="type-signature type-signature-inner">(inner) </span>faturaSil<span class="signature">(fatura)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura siler</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line152">line 152</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fatura</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~find_fatura_by_id"><span class="type-signature type-signature-inner">(inner) </span>find_fatura_by_id<span class="signature">(id)</span><span class="type-signature"> &rarr; {string|undefined}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura ID'sine göre faturayı bulur</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line185">line 185</a>
     </li></ul></dd>
     
 
@@ -531,7 +1137,7 @@
 
     
 
-    <h4 class="name" id="~get_all_musteri"><span class="type-signature type-signature-inner">(inner) </span>get_all_musteri<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~get_all_fatura"><span class="type-signature type-signature-inner">(inner) </span>get_all_fatura<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -541,13 +1147,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Tüm müşterileri yükler</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Tüm faturaları yükler, toplam fatura sayısını kaydeder.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line90">line 90</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line82">line 82</a>
     </li></ul></dd>
     
 
@@ -592,6 +1198,135 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~get_all_fatura_by_musteri"><span class="type-signature type-signature-inner">(inner) </span>get_all_fatura_by_musteri<span class="signature">(siralama)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Müşteriye ID'sine özel faturaları yükler, toplam fatura sayısını kaydeder.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>siralama</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -632,626 +1367,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line43">line 43</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~kredi_skor_guncelle"><span class="type-signature type-signature-inner">(inner) </span>kredi_skor_guncelle<span class="signature">(musteri_id)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteriye ait Kredi skorunu günceller</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line173">line 173</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>musteri_id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~musteriDuzenle"><span class="type-signature type-signature-inner">(inner) </span>musteriDuzenle<span class="signature">(musteri, musteri_id)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteri düzenler</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line125">line 125</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>musteri</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>musteri_id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~musteriEkle"><span class="type-signature type-signature-inner">(inner) </span>musteriEkle<span class="signature">(musteri)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteri ekler</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line102">line 102</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>musteri</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~musteriSil"><span class="type-signature type-signature-inner">(inner) </span>musteriSil<span class="signature">(musteri)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteri siler</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line138">line 138</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>musteri</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~onceki_sayfa"><span class="type-signature type-signature-inner">(inner) </span>onceki_sayfa<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Sonraki sayfayı yükler</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line185">line 185</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -1336,7 +1452,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line209">line 209</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -1415,13 +1531,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>ID'ye göre sıralama yapar</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Faturaları ID'ye göre sıralar</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line224">line 224</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line239">line 239</a>
     </li></ul></dd>
     
 
@@ -1490,7 +1606,7 @@
 
     
 
-    <h4 class="name" id="~yukle"><span class="type-signature type-signature-inner">(inner) </span>yukle<span class="signature">(sayfa, siralama, adet)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="~sonraki_sayfa"><span class="type-signature type-signature-inner">(inner) </span>sonraki_sayfa<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -1500,13 +1616,98 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Müşteri listesini yükler</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sonraki sayfayı yükler</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="musteristore.js.html">musteristore.js</a>, <a href="musteristore.js.html#line53">line 53</a>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line200">line 200</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~yukle"><span class="type-signature type-signature-inner">(inner) </span>yukle<span class="signature">(sayfa, siralama)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fatura listesini yükler</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="faturastore.js.html">faturastore.js</a>, <a href="faturastore.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -1611,24 +1812,6 @@
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>adet</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
     </tbody>
 </table>
 
@@ -1647,25 +1830,6 @@
 
 
 
-<h5 class="h5-returns">Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise.&lt;void></span>
-
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -1689,7 +1853,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jan 01 2024 14:24:16 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 02 2024 19:34:13 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

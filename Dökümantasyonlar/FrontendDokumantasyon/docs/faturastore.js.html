@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>kredistore.js - Documentation</title>
+    <title>faturastore.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">kredistore.js</h1>
+    <h1 class="page-title">faturastore.js</h1>
     
 
     
@@ -50,50 +50,43 @@
             <pre class="prettyprint source linenums"><code>import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
-import {useMusteriStore} from "@/stores/musteristore";
 import {useHareketStore} from "@/stores/hareketsotre";
+import {useMusteriStore} from "@/stores/musteristore";
 
 /**
- * @module KrediStore
- * @description Kredi ile ilgili işlemlerin yapıldığı store
- * @property {Kredi} krediler
- * @property {Kredi} selectedCredit
+ * @module FaturaStore
+ * @description Fatura ile ilgili işlemlerin yapıldığı store
+ * @property {Fatura[]} faturalar
+ * @property {Fatura} selectedFatura
  * @property {string} id_order
- * @property {number} total_credits
+ * @property {number} total_fatura
  * @property {number} sayfa
  * @property {number} adet
  * @property {boolean} at_end
  * @property {boolean} net_error
- * @returns {{id_order: string, sayfa: number, net_error: boolean, krediler, total_credits: number, at_end: boolean, selectedCredit: null, adet: number}}
- *
- */
-export const useKrediStore = defineStore("kredi", {
-    /**
-     * Bu store'da kullanılan değişkenler
-     * @property {Kredi} krediler
-     * @property {Kredi} selectedCredit
-     * @property {string} id_order
-     * @property {number} total_credits
-     * @property {number} sayfa
-     * @property {number} adet
-     * @property {boolean} at_end
-     * @property {boolean} net_error
-     * @returns {{id_order: string, sayfa: number, net_error: boolean, krediler, total_credits: number, at_end: boolean, selectedCredit: null, adet: number}}
-     */
+ * @property {null} bakiye_update
+ * @property {boolean} not_enough
+ * @property {Fatura} all_fatura_list
+ * @property {Fatura} all_hesap_list
+ * @returns {{id_order: string, bakiye_update: null, not_enough: boolean, sayfa: number, net_error: boolean, all_fatura_list, faturalar, selectedFatura: null, at_end: boolean, total_fatura: number, adet: number}}
+ * */
+export const useFaturaStore = defineStore("fatura", {
     state: () => ({
-        krediler: [],
-        selectedCredit: null,
+        faturalar: [],
+        selectedFatura: null,
         id_order: "?sırala=ar_id",
-        total_credits: 0,
+        total_fatura: 0,
         sayfa: 0,
         adet: 10,
         at_end: false,
         net_error: false,
+        bakiye_update: null,
+        not_enough: false,
+        all_fatura_list: [],
     }),
     actions: {
-        /**
-         * @function init
-         * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
+        /** @function init
+         *  @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
          */
         init() {
             this.sayfa = 0;
@@ -103,161 +96,186 @@ export const useKrediStore = defineStore("kredi", {
         },
         /**
          * @function yukle
-         * @description Kredi listesini yükler
+         * @description Fatura listesini yükler
          * @param sayfa
          * @param siralama
          */
         yukle(sayfa = 0, siralama = this.id_order) {
             const loading = useLoadingState();
             loading.yuklemeyeBasla();
-            this.selectedCredit = null;
-            axios
-                .get(
-                    `http://127.0.0.1:5000/api/v1/kredi/s/${sayfa}/k/${this.adet}${siralama}`,
-                )
+            this.selectedFatura = null;
+            axios.get(
+                `http://127.0.0.1:5000/api/v1/fatura/s/${sayfa}/k/${this.adet}${siralama}`,
+            )
                 .then((response) => {
                     if (response.status === 200) {
                         this.net_error = false;
                     }
                     this.at_end = false;
-                    this.krediler = response.data;
+                    this.faturalar = response.data;
                     loading.yuklemeyiBitir();
                 })
                 .catch(error => {
                     if (!error.response) {
                         // network error
                         this.net_error = true;
-                        this.total_credits = 0;
+                        this.total_fatura = 0;
                         console.log("Network Error");
                     } else {
                         this.net_error = false;
                     }
 
                 });
+
         },
-        /**
-         * @function get_all_kredi
-         * @description Tüm kredileri yükler
+        /** @function get_all_fatura
+         *  @description Tüm faturaları yükler, toplam fatura sayısını kaydeder.
          */
-        get_all_kredi() {
+        get_all_fatura() {
             axios
-                .get(`http://127.0.0.1:5000/api/v1/kredi/k/0`)
+                .get(`http://127.0.0.1:5000/api/v1/fatura/k/0`)
                 .then((response) => {
-                    this.total_credits = response.data.length;
+                    this.all_hesap_list = response.data;
+                    this.total_fatura = response.data.length;
                 });
         },
         /**
-         * @function krediEkle
-         * @description Kredi ekler
-         * @param kredi
+         * @function get_all_fatura_by_musteri
+         * @description Müşteriye ID'sine özel faturaları yükler, toplam fatura sayısını kaydeder.
+         * @param siralama
          */
-        krediEkle(kredi) {
-
-            if (kredi.kredi_son_tarih &lt; new Date().toISOString().slice(0, 10)) {
-                alert("Kredi son tarihi bugünden küçük olamaz.");
-                return;
-            }
+        get_all_fatura_by_musteri(siralama) {
             axios
-                .post("http://127.0.0.1:5000/api/v1/kredi/", kredi)
+                .get(`http://127.0.0.1:5000/api/v1/fatura/k/0${siralama}`)
                 .then((response) => {
-                    const kredi = response.data;
+                    this.all_fatura_list = response.data;
+                    this.total_fatura = response.data.length;
+                    for (let i = 0; i &lt; this.all_fatura_list.length; i++) {
+                        // console.log(this.all_fatura_list[i]['fatura_durum'])
+                        if (this.all_fatura_list[i]['fatura_durum'] === "Ödendi") {
+                            this.all_fatura_list.splice(i, 1);
+                            i--;
+                        }
+                    }
+                });
+        },
+        /**
+         * @function faturaEkle
+         * @description Fatura ekler
+         * @param fatura
+         */
+        faturaEkle(fatura) {
+            console.log(fatura);
+            axios
+                .post("http://127.0.0.1:5000/api/v1/fatura/", fatura)
+                .then((response) => {
+                    const fatura = response.data;
+                    this.faturalar.push(fatura);
                     const musteri = useMusteriStore();
-                    musteri.kredi_skor_guncelle(kredi["kredi_musteri_id"])
-                    this.krediler.push(kredi);
+                    musteri.kredi_skor_guncelle(fatura["fatura_musteri_id"])
                 }).catch(error => {
                 if (!error.response) {
                     // network error
                     this.net_error = true;
-                    this.total_credits = 0;
+
                     console.log("Network Error");
                 } else {
                     this.net_error = false;
                 }
-
             });
-            const hareket = useHareketStore()
-            const {hareketEkle} = hareket;
 
-            hareketEkle("Kredi Alımı", kredi.kredi_tutar, kredi.kredi_musteri_id)
         },
         /**
-         * @function krediDuzenle
-         * @description Kredi düzenler
-         * @param kredi
-         * @param kredi_id
+         * @function faturaDuzenle
+         * @description Fatura düzenler
+         * @param fatura
+         * @param fatura_id
          */
-        krediDuzenle(kredi, kredi_id) {
-            axios.put('http://127.0.0.1:5000/api/v1/kredi/' + kredi_id, kredi).then((response) => {
-                const kredi = response.data;
+        faturaDuzenle(fatura, fatura_id) {
+            axios.put('http://127.0.0.1:5000/api/v1/fatura/' + fatura_id, fatura).then((response) => {
+                const fatura = response.data;
+                console.log(fatura);
                 this.yukle(this.sayfa = 0);
             })
         },
         /**
-         * @function krediSil
-         * @description Kredi siler
-         * @param kredi
+         * @function faturaSil
+         * @description Fatura siler
+         * @param fatura
          */
-        krediSil(kredi) {
-            if (confirm("Krediyi silmek istediğinize emin misiniz?")) {
-                console.log(kredi["id"]);
-                axios.delete('http://127.0.0.1:5000/api/v1/kredi/' + kredi["id"]).then((response) => {
-                    const kredi = response.data;
-                    const musteri = useMusteriStore();
-                    // console.log(kredi.silinen.kredi_musteri_id)
-                    musteri.kredi_skor_guncelle(kredi.silinen.kredi_musteri_id)
-                    this.yukle(this.sayfa=0);
-                })
-                const hareket = useHareketStore()
-                const {hareketEkle} = hareket;
-                hareketEkle("Kredi Ödenmesi", kredi.kredi_tutar, kredi.kredi_hesap_id)
-                // console.log(this.total_credits)
-                this.total_credits -= 1;
-            }
+        faturaSil(fatura) {
+            axios.delete('http://127.0.0.1:5000/api/v1/fatura/' + fatura["id"]).then((response) => {
+                const fatura = response.data;
+                console.log(fatura);
+                this.yukle();
+                const musteri = useMusteriStore();
+                musteri.kredi_skor_guncelle(fatura["fatura_musteri_id"])
+            })
+
+            this.sayfa = 0;
+            this.total_fatura -= 1;
         },
         /**
-         * @function kredi_ode
-         * @description Kredi ödemesi yapar
-         * @param kredi
+         * @function faturaOdeme
+         * @description Fatura ödemesi yapar
+         * @param fatura
          */
-        kredi_ode(kredi) {
-            if (kredi.kredi_durum === "Ödendi") {
-                alert("Kredi zaten ödenmiş.");
-                return;
+        faturaOdeme(fatura) {
+            axios.get('http://127.0.0.1:5000/api/v1/fatura/odeme/' + fatura.id).then((response) => {
+                const fatura = response.data;
+                this.yukle(this.sayfa = 0);
+            })
+            const musteri = useMusteriStore();
+            musteri.kredi_skor_guncelle(fatura["fatura_musteri_id"])
+            const hareket = useHareketStore()
+            const {hareketEkle} = hareket;
+            hareketEkle("Fatura Ödemesi", fatura.fatura_miktar, fatura.fatura_musteri_id)
+        },
+        /**
+         * @function find_fatura_by_id
+         * @description Fatura ID'sine göre faturayı bulur
+         * @param id
+         * @returns {string|undefined}
+         */
+        find_fatura_by_id(id) {
+            for (let i = 0; i &lt; this.all_hesap_list.length; i++) {
+                if (this.all_hesap_list[i]['id'] === id) {
+                    return (this.all_hesap_list[i]['hesap_musteri_id'])
+                }
             }
-            if (kredi.kredi_durum === "Pasif") {
-                alert("Kredi pasif durumda.");
-                return;
-            }
-            kredi.kredi_durum = "Ödendi";
-            this.krediDuzenle(kredi, kredi.id);
+
 
         },
         /**
          * @function sonraki_sayfa
-         * @description Sonraki sayfaya geçer
+         * @description Sonraki sayfayı yükler
          */
         sonraki_sayfa() {
-            if ((this.sayfa + 1) * this.adet >= this.total_credits) {
+            // console.log((this.sayfa+1) * this.adet)
+            // console.log(this.total_sube.length)
+            if ((this.sayfa + 1) * this.adet >= this.total_fatura) {
+
                 this.at_end = true;
                 return;
             }
-            if (this.krediler.length === 0) {
+            if (this.faturalar.length === 0) {
+                this.at_end = true
+                return;
+            }
+            if (this.faturalar.length &lt; 10) {
                 this.at_end = true;
                 return;
             }
-            if (this.krediler.length &lt; 10) {
-                this.at_end = true;
-                return;
-            }
+            this.at_end = false;
             this.sayfa += 1;
             this.yukle(this.sayfa);
         },
         /**
          * @function onceki_sayfa
-         * @description Önceki sayfaya geçer
+         * @description Önceki sayfayı yükler
          */
         onceki_sayfa() {
-            if (this.krediler.length === 0) {
+            if (this.faturalar.length === 0) {
                 return;
             }
             if (this.sayfa === 0) {
@@ -269,7 +287,7 @@ export const useKrediStore = defineStore("kredi", {
         },
         /**
          * @function order_by_id
-         * @description Kredileri ID'ye göre sıralar
+         * @description Faturaları ID'ye göre sıralar
          */
         order_by_id() {
             if (this.id_order === "?sırala=ar_id") {
@@ -283,6 +301,7 @@ export const useKrediStore = defineStore("kredi", {
             }
         },
     },
+
 });
 </code></pre>
         </article>
@@ -298,7 +317,7 @@ export const useKrediStore = defineStore("kredi", {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jan 01 2024 14:24:16 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 02 2024 19:34:13 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

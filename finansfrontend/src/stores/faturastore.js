@@ -2,6 +2,7 @@ import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
 import {useHareketStore} from "@/stores/hareketsotre";
+import {useMusteriStore} from "@/stores/musteristore";
 
 /**
  * @module FaturaStore
@@ -121,6 +122,8 @@ export const useFaturaStore = defineStore("fatura", {
                 .then((response) => {
                     const fatura = response.data;
                     this.faturalar.push(fatura);
+                    const musteri = useMusteriStore();
+                    musteri.kredi_skor_guncelle(fatura["fatura_musteri_id"])
                 }).catch(error => {
                 if (!error.response) {
                     // network error
@@ -156,7 +159,8 @@ export const useFaturaStore = defineStore("fatura", {
                 const fatura = response.data;
                 console.log(fatura);
                 this.yukle();
-
+                const musteri = useMusteriStore();
+                musteri.kredi_skor_guncelle(fatura["fatura_musteri_id"])
             })
 
             this.sayfa = 0;
@@ -172,6 +176,8 @@ export const useFaturaStore = defineStore("fatura", {
                 const fatura = response.data;
                 this.yukle(this.sayfa = 0);
             })
+            const musteri = useMusteriStore();
+            musteri.kredi_skor_guncelle(fatura["fatura_musteri_id"])
             const hareket = useHareketStore()
             const {hareketEkle} = hareket;
             hareketEkle("Fatura Ödemesi", fatura.fatura_miktar, fatura.fatura_musteri_id)

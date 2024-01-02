@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>hareketsotre.js - Documentation</title>
+    <title>musteristore.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">hareketsotre.js</h1>
+    <h1 class="page-title">musteristore.js</h1>
     
 
     
@@ -50,200 +50,244 @@
             <pre class="prettyprint source linenums"><code>import {defineStore} from "pinia";
 import axios from "axios";
 import {useLoadingState} from "@/stores/loading_state";
-import {ref} from "vue";
+import {ref, toRaw} from "vue";
 
 /**
- * @module HareketStore
- * @description Hesap Hareketleri ile ilgili işlemlerin yapıldığı store
- * @property {Hareket} hareket
- * @property {Hareket} selected_hareket
- * @property {Hareket} hareketler
+ * @module MusteriStore
+ * @description Müşteriler ile ilgili işlemlerin yapıldığı store
+ * @property {Musteri} musteriler
+ * @property {Musteri} selectedMusteri
  * @property {string} id_order
- * @property {number} total_hareket
+ * @property {number} total_musteri
  * @property {number} sayfa
  * @property {number} adet
  * @property {boolean} at_end
  * @property {boolean} net_error
- * @returns {{hareket, hareketler, id_order: string, sayfa: number, net_error: boolean, selected_hareket: null, total_hareket: number, at_end: boolean, adet: number}}
+ * @property {Musteri} all_musteri_list
+ * @returns {{musteriler, id_order: string, sayfa: number, net_error: boolean, selectedMusteri: null, total_musteri: number, at_end: boolean, all_musteri_list, adet: number}}
  *
  */
-export const useHareketStore = defineStore("hareket", () => {
+export const useMusteriStore = defineStore("musteri", {
 
-    const hareket = ref({
-        hareket_musteri_id: 0,
-        hareketMiktar: 0,
-        hareket_turu: "",
-    });
-    const selected_hareket = ref(null);
-    const hareketler = ref([]);
-    const id_order = ref("?sırala=ar_id");
-    const total_hareket = ref(0);
-    const sayfa = ref(0);
-    const adet = ref(10);
-    const at_end = ref(false);
-    const net_error = ref(false);
-    const loading = useLoadingState();
-    loading.yuklemeyeBasla();
+    state: () => {
+        return {
+            musteriler: ref([]),
+            selectedMusteri: null,
+            id_order: "?sırala=ar_id",
+            total_musteri: 0,
+            sayfa: 0,
+            adet: 10,
+            at_end: false,
+            net_error: false,
+            all_musteri_list: [],
+            // cached_sube : []
+        };
+    },
+    getters: {
+        get_musteriler(state) {
+            return toRaw(state.musteriler);
+        }
+    },
+    actions: {
+        /**
+         * @function init
+         * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
+         */
+        init() {
+            this.sayfa = 0;
+            this.adet = 10;
+            this.at_end = false;
+            this.yukle();
+        },
+        /**
+         * @function yukle
+         * @description Müşteri listesini yükler
+         * @param sayfa
+         * @param siralama
+         * @param adet
+         * @returns {Promise&lt;void>}
+         */
+        async yukle(sayfa = 0, siralama = this.id_order, adet = this.adet) {
+            const loading = useLoadingState();
+            loading.yuklemeyeBasla();
+            this.selectedMusteri = null;
+            await axios.get(
+                `http://127.0.0.1:5000/api/v1/musteri/s/${sayfa}/k/${adet}${siralama}`,
+            )
+                .then((response) => {
+                    if (response.status === 200) {
+                        this.net_error = false;
+                    }
+                    this.at_end = false;
+                    this.musteriler = toRaw(response.data);
+                    // console.log(response.data)
+                    loading.yuklemeyiBitir();
+                })
+                .catch(error => {
+                    if (!error.response) {
+                        // network error
+                        this.net_error = true;
+                        this.total_musteri = 0;
+                        console.log("Network Error");
 
-    /**
-     * @function init
-     * @description Bu store'un init fonksiyonu. Varsayılan değerleri atar çağrılır.
-     */
-    function init() {
-        sayfa.value = 0;
-        adet.value= 10;
-        at_end.value = false;
-        get_all_hareket();
-        yukle();
-    }
+                    } else {
+                        this.net_error = false;
+                    }
+                });
 
-    /**
-     * @function yukle
-     * @description Hesap Hareketleri listesini yükler
-     * @param sayfa
-     * @param siralama
-     */
-    function yukle(sayfa = 0, siralama = id_order.value) {
-        axios.get(
-            `http://127.0.0.1:5000/api/v1/hesaphareket/s/${sayfa}/k/${adet.value}${siralama}`)
-            .then((response) => {
-                if (response.status === 200) {
-                    net_error.value = false;
+        },
+        /**
+         * @function get_all_musteri
+         * @description Tüm müşterileri yükler
+         */
+        get_all_musteri() {
+            axios
+                .get(`http://127.0.0.1:5000/api/v1/musteri/k/0${this.id_order}`)
+                .then((response) => {
+                    this.all_musteri_list = response.data;
+                    this.total_musteri = response.data.length;
+                });
+        },
+        /**
+         * @function musteriEkle
+         * @description Müşteri ekler
+         * @param musteri
+         */
+        musteriEkle(musteri) {
+            axios
+                .post("http://127.0.0.1:5000/api/v1/musteri/", musteri)
+                .then((response) => {
+                    const musteri = response.data;
+                    this.musteriler.push(musteri);
+                }).catch(error => {
+                if (!error.response) {
+                    // network error
+                    this.net_error = true;
+
+                    console.log("Network Error");
+                } else {
+                    this.net_error = false;
                 }
-                at_end.value = false;
-                hareketler.value = response.data;
-                console.log(hareketler.value);
-                loading.yuklemeyiBitir();
-            })
-    }
 
-    /**
-     * @function get_all_hareket
-     * @description Tüm hesap hareketlerini yükler
-     */
-    function get_all_hareket() {
-        axios
-            .get(`http://127.0.0.1:5000/api/v1/hesaphareket/k/0`)
-            .then((response) => {
-                // hareketler.value = response.data;
-                total_hareket.value = response.data.length;
             });
-    }
-
-    /**
-     * @function hareketEkle
-     * @description Müşteriye ID'sine göre Hesap Hareketi ekler.
-     * @param tur
-     * @param miktar
-     * @param hesap_id
-     */
-    function hareketEkle(tur, miktar, hesap_id) {
-        hareket.value.hareket_turu = tur;
-        hareket.value.hareketMiktar = miktar;
-        hareket.value.hareket_musteri_id = hesap_id;
-        console.log(hareket.value);
-        axios.post(
-            `http://127.0.0.1:5000/api/v1/hesaphareket/`, hareket.value)
-            .then((response) => {
-                if (response.status === 200) {
-                    net_error.value = false;
-                }
-                at_end.value = false;
-                yukle();
+        },
+        /**
+         * @function musteriDuzenle
+         * @description Müşteri düzenler
+         * @param musteri
+         * @param musteri_id
+         */
+        musteriDuzenle(musteri, musteri_id) {
+            axios.put('http://127.0.0.1:5000/api/v1/musteri/' + musteri_id, musteri).then((response) => {
+                const musteri = response.data;
+                console.log(musteri);
+                this.yukle(this.sayfa = 0);
             })
-    }
-
-    /**
-     * @function hareketSil
-     * @description Hesap Hareketi siler
-     * @param hareket
-     */
-    function hareketSil(hareket) {
-        axios.delete(
-            `http://127.0.0.1:5000/api/v1/hesaphareket/` + hareket.id)
-            .then((response) => {
-                if (response.status === 200) {
-                    net_error.value = false;
+        },
+        /**
+         * @function musteriSil
+         * @description Müşteri siler
+         * @param musteri
+         */
+        musteriSil(musteri) {
+            if (confirm("Müşteriyi silmek istediğinize emin misiniz?")) {
+                if (musteri["musteri_total_kredi"] > 0) {
+                    alert(`Müşteriye ait ${musteri['musteri_total_kredi']} (ler) bulunmaktadır. Önce Kredileri siliniz.`)
+                    return;
                 }
-                at_end.value = false;
-                yukle();
+            }
+            axios.delete('http://127.0.0.1:5000/api/v1/musteri/' + musteri["id"]).then((response) => {
+                const musteri = response.data;
+                console.log(musteri);
+                this.yukle();
+
             })
-    }
+            this.get_all_musteri();
+            this.sayfa = 0;
+            this.total_musteri -= 1;
+        },
+        /**
+         * @function find_musteri
+         * @description Müşteri bulur
+         * @param id
+         * @returns {string|undefined}
+         */
+        find_musteri(id) {
+            for (let i = 0; i &lt; this.all_musteri_list.length; i++) {
+                if (this.all_musteri_list[i]['id'] === id) {
+                    return (this.all_musteri_list[i]['musteri_adi'] + " " + this.all_musteri_list[i]['musteri_soyad'] + " ID : " + this.all_musteri_list[i]['id'])
+                }
+            }
+        },
+        /**
+         * @function kredi_skor_guncelle
+         * @description Müşteriye ait Kredi skorunu günceller
+         * @param musteri_id
+         */
+        kredi_skor_guncelle(musteri_id) {
+            axios.get(`http://127.0.0.1:5000/api/v1/score/${musteri_id}`).then((response) => {
+                const musteri = response.data;
+                console.log(musteri);
+                this.yukle();
+            })
+        },
+        /**
+         * @function onceki_sayfa
+         * @description Sonraki sayfayı yükler
+         */
+        sonraki_sayfa() {
+            // console.log((this.sayfa+1) * this.adet)
+            // console.log(this.total_sube.length)
+            if ((this.sayfa + 1) * this.adet >= this.total_musteri) {
 
-    /**
-     * @function order_by_id
-     * @description Hesap Hareketlerini ID'ye göre sıralar
-     */
-    function order_by_id() {
-        if (id_order.value === "?sırala=ar_id") {
-            sayfa.value = 0;
-            id_order.value = "?sırala=az_id";
-            yukle();
-        } else {
-            sayfa.value = 0;
-            id_order.value = "?sırala=ar_id";
-            yukle();
-        }
-    }
-
-    /**
-     * @function sonraki_sayfa
-     * @description Sonraki sayfaya geçer
-     */
-    function sonraki_sayfa() {
-        if ((sayfa.value + 1) * adet.value >= total_hareket.value) {
-
-            at_end.value = true;
-            return;
-        }
-        if (hareketler.value.length === 0) {
-            at_end.value = true
-            return;
-        }
-        if (hareketler.value.length &lt; 10) {
-            at_end.value = true;
-            return;
-        }
-        at_end.value = false;
-        sayfa.value += 1;
-        yukle(sayfa.value);
-    }
-
-    /**
-     * @function onceki_sayfa
-     * @description Önceki sayfaya geçer
-     */
-    function onceki_sayfa() {
-        if (hareketler.value.length === 0) {
-            return;
-        }
-        if (sayfa.value === 0) {
-            return;
-        }
-        at_end.value = false;
-        sayfa.value -= 1;
-        yukle(sayfa.value);
-    }
-
-    return {
-        init,
-        selected_hareket,
-        hareket,
-        hareketEkle,
-        hareketSil,
-        yukle,
-        sayfa,
-        adet,
-        hareketler,
-        total_hareket,
-        net_error,
-        at_end,
-        id_order,
-        order_by_id,
-        sonraki_sayfa,
-        onceki_sayfa,
-    }
-});</code></pre>
+                this.at_end = true;
+                return;
+            }
+            if (this.musteriler.length === 0) {
+                this.at_end = true
+                return;
+            }
+            if (this.musteriler.length &lt; 10) {
+                this.at_end = true;
+                return;
+            }
+            this.at_end = false;
+            this.sayfa += 1;
+            this.yukle(this.sayfa);
+        },
+        /**
+         * @function onceki_sayfa
+         * @description Önceki sayfayı yükler
+         */
+        onceki_sayfa() {
+            if (this.musteriler.length === 0) {
+                return;
+            }
+            if (this.sayfa === 0) {
+                return;
+            }
+            this.at_end = false;
+            this.sayfa -= 1;
+            this.yukle(this.sayfa);
+        },
+        /**
+         * @function order_by_id
+         * @description ID'ye göre sıralama yapar
+         */
+        order_by_id() {
+            if (this.id_order === "?sırala=ar_id") {
+                this.sayfa = 0;
+                this.id_order = "?sırala=az_id";
+                this.yukle();
+            } else {
+                this.sayfa = 0;
+                this.id_order = "?sırala=ar_id";
+                this.yukle();
+            }
+        },
+    },
+});
+</code></pre>
         </article>
     </section>
 
@@ -257,7 +301,7 @@ export const useHareketStore = defineStore("hareket", () => {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jan 01 2024 14:24:16 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jan 02 2024 19:34:13 GMT+0300 (GMT+03:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
