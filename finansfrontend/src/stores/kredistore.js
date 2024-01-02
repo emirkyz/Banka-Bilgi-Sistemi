@@ -137,10 +137,12 @@ export const useKrediStore = defineStore("kredi", {
          * @param kredi
          * @param kredi_id
          */
-        async krediDuzenle(kredi, kredi_id) {
+        krediDuzenle(kredi, kredi_id) {
             axios.put('http://127.0.0.1:5000/api/v1/kredi/' + kredi_id, kredi).then((response) => {
                 const kredi = response.data;
                 this.yukle(this.sayfa = 0);
+                const musteri = useMusteriStore();
+                musteri.kredi_skor_guncelle(kredi["kredi_musteri_id"])
             })
 
         },
@@ -182,12 +184,8 @@ export const useKrediStore = defineStore("kredi", {
             }
 
             kredi.kredi_durum = "Ödendi";
-            this.krediDuzenle(kredi, kredi.id).then(
-                () => {
-                    const musteri = useMusteriStore();
-                    musteri.kredi_skor_guncelle(kredi.silinen.kredi_musteri_id)
-                }
-            )
+            this.krediDuzenle(kredi, kredi.id);
+
 
         },
         /**
