@@ -10,8 +10,8 @@ Home - Documentation
 
 ### Modules
 
-*   [KYZ FINANS - Backend](./FinansBackend/docs/_build/html/index.html)
-*   [KYZ FINANS - Frontend](./finansfrontend/docs/index.html)
+*   [KYZ FINANS - Backend](./Dökümantasyonlar/BackendDokumantasyon/docs/_build/html/index.html)
+*   [KYZ FINANS - Frontend](./Dökümantasyonlar/FrontendDokumantasyon/docs/index.html)
 
 KYZ FINANS
 
