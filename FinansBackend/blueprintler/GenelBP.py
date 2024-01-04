@@ -189,14 +189,25 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
         db.session.commit()
         return {"güncellenen fatura": veri.to_dict()}
 
-    @bp.route('/score/<int:musteri_id>', methods=['GET'])
-    def score(musteri_id):
-        """
-            Kredi skoru hesaplaması için kullanılır.
-            Parameters:
-                musteri_id: Müşterinin id'si
-        """
-        sonuc = kredi_skor_update(musteri_id)
-        return {'score': sonuc}
-
+    @bp.route('/score/<int:tur>/<int:musteri_id>', methods=['GET'])
+    def score(musteri_id,tur : int = 1):
+        if tur == 1:
+            """
+                Kredi skoru hesaplaması için kullanılır.
+                Parameters:
+                    musteri_id: Müşterinin id'si
+            """
+            sonuc = kredi_skor_update(musteri_id)
+            return {'score': sonuc}
+        elif tur == 2:
+            """
+                Kredi skoru return eder.
+                Parameters:
+                    musteri_id: Müşterinin id'si
+            """
+            sorgu = select(veri_sinifi).where(veri_sinifi.id == musteri_id)
+            veri = db.session.scalars(sorgu).one()
+            return {'score': veri.musteri_kredi_skor}
+        else:
+            return abort(500)
     return bp
