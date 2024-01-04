@@ -8,6 +8,7 @@ from flask import Blueprint, abort, request
 from sqlalchemy import select, inspect, func
 
 from blueprintler.VeriSorgulama import sorgulama
+from tools import kredi_skor_update
 from veri import db
 
 
@@ -138,6 +139,12 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
 
     @bp.route('/bakiye/e/<int:id>/<int:miktar>', methods=['GET'])
     def increase_hesap_bakiye(id, miktar):
+        """
+        Veri tabanındaki id'si verilen hesap bakiyesini arttırır.
+        :param id: Verinin id'si
+        :param miktar: Arttırılacak miktar
+        :return: Arttırılan hesap bakiyesini to_dict() fonksiyonu ile döndürür.
+        """
         sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
         veri = db.session.scalars(sorgu).one()
 
@@ -149,6 +156,12 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
 
     @bp.route('/bakiye/c/<int:id>/<int:miktar>', methods=['GET'])
     def decrease_hesap_bakiye(id, miktar):
+        """
+        Veri tabanındaki id'si verilen hesap bakiyesini azaltır.
+        :param id: Verinin id'si
+        :param miktar: Azaltılacak miktar
+        :return: Azaltılan hesap bakiyesini to_dict() fonksiyonu ile döndürür.
+        """
         print("inside decrease")
         sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
         veri = db.session.scalars(sorgu).one()
@@ -164,11 +177,26 @@ def GenelBP(veri_sinifi: type, bp_adi: str = "genel_bp"):
 
     @bp.route('/odeme/<int:id>', methods=['GET'])
     def odeme(id):
+        """
+        Veri tabanındaki id'si verilen faturayı öder.
+        :param id: Verinin id'si
+        :return: Ödenen faturayı to_dict() fonksiyonu ile döndürür.
+        """
         sorgu = select(veri_sinifi).where(veri_sinifi.id == id)
         veri = db.session.scalars(sorgu).one()
 
         veri.fatura_durum = "Ödendi"
         db.session.commit()
         return {"güncellenen fatura": veri.to_dict()}
+
+    @bp.route('/score/<int:musteri_id>', methods=['GET'])
+    def score(musteri_id):
+        """
+            Kredi skoru hesaplaması için kullanılır.
+            Parameters:
+                musteri_id: Müşterinin id'si
+        """
+        sonuc = kredi_skor_update(musteri_id)
+        return {'score': sonuc}
 
     return bp

@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import Error_component from "@/components/ortak/error_component.vue";
 import {useKrediStore} from "@/stores/kredistore";
 import {useMusteriStore} from "@/stores/musteristore";
@@ -10,12 +10,14 @@ const musteriStore = useMusteriStore();
 const krediStore = useKrediStore();
 const hesapStore = useHesapStore();
 
-musteriStore.init()
-musteriStore.get_all_musteri();
-krediStore.init();
+onMounted(() => {
+  musteriStore.init()
+  musteriStore.get_all_musteri();
+  krediStore.init();
 
-hesapStore.init();
-hesapStore.get_all_hesap();
+  hesapStore.init();
+  hesapStore.get_all_hesap();
+});
 
 
 const eklenecek_kredi = ref({
@@ -67,14 +69,12 @@ function kaydet() {
                     class="input-area py-4 bg-transparent w-full border border-black"
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <!--              <option v-for="musteri in musteriStore.musteriler" :value="musteri['id']"> {{musteri.id}} - {{ musteri.musteri_adi }} </option>-->
               <option v-for="hesap in hesapStore.hesaplar" :value="hesap['id']"> Hesap ID : {{ hesap.id }} /
                 Müşteri : {{ musteriStore.find_musteri(hesap['hesap_musteri_id']) }}
               </option>
             </select>
           </div>
         </div>
-
         <div class="input-row">
           <div class="label-area">
             <label class="text-xl" for="fadi">Kredi Faiz Oranı</label>
@@ -131,6 +131,7 @@ function kaydet() {
           <button v-if="krediStore.net_error === false" class="btn" @click="onayKutusu=true">Kaydet</button>
         </div>
       </div>
+
       <teleport to="body">
         <div v-if="onayKutusu === true" class="modal" @click="onayKutusu=false">
           <div class="modal-content">

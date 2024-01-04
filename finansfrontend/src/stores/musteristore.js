@@ -31,7 +31,7 @@ export const useMusteriStore = defineStore("musteri", {
             at_end: false,
             net_error: false,
             all_musteri_list: [],
-            // cached_sube : []
+            secili_kredi_skor :  ref(0),
         };
     },
     getters: {
@@ -176,7 +176,7 @@ export const useMusteriStore = defineStore("musteri", {
          * @param musteri_id
          */
         kredi_skor_guncelle(musteri_id) {
-            axios.get(`http://127.0.0.1:5000/api/v1/score/${musteri_id}`).then((response) => {
+            axios.get(`http://127.0.0.1:5000/api/v1/musteri/score/${musteri_id}`).then((response) => {
                 const musteri = response.data;
                 console.log(musteri);
                 this.yukle();

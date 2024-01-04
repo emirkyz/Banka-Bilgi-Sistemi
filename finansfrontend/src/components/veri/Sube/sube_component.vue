@@ -5,8 +5,6 @@ import Sube_sidebar_component from "@/components/veri/Sube/sube_sidebar_componen
 <template>
   <main>
     <sube_sidebar_component class="sidebar_comp"></sube_sidebar_component>
-
-    <!--    <sube_content_component class="main_comp"></sube_content_component>-->
     <router-view id="router" class="middle"></router-view>
   </main>
 </template>
