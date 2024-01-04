@@ -11,10 +11,10 @@ const krediStore = useKrediStore();
 const hesapStore = useHesapStore();
 
 onMounted(() => {
+
   musteriStore.init()
   musteriStore.get_all_musteri();
   krediStore.init();
-
   hesapStore.init();
   hesapStore.get_all_hesap();
 });
@@ -35,8 +35,13 @@ function hesaba_ekle() {
 }
 
 function kaydet() {
-  hesaba_ekle();
   eklenecek_kredi.value.kredi_musteri_id = hesapStore.find_hesap_by_id(eklenecek_kredi.value.kredi_hesap_id);
+  const musteri_skor = musteriStore.kredi_skor_guncelle(eklenecek_kredi.value.kredi_musteri_id, 2);
+  if (musteri_skor >= 0.7) {
+    alert("Kredi verilmesi riskli müşteri. Kredi verilmedi.")
+    return;
+  }
+  hesaba_ekle();
   krediStore.krediEkle(eklenecek_kredi.value);
   eklenecek_kredi.value = {
     kredi_hesap_id: "",
@@ -67,7 +72,8 @@ function kaydet() {
           <div class="input-area">
             <select v-model="eklenecek_kredi.kredi_hesap_id"
                     class="input-area py-4 bg-transparent w-full border border-black"
-                    name="fsubeid">
+                    name="fsubeid"
+            >
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
               <option v-for="hesap in hesapStore.hesaplar" :value="hesap['id']"> Hesap ID : {{ hesap.id }} /
                 Müşteri : {{ musteriStore.find_musteri(hesap['hesap_musteri_id']) }}

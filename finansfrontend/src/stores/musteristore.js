@@ -31,7 +31,7 @@ export const useMusteriStore = defineStore("musteri", {
             at_end: false,
             net_error: false,
             all_musteri_list: [],
-            secili_kredi_skor :  ref(0),
+            secili_kredi_skor: ref(0),
         };
     },
     getters: {
@@ -174,9 +174,10 @@ export const useMusteriStore = defineStore("musteri", {
          * @function kredi_skor_guncelle
          * @description Müşteriye ait Kredi skorunu günceller
          * @param musteri_id
+         * @param tur
          */
-        kredi_skor_guncelle(musteri_id) {
-            axios.get(`http://127.0.0.1:5000/api/v1/musteri/score/${musteri_id}`).then((response) => {
+        kredi_skor_guncelle(musteri_id, tur = 1) {
+            axios.get(`http://127.0.0.1:5000/api/v1/musteri/score/${tur}/${musteri_id}`).then((response) => {
                 const musteri = response.data;
                 console.log(musteri);
                 this.yukle();
