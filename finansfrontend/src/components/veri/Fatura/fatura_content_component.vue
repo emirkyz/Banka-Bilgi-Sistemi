@@ -71,7 +71,7 @@ musteri_store.get_all_musteri();
           <th>Fatura Türü</th>
           <th>Fatura Durumu</th>
           <th class="w-[200px]">
-            <a class="-ml-8">logo</a>
+            <a class="-ml-8"></a>
             <button
                 class="btn white right hover:bg-teal-300 hover:text-black"
                 @click="
@@ -97,14 +97,14 @@ musteri_store.get_all_musteri();
           <td>{{ fatura["fatura_turu"] }}</td>
           <td>{{ fatura["fatura_durum"] }}</td>
 
-          <td class="right">
-            <button class="btn content-center" @click="faturaStore.selectedHesap=fatura">Düzenle</button>
+          <td class="butonlar ">
+            <!--            <button class="btn content-center" @click="faturaStore.selectedHesap=fatura">Düzenle</button>-->
             <!--            <button @click="console.log(musteri)">a</button>-->
+
             <button class="btn-sil  content-center" @click="faturaStore.faturaSil(fatura)">Sil</button>
+
             <br>
-            <!--            <button class="btn-kredi-ekle content-center"-->
-            <!--                    @click="faturaStore.bakiye_update=fatura ; faturaStore.selectedHesap=fatura;">Bakiye ekle-->
-            <!--            </button>-->
+
           </td>
         </tr>
       </table>
@@ -123,16 +123,20 @@ musteri_store.get_all_musteri();
       >
         Sonraki
       </button>
-
-      <!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
-      <!--      <bakiye_update_component></bakiye_update_component>-->
-
     </div>
 
   </main>
 </template>
 
 <style scoped>
+.butonlar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  margin-bottom: 5px;
+
+}
+
 .btn-kredi-ekle {
   background-color: #4CAF50; /* Green */
   border: none;
@@ -145,6 +149,19 @@ musteri_store.get_all_musteri();
   margin: 2px 2px;
   cursor: pointer;
   border-radius: 4px;
+}
+
+.btn-sil {
+  margin: 10px 0;
+  background-color: #815353;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .kredi-content {
