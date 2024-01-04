@@ -108,9 +108,9 @@ onMounted(() => {
           <td>{{ kredi["kredi_faiz_orani"] }}</td>
 
           <td class="butonlar right">
-            <button class="btn content-center">Düzenle</button>
+<!--            <button class="btn content-center">Düzenle</button>-->
             <button class="btn-sil  content-center" @click="kredi_store.krediSil(kredi)">Sil</button>
-            <button class="btn-öde content-center" @click="kredi_store.kredi_ode(kredi)">Kredi Öde</button>
+            <button class="btn-öde mt-2 content-center" @click="kredi_store.kredi_ode(kredi)">Kredi Öde</button>
           </td>
         </tr>
       </table>
@@ -137,9 +137,7 @@ onMounted(() => {
 .butonlar {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
-  justify-items: center;
-  align-items: center;
+  grid-template-rows: 1fr;
   margin-bottom: 5px;
 }
 button {

@@ -3,6 +3,7 @@ import {useLoadingState} from "@/stores/loading_state";
 import {useSubeStore} from "@/stores/subestore";
 import Sube_duzenleme_component from "@/components/veri/Sube/sube_duzenleme_component.vue";
 import Error_component from "@/components/ortak/error_component.vue";
+import Modal_component from "@/components/ortak/modal_component.vue";
 
 const sube_store = useSubeStore();
 const loading = useLoadingState();
@@ -81,6 +82,7 @@ sube_store.get_all_sube();
         </tr>
 
         </thead>
+
         <tr
             v-for="sube in sube_store.subeler"
             :key="sube"
@@ -97,8 +99,13 @@ sube_store.get_all_sube();
             <button class="btn content-center" @click="sube_store.selectedSube=sube">Düzenle</button>
             <button class="btn-sil  content-center" @click="sube_store.subeSil(sube)">Sil</button>
           </td>
+
         </tr>
+
+
+
       </table>
+
       <br class="space"/>
 
       <br class="space"/>
@@ -115,9 +122,8 @@ sube_store.get_all_sube();
         Sonraki
       </button>
 
+
       <sube_duzenleme_component></sube_duzenleme_component>
-
-
     </div>
 
   </main>
