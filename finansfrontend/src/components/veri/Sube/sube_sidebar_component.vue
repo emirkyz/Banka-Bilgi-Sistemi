@@ -35,7 +35,7 @@ function expand_sidebar() {
       </div>
     </div>
   </div>
-<!--  test-->
+<!--  -->
 </template>
 
 <style scoped>
