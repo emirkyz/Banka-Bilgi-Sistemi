@@ -27,6 +27,7 @@ export const useSubeStore = defineStore("sube", {
         adet: 10,
         at_end: false,
         net_error: false,
+        all_sube_list: [],
         // cached_sube : []
     }),
     actions: {
@@ -82,6 +83,7 @@ export const useSubeStore = defineStore("sube", {
             axios
                 .get(`http://127.0.0.1:5000/api/v1/sube/k/0`)
                 .then((response) => {
+                    this.all_sube_list = response.data;
                     this.total_sube = response.data.length;
                 });
         },

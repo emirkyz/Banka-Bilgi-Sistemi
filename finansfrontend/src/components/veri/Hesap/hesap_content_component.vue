@@ -4,16 +4,18 @@ import Error_component from "@/components/ortak/error_component.vue";
 import {useHesapStore} from "@/stores/hesapstore";
 import Bakiye_update_component from "@/components/veri/Hesap/bakiye_update_component.vue";
 import {useMusteriStore} from "@/stores/musteristore";
+import Hesap_duzenleme_component from "@/components/veri/Hesap/hesap_duzenleme_component.vue";
+import {onMounted} from "vue";
 
 const hesap_store = useHesapStore();
 const loading = useLoadingState();
 const musteri_store = useMusteriStore();
 
-hesap_store.init();
-hesap_store.get_all_hesap();
-
-musteri_store.get_all_musteri();
-
+onMounted(() => {
+  hesap_store.init();
+  hesap_store.get_all_hesap();
+  musteri_store.get_all_musteri();
+})
 
 </script>
 
@@ -125,7 +127,7 @@ musteri_store.get_all_musteri();
         Sonraki
       </button>
 
-      <!--      <musteri_duzenleme_component></musteri_duzenleme_component>-->
+      <hesap_duzenleme_component></hesap_duzenleme_component>
       <bakiye_update_component></bakiye_update_component>
 
     </div>

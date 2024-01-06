@@ -1,61 +1,65 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useMusteriStore} from "@/stores/musteristore";
 import {useSubeStore} from "@/stores/subestore";
 import Error_component from "@/components/ortak/error_component.vue";
+import {useHesapStore} from "@/stores/hesapstore";
 
 const subeStore = useSubeStore();
-subeStore.yukle()
 const musteriStore = useMusteriStore();
+const hesapStore = useHesapStore();
 
-const bos_musteri = {
-  musteri_adi: "",
-  musteri_soyad: "",
-  musteri_tc: "",
-  musteri_sube_id: "",
-  musteri_imza: "",
+onMounted(() => {
+  hesapStore.init();
+  hesapStore.get_all_hesap();
+})
+subeStore.get_all_sube();
+musteriStore.get_all_musteri();
+const bos_hesap = {
+  hesap_AcanSube: "",
+  hesap_ParaBirim: "",
+  hesap_musteri_id: "",
 };
-const duzenlenecek_musteri = ref({
-  musteri_adi: "",
-  musteri_soyad: "",
-  musteri_tc: "",
-  musteri_sube_id: "",
-  musteri_imza: "",
+const duzenlenecek_hesap = ref({
+  hesap_AcanSube: "",
+  hesap_ParaBirim: "",
+  hesap_musteri_id: "",
 });
 
 function duzenle() {
-  musteriStore.musteriDuzenle(duzenlenecek_musteri.value, musteriStore.selectedMusteri["id"]);
-  duzenlenecek_musteri.value = {
-    musteri_adi: "",
-    musteri_soyad: "",
-    musteri_tc: "",
-    musteri_sube_id: "",
-    musteri_imza: "",
+  hesapStore.hesapDuzenle(duzenlenecek_hesap.value, hesapStore.selectedHesap["id"]);
+  duzenlenecek_hesap.value = {
+    hesap_AcanSube: "",
+    hesap_ParaBirim: "",
+    hesap_musteri_id: "",
   }
 }
+const para_birimleri = [
+  "Dolar",
+  "Euro",
+  "TL",
+]
 </script>
 
 <template>
   <div class="flex flex-row">
-    <div v-if="musteriStore.selectedMusteri !== null" class="edit p-16 mx-2">
-      <a class="mr-2 font-bold">{{ musteriStore.selectedMusteri['musteri_adi'] }}</a>
-      <a>Müşterisi </a>
+    <div v-if="hesapStore.selectedHesap !== null" class="edit p-16 mx-2">
+      <a class="mr-2 font-bold">{{ hesapStore.selectedHesap['id'] }}</a>
+      <a>ID'li Hesap </a>
       <a>için Düzenleme Ekranı</a>
       <br>
       <br>
       <div class="input-area">
-
         <div class="input-row">
           <div class="label-area w-1/3">
             <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Şubeyi Seçiniz</label>
           </div>
-
           <div class="input-area">
-            <select v-model="duzenlenecek_musteri.musteri_sube_id"
+            <select v-model="duzenlenecek_hesap.hesap_AcanSube"
                     class="input-area  bg-transparent w-2/4 border border-black"
                     name="fsubeid">
               <option selected="selected" value="">Değiştirmek için seçim yapın</option>
-              <option v-for="sube in subeStore.subeler" :value="sube['id']"> {{ sube.id }} - {{
+              <option v-for="sube in subeStore.all_sube_list" :value="sube['id']"> {{ sube.id }} - {{
                   sube.sube_adi
                 }}
               </option>
@@ -63,54 +67,48 @@ function duzenle() {
           </div>
         </div>
 
-
-        <div class="edit-input-row">
-          <div class="edit-label-area">
-            <label for="fadi">Müşteri Adı</label>
-            <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_adi'] }})</a>
+        <div class="input-row">
+          <div class="label-area w-1/3">
+            <label class="text-xl" for="fsubeid">Hesabın Bağlı Olduğu Müşteriyi Seçiniz</label>
           </div>
-          <div class="edit-input-area">
-            <input v-model="duzenlenecek_musteri.musteri_adi" placeholder="Yeni Müşteri Adını Giriniz" type="text">
-          </div>
-        </div>
-
-        <div class="edit-input-row">
-          <div class="edit-label-area">
-            <label for="fsoyad">Müşteri Soyad</label>
-            <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_soyad'] }})</a>
-          </div>
-          <div class="edit-input-area">
-            <input v-model="duzenlenecek_musteri.musteri_soyad" placeholder="Yeni Müşteri Soyadını Giriniz" type="text">
+          <div class="input-area">
+            <select v-model="duzenlenecek_hesap.hesap_musteri_id"
+                    class="input-area  bg-transparent w-2/4 border border-black"
+                    name="fsubeid">
+              <option selected="selected" value="">Değiştirmek için seçim yapın</option>
+              <option v-for="musteri in musteriStore.all_musteri_list" :value="musteri['id']"> {{ musteri.id }} - {{
+                  musteri.musteri_adi
+                }}
+              </option>
+            </select>
           </div>
         </div>
 
-        <div class="edit-input-row">
-          <div class="edit-label-area">
-            <label for="ftelefon">Müşteri TC</label>
-            <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_tc'] }})</a>
+        <div class="input-row">
+          <div class="label-area w-1/3">
+            <label class="text-xl" for="fsubeid">Hesabın Para Birimini Seçiniz</label>
           </div>
-          <div class="edit-input-area">
-            <input v-model="duzenlenecek_musteri.musteri_tc" placeholder="Yeni Müşteri TC'sini Giriniz" type="text">
+          <div class="input-area">
+            <select v-model="duzenlenecek_hesap.hesap_ParaBirim"
+                    class="input-area  bg-transparent w-2/4 border border-black"
+                    name="fsubeid">
+              <option selected="selected" value="">Değiştirmek için seçim yapın</option>
+              <option v-for="para in para_birimleri" :value="para"> {{ para }}
+              </option>
+            </select>
           </div>
         </div>
+      </div>
 
-        <div class="edit-input-row">
-          <div class="edit-label-area">
-            <label for="ftelefon">Müşteri İmza</label>
-            <a class=" mx-2 font-light">({{ musteriStore.selectedMusteri['musteri_imza'] }})</a>
-          </div>
-          <div class="edit-input-area">
-            <input v-model="duzenlenecek_musteri.musteri_imza" placeholder="Yeni Müşteri İmzasını Giriniz" type="text">
-          </div>
-        </div>
+
 
 
         <div
-            v-if="duzenlenecek_musteri.musteri_adi !== '' && duzenlenecek_musteri.musteri_soyad !=='' && duzenlenecek_musteri.musteri_tc !=='' && duzenlenecek_musteri.musteri_imza !=='' && duzenlenecek_musteri.musteri_sube_id!=='' ">
+            v-if="duzenlenecek_hesap.hesap_musteri_id !== '' && duzenlenecek_hesap.hesap_AcanSube !=='' && duzenlenecek_hesap.hesap_ParaBirim !==''">
           <button class="btn  my-4 p-2" @click="duzenle">
             Kaydet
           </button>
-          <button class="btn exit my-4 p-2" @click="musteriStore.selectedMusteri=null">
+          <button class="btn exit my-4 p-2" @click="hesapStore.selectedHesap=null">
             İptal
           </button>
         </div>
@@ -120,7 +118,7 @@ function duzenle() {
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <style scoped>
