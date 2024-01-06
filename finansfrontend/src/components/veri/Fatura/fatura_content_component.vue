@@ -95,7 +95,7 @@ musteri_store.get_all_musteri();
           <td>{{ musteri_store.find_musteri(fatura['fatura_musteri_id']) }}</td>
           <td>{{ fatura["fatura_miktar"] + " TL" }}</td>
           <td>{{ fatura["fatura_turu"] }}</td>
-          <td>{{ fatura["fatura_durum"] }}</td>
+          <td :class="fatura['fatura_durum'] === 'Ödendi' ? 'text-green-500 font-bold' : fatura['fatura_durum'] === 'Ödenmedi' ? 'text-yellow-700' : 'text-yellow-500'">{{ fatura["fatura_durum"] }}</td>
 
           <td class="butonlar ">
             <!--            <button class="btn content-center" @click="faturaStore.selectedHesap=fatura">Düzenle</button>-->

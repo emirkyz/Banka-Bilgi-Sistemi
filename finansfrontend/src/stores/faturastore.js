@@ -42,6 +42,7 @@ export const useFaturaStore = defineStore("fatura", {
         init() {
             this.sayfa = 0;
             this.adet = 10;
+            // this.id_order = "?sırala=az_id";
             this.at_end = false;
             this.yukle();
         },
