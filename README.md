@@ -22,7 +22,7 @@ Bilgiler
 **Numara:** 402957  
 **E-mail:** emirkyzmain@gmail.com  
 **Github:** [github.com/emirkyz](https://github.com/emirkyz)  
-**Yapım Amacı:** 2023-2024 Güz Dönemi Web Programlama Dönem Ödevi
+**Yapım Amacı:** Banka Kurumları tarafından kullanılabilecek Genel, Müşteri / Hesap / Kredi / Fatura yönetimi yapılabilecek bir uygulama olması amaçlanmıştır.
 
 * * *
 
