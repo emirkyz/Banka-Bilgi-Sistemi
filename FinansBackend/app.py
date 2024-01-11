@@ -20,7 +20,7 @@ def create_app():
     migrate = Migrate()
     migrate.init_app(app, db)
 
-    # you_track test 6 and goes on.
+    # you_track test 7 and goes on.
     @app.route('/')
     def index():
         """
