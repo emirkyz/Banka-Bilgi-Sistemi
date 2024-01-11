@@ -20,6 +20,9 @@ def create_app():
     migrate = Migrate()
     migrate.init_app(app, db)
 
+    # I am still trying to figure out how to use youtrack without messing shits up.
+    # it is not working properly. I don't know why. I am trying to figure it out.
+    # It seems to work now. I don't know why. I am trying to figure it out.
     @app.route('/')
     def index():
         """
