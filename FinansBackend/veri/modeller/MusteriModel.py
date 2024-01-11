@@ -47,3 +47,4 @@ class MusteriModeli(TemelVeriSinifi):
     musteri_kredi_durum: Mapped[str] = mapped_column(nullable=True, default="Yeterli Kredi Yok")
 
     hesap_hareket: Mapped[List["HesapHaraketModeli"]] = relationship()
+    # total_kredi: Mapped[int] = mapped_column(default=0,nullable=True)
