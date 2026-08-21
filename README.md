@@ -29,7 +29,7 @@ Bilgiler
 **Proje Hakkında:**
 
 **Kullanım:**  
-Sol taraftan hem BackEnd hem de FrontEnd için dökümantasyon sayfalarına ulaşabilirsnizi.
+Sol taraftan hem BackEnd hem de FrontEnd için dökümantasyon sayfalarına ulaşabilirsniz.
 
 * * *
 
